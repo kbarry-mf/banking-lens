@@ -4,6 +4,7 @@ import { MetricCard } from "./MetricCard";
 import { DollarSign, TrendingDown, AlertCircle } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Pie, PieChart, Cell } from "recharts";
+import { formatCurrency } from "@/lib/utils";
 
 interface LoanSource {
   name: string;
@@ -171,8 +172,8 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   <BarChart data={paymentChartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                     <Bar dataKey="payments" fill="var(--color-payments)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ChartContainer>

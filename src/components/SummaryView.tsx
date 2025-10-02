@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Building2, TrendingUp, DollarSign, Calendar, User, ExternalLink, AlertCircle } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { formatCurrency } from "@/lib/utils";
 
 const revenueData = [
   { month: "Jul", revenue: 695000 },
@@ -170,22 +171,23 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                 <BarChart data={revenueData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Bar dataKey="revenue" fill="var(--color-revenue)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : (
                 <AreaChart data={revenueData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Area 
                     type="monotone" 
                     dataKey="revenue" 
                     stroke="var(--color-revenue)" 
                     fill="var(--color-revenue)" 
                     fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                    dot={{ fill: "var(--color-revenue)", r: 4 }}
                   />
                 </AreaChart>
               )}
@@ -212,22 +214,23 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                 <BarChart data={cashFlowData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Bar dataKey="cashFlow" fill="var(--color-cashFlow)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : (
                 <AreaChart data={cashFlowData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Area 
                     type="monotone" 
                     dataKey="cashFlow" 
                     stroke="var(--color-cashFlow)" 
                     fill="var(--color-cashFlow)" 
                     fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                    dot={{ fill: "var(--color-cashFlow)", r: 4 }}
                   />
                 </AreaChart>
               )}

@@ -4,6 +4,7 @@ import { AlertTriangle, TrendingUp, TrendingDown, DollarSign } from "lucide-reac
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
+import { formatCurrency } from "@/lib/utils";
 
 interface CashFlowViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -117,17 +118,17 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                   <BarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                     <Bar dataKey="cashFlow" fill="var(--color-cashFlow)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Line type="monotone" dataKey="cashFlow" stroke="var(--color-cashFlow)" strokeWidth={2} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                    <Line type="monotone" dataKey="cashFlow" stroke="var(--color-cashFlow)" strokeWidth={2} dot={{ fill: "var(--color-cashFlow)", r: 4 }} />
                   </LineChart>
                 )}
               </ChartContainer>
@@ -152,17 +153,17 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                   <BarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                     <Bar dataKey="transfers" fill="var(--color-transfers)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
                   <AreaChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Area type="monotone" dataKey="transfers" stroke="var(--color-transfers)" fill="var(--color-transfers)" fillOpacity={0.3} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                    <Area type="monotone" dataKey="transfers" stroke="var(--color-transfers)" fill="var(--color-transfers)" fillOpacity={0.3} dot={{ fill: "var(--color-transfers)", r: 4 }} />
                   </AreaChart>
                 )}
               </ChartContainer>

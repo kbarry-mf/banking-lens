@@ -4,6 +4,7 @@ import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
+import { formatCurrency } from "@/lib/utils";
 
 interface BalancesViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -76,25 +77,25 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Bar dataKey="avgBalance" fill="var(--color-avgBalance)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : exploration === "analyst" ? (
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Line type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" strokeWidth={3} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                  <Line type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" strokeWidth={3} dot={{ fill: "var(--color-avgBalance)", r: 4 }} />
                 </LineChart>
               ) : (
                 <AreaChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Area type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" fill="var(--color-avgBalance)" fillOpacity={0.4} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                  <Area type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" fill="var(--color-avgBalance)" fillOpacity={0.4} dot={{ fill: "var(--color-avgBalance)", r: 4 }} />
                 </AreaChart>
               )}
             </ChartContainer>
@@ -121,25 +122,25 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
                   <Bar dataKey="minBalance" fill="var(--color-minBalance)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : exploration === "analyst" ? (
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={3} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                  <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={3} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
                 </LineChart>
               ) : (
                 <AreaChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Area type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" fill="var(--color-minBalance)" fillOpacity={0.4} />
+                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                  <Area type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" fill="var(--color-minBalance)" fillOpacity={0.4} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
                 </AreaChart>
               )}
             </ChartContainer>
