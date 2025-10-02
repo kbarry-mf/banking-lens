@@ -13,7 +13,11 @@ interface LoanSource {
   frequency: string;
 }
 
-export const DebtView = () => {
+interface DebtViewProps {
+  exploration: "executive" | "analyst" | "decision";
+}
+
+export const DebtView = ({ exploration }: DebtViewProps) => {
   const loanSources: LoanSource[] = [
     {
       name: "OnDeck Capital",

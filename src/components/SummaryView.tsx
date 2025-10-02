@@ -2,8 +2,26 @@ import { MetricCard } from "./MetricCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Building2, TrendingUp, DollarSign, Calendar, User, ExternalLink, AlertCircle } from "lucide-react";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-export const SummaryView = () => {
+const revenueData = [
+  { month: "Jul", revenue: 695000 },
+  { month: "Aug", revenue: 710000 },
+  { month: "Sep", revenue: 705000 },
+];
+
+const cashFlowData = [
+  { month: "Jul", cashFlow: 95000 },
+  { month: "Aug", cashFlow: 102000 },
+  { month: "Sep", cashFlow: 98000 },
+];
+
+interface SummaryViewProps {
+  exploration: "executive" | "analyst" | "decision";
+}
+
+export const SummaryView = ({ exploration }: SummaryViewProps) => {
   return (
     <div className="space-y-6">
       {/* Application Header */}
@@ -137,9 +155,41 @@ export const SummaryView = () => {
             <CardTitle className="text-base">Revenue by Month</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex h-64 items-center justify-center text-sm text-muted-foreground">
-              Chart visualization placeholder
-            </div>
+            <ChartContainer
+              config={{
+                revenue: {
+                  label: "Revenue",
+                  color: exploration === "executive" ? "hsl(var(--chart-1))" : 
+                         exploration === "analyst" ? "hsl(var(--primary))" : 
+                         "hsl(var(--chart-3))",
+                },
+              }}
+              className="h-64"
+            >
+              {exploration === "decision" ? (
+                <BarChart data={revenueData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="revenue" fill="var(--color-revenue)" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              ) : (
+                <AreaChart data={revenueData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Area 
+                    type="monotone" 
+                    dataKey="revenue" 
+                    stroke="var(--color-revenue)" 
+                    fill="var(--color-revenue)" 
+                    fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                  />
+                </AreaChart>
+              )}
+            </ChartContainer>
           </CardContent>
         </Card>
         <Card>
@@ -147,9 +197,41 @@ export const SummaryView = () => {
             <CardTitle className="text-base">Cash Flow from Operations by Month</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex h-64 items-center justify-center text-sm text-muted-foreground">
-              Chart visualization placeholder
-            </div>
+            <ChartContainer
+              config={{
+                cashFlow: {
+                  label: "Cash Flow",
+                  color: exploration === "executive" ? "hsl(var(--chart-2))" : 
+                         exploration === "analyst" ? "hsl(var(--success))" : 
+                         "hsl(var(--chart-4))",
+                },
+              }}
+              className="h-64"
+            >
+              {exploration === "decision" ? (
+                <BarChart data={cashFlowData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="cashFlow" fill="var(--color-cashFlow)" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              ) : (
+                <AreaChart data={cashFlowData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Area 
+                    type="monotone" 
+                    dataKey="cashFlow" 
+                    stroke="var(--color-cashFlow)" 
+                    fill="var(--color-cashFlow)" 
+                    fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                  />
+                </AreaChart>
+              )}
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>

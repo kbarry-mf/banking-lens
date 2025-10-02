@@ -2,7 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "./MetricCard";
 import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
 
-export const BalancesView = () => {
+interface BalancesViewProps {
+  exploration: "executive" | "analyst" | "decision";
+}
+
+export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const monthlyBalances = [
     { month: "Jan", avgBalance: 425000, minBalance: 185000, negDays: 0 },
     { month: "Feb", avgBalance: 438000, minBalance: 195000, negDays: 0 },

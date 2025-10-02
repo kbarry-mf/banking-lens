@@ -3,7 +3,11 @@ import { MetricCard } from "./MetricCard";
 import { AlertTriangle, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-export const CashFlowView = () => {
+interface CashFlowViewProps {
+  exploration: "executive" | "analyst" | "decision";
+}
+
+export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const monthlyData = [
     { month: "Jan", revenue: 685000, cashFlow: 92000, deposits: 42, transfers: 125000 },
     { month: "Feb", revenue: 720000, cashFlow: 108000, deposits: 45, transfers: 132000 },
