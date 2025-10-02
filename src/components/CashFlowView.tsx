@@ -185,7 +185,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <AlertTriangle className="mt-0.5 h-5 w-5 text-destructive" />
                     <div className="flex-1">
                       <p className="font-medium text-foreground">NSF Activity Detected</p>
-                      <p className="mt-1 text-sm text-muted-foreground">$450 in fees across 3 incidents</p>
+                      <p className="mt-1 text-sm text-muted-foreground">$450 in fees across 3 overdrafts</p>
                     </div>
                   </div>
                 </div>
