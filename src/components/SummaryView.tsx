@@ -106,7 +106,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           />
           <MetricCard
             label="Ocrolus Detect Flags"
-            value="2 Flags"
+            value="2"
             variant="warning"
             icon={AlertCircle}
           />
