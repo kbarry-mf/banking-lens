@@ -101,7 +101,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           />
           <MetricCard
             label="Mulligan Custom Score"
-            value="A-"
+            value="199"
             variant="success"
           />
           <MetricCard
