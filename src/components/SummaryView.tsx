@@ -96,7 +96,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <MetricCard
             label="FICO Score"
-            value="742"
+            value="677"
             variant="success"
           />
           <MetricCard
