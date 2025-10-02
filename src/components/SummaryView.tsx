@@ -84,7 +84,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           />
           <MetricCard
             label="Application Type"
-            value="Equipment Financing"
+            value="New"
             icon={Building2}
           />
         </div>
