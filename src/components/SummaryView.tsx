@@ -23,11 +23,11 @@ interface SummaryViewProps {
 
 export const SummaryView = ({ exploration }: SummaryViewProps) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Credit Assessment */}
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-foreground">Credit Assessment</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-2 text-sm font-semibold text-foreground">Credit Assessment</h2>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           <MetricCard
             label="FICO Score"
             value="677"
@@ -49,8 +49,8 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
 
       {/* Banking Indicators */}
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-foreground">Banking Indicators</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-2 text-sm font-semibold text-foreground">Banking Indicators</h2>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           <MetricCard
             label="Annualized Revenue"
             value="$8,450,000"
@@ -83,12 +83,12 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-3 lg:grid-cols-2">
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Revenue by Month</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Revenue by Month</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             <ChartContainer
               config={{
                 revenue: {
@@ -98,7 +98,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-64"
+              className="h-48"
             >
               {exploration === "decision" ? (
                 <BarChart data={revenueData}>
@@ -128,10 +128,10 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Cash Flow from Operations by Month</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Cash Flow from Operations by Month</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             <ChartContainer
               config={{
                 cashFlow: {
@@ -141,7 +141,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-4))",
                 },
               }}
-              className="h-64"
+              className="h-48"
             >
               {exploration === "decision" ? (
                 <BarChart data={cashFlowData}>

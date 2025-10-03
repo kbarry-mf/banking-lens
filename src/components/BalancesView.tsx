@@ -23,32 +23,32 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const chartData = monthlyBalances.slice(-3);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary Metrics - Different layouts per exploration */}
       {exploration === "executive" ? (
         <Card>
-          <CardContent className="pt-6">
-            <div className="grid gap-6 md:grid-cols-3">
+          <CardContent className="pt-4 pb-3 px-4">
+            <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center">
-                <p className="text-sm font-medium text-muted-foreground">Average Daily Balance</p>
-                <p className="mt-2 text-3xl font-bold text-success">$425K</p>
-                <Badge className="mt-2 bg-success/10 text-success">Healthy</Badge>
+                <p className="text-xs font-medium text-muted-foreground">Average Daily Balance</p>
+                <p className="mt-1 text-2xl font-bold text-success">$425K</p>
+                <Badge className="mt-1 bg-success/10 text-success text-xs px-2 py-0.5">Healthy</Badge>
               </div>
               <div className="text-center">
-                <p className="text-sm font-medium text-muted-foreground">Adjusted Balance</p>
-                <p className="mt-2 text-3xl font-bold text-foreground">$398K</p>
-                <p className="mt-2 text-xs text-muted-foreground">After adjustments</p>
+                <p className="text-xs font-medium text-muted-foreground">Adjusted Balance</p>
+                <p className="mt-1 text-2xl font-bold text-foreground">$398K</p>
+                <p className="mt-1 text-xs text-muted-foreground">After adjustments</p>
               </div>
               <div className="text-center">
-                <p className="text-sm font-medium text-muted-foreground">6-Month Minimum</p>
-                <p className="mt-2 text-3xl font-bold text-foreground">$175K</p>
-                <p className="mt-2 text-xs text-muted-foreground">Lowest point</p>
+                <p className="text-xs font-medium text-muted-foreground">6-Month Minimum</p>
+                <p className="mt-1 text-2xl font-bold text-foreground">$175K</p>
+                <p className="mt-1 text-xs text-muted-foreground">Lowest point</p>
               </div>
             </div>
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           <MetricCard label="Average Daily Balance" value="$425,000" icon={TrendingUp} variant="success" />
           <MetricCard label="Adjusted Average Daily Balance" value="$398,500" icon={TrendingUp} />
           <MetricCard label="Minimum Balance (6 Mo)" value="$175,000" icon={TrendingDown} />
@@ -56,12 +56,12 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
       )}
 
       {/* Balance Trend Visualization - Different views per exploration */}
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-3 lg:grid-cols-2">
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Average Balance Trend</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Average Balance Trend</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             <ChartContainer
               config={{
                 avgBalance: {
@@ -71,7 +71,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-1))",
                 },
               }}
-              className="h-64"
+              className="h-48"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData}>
@@ -103,10 +103,10 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Minimum Balance Trend</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Minimum Balance Trend</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             <ChartContainer
               config={{
                 minBalance: {
@@ -116,7 +116,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-64"
+              className="h-48"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData}>

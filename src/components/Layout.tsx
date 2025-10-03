@@ -22,19 +22,19 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <Building2 className="h-6 w-6 text-primary-foreground" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+                <Building2 className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-foreground">Banking Lens</h1>
-                <p className="text-sm text-muted-foreground">{explorationTitles[exploration]}</p>
+                <h1 className="text-lg font-semibold text-foreground">Banking Lens</h1>
+                <p className="text-xs text-muted-foreground">{explorationTitles[exploration]}</p>
               </div>
             </div>
             <Select value={exploration} onValueChange={onExplorationChange}>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-[180px] h-8 text-sm">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -47,32 +47,39 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
         </div>
       </header>
 
+      {/* Company Header */}
+      <div className="border-b bg-background">
+        <div className="container mx-auto px-6 py-3">
+          <CompanyHeader exploration={exploration} />
+        </div>
+      </div>
+
       {/* Navigation Tabs */}
       <div className="border-b bg-card">
         <div className="container mx-auto px-6">
           <Tabs value={activeTab} onValueChange={onTabChange}>
-            <TabsList className="h-12 w-full justify-start rounded-none border-none bg-transparent p-0">
+            <TabsList className="h-10 w-full justify-start rounded-none border-none bg-transparent p-0">
               <TabsTrigger 
                 value="summary" 
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
               >
                 Summary
               </TabsTrigger>
               <TabsTrigger 
                 value="cash-flow"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
               >
                 Cash Flow
               </TabsTrigger>
               <TabsTrigger 
                 value="balances"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
               >
                 Balances
               </TabsTrigger>
               <TabsTrigger 
                 value="debt"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
               >
                 Debt
               </TabsTrigger>
@@ -82,10 +89,7 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
       </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-6">
-        <div className="mb-6">
-          <CompanyHeader exploration={exploration} />
-        </div>
+      <main className="container mx-auto px-6 py-4">
         {children}
       </main>
     </div>

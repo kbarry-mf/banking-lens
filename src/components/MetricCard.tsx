@@ -25,18 +25,18 @@ export const MetricCard = ({
   };
 
   return (
-    <Card className={cn("p-4", variantStyles[variant])}>
+    <Card className={cn("p-3", variantStyles[variant])}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          <p className="mt-2 text-2xl font-semibold text-foreground">{value}</p>
+          <p className="text-xs font-medium text-muted-foreground">{label}</p>
+          <p className="mt-1 text-lg font-semibold text-foreground">{value}</p>
           {description && (
-            <p className="mt-1 text-xs text-muted-foreground">{description}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
           )}
         </div>
         {Icon && (
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-            <Icon className="h-5 w-5 text-primary" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
+            <Icon className="h-4 w-4 text-primary" />
           </div>
         )}
       </div>

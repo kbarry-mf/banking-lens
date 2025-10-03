@@ -10,55 +10,55 @@ interface CompanyHeaderProps {
 export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
   if (exploration === "executive") {
     return (
-      <Card>
-        <CardHeader>
+      <Card className="shadow-none">
+        <CardHeader className="pb-2 pt-3 px-4">
           <div className="flex items-start justify-between">
             <div>
-              <CardTitle className="text-2xl">Acme Corporation</CardTitle>
-              <p className="mt-1 text-sm text-muted-foreground">Manufacturing & Distribution</p>
+              <CardTitle className="text-lg">Acme Corporation</CardTitle>
+              <p className="mt-0.5 text-xs text-muted-foreground">Manufacturing & Distribution</p>
             </div>
-            <Badge className="bg-success text-success-foreground">Under Review</Badge>
+            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
         </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <CardContent className="px-4 pb-3">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-xs">
             <div>
-              <p className="text-sm font-medium text-muted-foreground">Broker</p>
-              <p className="mt-1 text-sm text-foreground">First Capital Partners</p>
+              <p className="font-medium text-muted-foreground">Broker</p>
+              <p className="mt-0.5 text-foreground">First Capital Partners</p>
             </div>
             <div>
-              <p className="text-sm font-medium text-muted-foreground">Legal Entity</p>
-              <p className="mt-1 text-sm text-foreground">LLC</p>
+              <p className="font-medium text-muted-foreground">Legal Entity</p>
+              <p className="mt-0.5 text-foreground">LLC</p>
             </div>
             <div>
-              <p className="text-sm font-medium text-muted-foreground">Years in Business</p>
-              <p className="mt-1 text-sm text-foreground">8 years</p>
+              <p className="font-medium text-muted-foreground">Years in Business</p>
+              <p className="mt-0.5 text-foreground">8 years</p>
             </div>
             <div>
-              <p className="text-sm font-medium text-muted-foreground">NAICS Code</p>
-              <p className="mt-1 text-sm text-foreground">423120</p>
-            </div>
-          </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Requested Loan Amount</p>
-              <p className="mt-1 text-sm font-semibold text-foreground">$2,500,000</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Application Date</p>
-              <p className="mt-1 text-sm text-foreground">Jan 15, 2025</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Underwriter</p>
-              <p className="mt-1 text-sm text-foreground">Sarah Johnson</p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Application Type</p>
-              <p className="mt-1 text-sm text-foreground">New</p>
+              <p className="font-medium text-muted-foreground">NAICS Code</p>
+              <p className="mt-0.5 text-foreground">423120</p>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-2 text-sm">
-            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+          <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-xs">
+            <div>
+              <p className="font-medium text-muted-foreground">Requested Loan Amount</p>
+              <p className="mt-0.5 font-semibold text-foreground">$2,500,000</p>
+            </div>
+            <div>
+              <p className="font-medium text-muted-foreground">Application Date</p>
+              <p className="mt-0.5 text-foreground">Jan 15, 2025</p>
+            </div>
+            <div>
+              <p className="font-medium text-muted-foreground">Underwriter</p>
+              <p className="mt-0.5 text-foreground">Sarah Johnson</p>
+            </div>
+            <div>
+              <p className="font-medium text-muted-foreground">Application Type</p>
+              <p className="mt-0.5 text-foreground">New</p>
+            </div>
+          </div>
+          <div className="mt-3 flex items-center gap-2 text-xs">
+            <ExternalLink className="h-3 w-3 text-muted-foreground" />
             <a href="#" className="text-primary hover:underline">www.acmecorp.com</a>
             <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">View Box Files</a>
@@ -70,42 +70,42 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
 
   if (exploration === "analyst") {
     return (
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex items-start justify-between mb-4">
+      <Card className="shadow-none">
+        <CardContent className="py-2 px-4">
+          <div className="flex items-start justify-between mb-2">
             <div>
-              <h2 className="text-xl font-semibold text-foreground">Acme Corporation</h2>
-              <p className="text-sm text-muted-foreground">Manufacturing & Distribution • LLC • 8 years</p>
+              <h2 className="text-base font-semibold text-foreground">Acme Corporation</h2>
+              <p className="text-xs text-muted-foreground">Manufacturing & Distribution • LLC • 8 years</p>
             </div>
-            <Badge className="bg-success text-success-foreground">Under Review</Badge>
+            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
-          <div className="grid gap-3 text-sm">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid gap-2 text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div>
                 <span className="font-medium text-muted-foreground">Broker:</span>
-                <span className="ml-2 text-foreground">First Capital Partners</span>
+                <span className="ml-1.5 text-foreground">First Capital Partners</span>
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">NAICS:</span>
-                <span className="ml-2 text-foreground">423120</span>
+                <span className="ml-1.5 text-foreground">423120</span>
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">Loan Amount:</span>
-                <span className="ml-2 font-semibold text-foreground">$2,500,000</span>
+                <span className="ml-1.5 font-semibold text-foreground">$2,500,000</span>
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">Application:</span>
-                <span className="ml-2 text-foreground">New</span>
+                <span className="ml-1.5 text-foreground">New</span>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div>
                 <span className="font-medium text-muted-foreground">Submitted:</span>
-                <span className="ml-2 text-foreground">Jan 15, 2025</span>
+                <span className="ml-1.5 text-foreground">Jan 15, 2025</span>
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">Underwriter:</span>
-                <span className="ml-2 text-foreground">Sarah Johnson</span>
+                <span className="ml-1.5 text-foreground">Sarah Johnson</span>
               </div>
               <div>
                 <a href="#" className="text-primary hover:underline">www.acmecorp.com</a>
@@ -122,13 +122,13 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
 
   // Decision Dashboard
   return (
-    <Card className="border-l-4 border-l-primary">
-      <CardContent className="pt-6">
-        <div className="flex items-start justify-between mb-6">
+    <Card className="border-l-4 border-l-primary shadow-none">
+      <CardContent className="py-3 px-4">
+        <div className="flex items-start justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold text-foreground">Acme Corporation</h2>
-            <p className="text-sm text-muted-foreground mt-1">Manufacturing & Distribution</p>
-            <div className="flex items-center gap-4 mt-2 text-sm">
+            <h2 className="text-lg font-bold text-foreground">Acme Corporation</h2>
+            <p className="text-xs text-muted-foreground mt-0.5">Manufacturing & Distribution</p>
+            <div className="flex items-center gap-3 mt-1 text-xs">
               <span className="text-muted-foreground">LLC • 8 years • NAICS 423120</span>
               <a href="#" className="text-primary hover:underline flex items-center gap-1">
                 <ExternalLink className="h-3 w-3" />
@@ -137,9 +137,9 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
               <a href="#" className="text-primary hover:underline">Box Files</a>
             </div>
           </div>
-          <Badge className="bg-success text-success-foreground">Under Review</Badge>
+          <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard
             label="Requested Loan Amount"
             value="$2,500,000"

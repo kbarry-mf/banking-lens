@@ -67,33 +67,33 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
   const COLORS = ['hsl(var(--destructive))', 'hsl(var(--warning))', 'hsl(var(--success))'];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Summary Metrics - Different layouts per exploration */}
       {exploration === "executive" ? (
         <Card>
-          <CardContent className="pt-6">
-            <div className="grid gap-6 md:grid-cols-2">
+          <CardContent className="pt-4 pb-3 px-4">
+            <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Debt Risk Assessment</p>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <p className="text-4xl font-bold text-warning">Moderate</p>
-                  <Badge variant="outline" className="border-warning text-warning">11% Holdback</Badge>
+                <p className="text-xs font-medium text-muted-foreground">Debt Risk Assessment</p>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <p className="text-3xl font-bold text-warning">Moderate</p>
+                  <Badge variant="outline" className="border-warning text-warning text-xs px-2 py-0.5">11% Holdback</Badge>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="mt-1 text-xs text-muted-foreground">
                   Competitive debt at threshold. Non-competitive debt acceptable.
                 </p>
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-center">
-                  <p className="text-6xl font-bold text-foreground">$125K</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Total Monthly Payments</p>
+                  <p className="text-4xl font-bold text-foreground">$125K</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Total Monthly Payments</p>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard label="Total Loan Payments" value="$125,000" icon={TrendingDown} />
           <MetricCard label="Competitive Holdback" value="11.0%" variant="warning" icon={AlertCircle} />
           <MetricCard label="Non-Competitive Holdback" value="3.8%" variant="success" />
