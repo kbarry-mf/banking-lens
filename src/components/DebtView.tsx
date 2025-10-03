@@ -169,7 +169,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   }}
                   className="h-48 pl-2"
                 >
-                  <BarChart data={paymentChartData}>
+                  <BarChart data={paymentChartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />

@@ -101,7 +101,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
               className="h-48 pl-2"
             >
               {exploration === "decision" ? (
-                <BarChart data={revenueData}>
+                <BarChart data={revenueData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -109,7 +109,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                   <Bar dataKey="revenue" fill="var(--color-revenue)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : (
-                <AreaChart data={revenueData}>
+                <AreaChart data={revenueData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -144,7 +144,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
               className="h-48 pl-2"
             >
               {exploration === "decision" ? (
-                <BarChart data={cashFlowData}>
+                <BarChart data={cashFlowData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -152,7 +152,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                   <Bar dataKey="cashFlow" fill="var(--color-cashFlow)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : (
-                <AreaChart data={cashFlowData}>
+                <AreaChart data={cashFlowData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />

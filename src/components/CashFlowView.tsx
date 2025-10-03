@@ -115,7 +115,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                 className="h-48 pl-2"
               >
                 {exploration === "decision" ? (
-                  <BarChart data={chartData}>
+                  <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -123,7 +123,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <Bar dataKey="cashFlow" fill="var(--color-cashFlow)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
-                  <LineChart data={chartData}>
+                  <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -150,7 +150,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                 className="h-48 pl-2"
               >
                 {exploration === "decision" ? (
-                  <BarChart data={chartData}>
+                  <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -158,7 +158,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <Bar dataKey="transfers" fill="var(--color-transfers)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
-                  <AreaChart data={chartData}>
+                  <AreaChart data={chartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -243,7 +243,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                 }}
                 className="h-48"
               >
-                <BarChart data={chartData}>
+                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis />

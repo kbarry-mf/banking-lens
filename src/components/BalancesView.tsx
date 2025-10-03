@@ -74,7 +74,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
               className="h-48 pl-2"
             >
               {exploration === "decision" ? (
-                <BarChart data={chartData}>
+                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -82,7 +82,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                   <Bar dataKey="avgBalance" fill="var(--color-avgBalance)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : exploration === "analyst" ? (
-                <LineChart data={chartData}>
+                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -90,7 +90,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                   <Line type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" strokeWidth={3} dot={{ fill: "var(--color-avgBalance)", r: 4 }} />
                 </LineChart>
               ) : (
-                <AreaChart data={chartData}>
+                <AreaChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -119,7 +119,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
               className="h-48 pl-2"
             >
               {exploration === "decision" ? (
-                <BarChart data={chartData}>
+                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -127,7 +127,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                   <Bar dataKey="minBalance" fill="var(--color-minBalance)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               ) : exploration === "analyst" ? (
-                <LineChart data={chartData}>
+                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
@@ -135,7 +135,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                   <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={3} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
                 </LineChart>
               ) : (
-                <AreaChart data={chartData}>
+                <AreaChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis tickFormatter={(value) => formatCurrency(value)} />
