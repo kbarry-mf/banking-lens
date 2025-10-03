@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2 } from "lucide-react";
+import { Building2, Calculator } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
+import { OfferCalculator } from "./OfferCalculator";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,6 +16,8 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children, activeTab, onTabChange, exploration, onExplorationChange }: LayoutProps) => {
+  const [calculatorOpen, setCalculatorOpen] = useState(false);
+  
   const explorationTitles = {
     executive: "Executive Brief",
     analyst: "Analyst Workspace",
@@ -33,16 +39,30 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
                 <p className="text-xs text-muted-foreground">{explorationTitles[exploration]}</p>
               </div>
             </div>
-            <Select value={exploration} onValueChange={onExplorationChange}>
-              <SelectTrigger className="w-[180px] h-8 text-sm">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="executive">Executive Brief</SelectItem>
-                <SelectItem value="analyst">Analyst Workspace</SelectItem>
-                <SelectItem value="decision">Decision Dashboard</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="flex items-center gap-3">
+              <Select value={exploration} onValueChange={onExplorationChange}>
+                <SelectTrigger className="w-[180px] h-8 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="executive">Executive Brief</SelectItem>
+                  <SelectItem value="analyst">Analyst Workspace</SelectItem>
+                  <SelectItem value="decision">Decision Dashboard</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Sheet open={calculatorOpen} onOpenChange={setCalculatorOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <Calculator className="h-4 w-4" />
+                    Offer Calculator
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full sm:max-w-xl p-0">
+                  <OfferCalculator />
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </header>
