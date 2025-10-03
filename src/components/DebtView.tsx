@@ -104,46 +104,46 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
       {/* Loan Sources - Different presentations per exploration */}
       {exploration === "analyst" ? (
         <Card>
-          <CardHeader>
-            <CardTitle>Detailed Loan Sources Analysis</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Detailed Loan Sources Analysis</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-4 pb-4">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-3 text-left text-sm font-medium text-muted-foreground">Lender</th>
-                    <th className="pb-3 text-center text-sm font-medium text-muted-foreground">Type</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Deposits</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Deposit Count</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Payments</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Payment Count</th>
-                    <th className="pb-3 text-center text-sm font-medium text-muted-foreground">Frequency</th>
+                    <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Lender</th>
+                    <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Type</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposit Count</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payments</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payment Count</th>
+                    <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Frequency</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loanSources.map((loan, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-4">
-                        <p className="text-sm font-medium text-foreground">{loan.name}</p>
+                      <td className="py-2">
+                        <p className="text-xs font-medium text-foreground">{loan.name}</p>
                       </td>
-                      <td className="py-4 text-center">
+                      <td className="py-2 text-center">
                         {loan.isCompetitor ? (
-                          <Badge variant="destructive">Competitor</Badge>
+                          <Badge variant="destructive" className="text-xs px-2 py-0.5">Competitor</Badge>
                         ) : (
-                          <Badge className="bg-muted text-muted-foreground">Other</Badge>
+                          <Badge className="bg-muted text-muted-foreground text-xs px-2 py-0.5">Other</Badge>
                         )}
                       </td>
-                      <td className="py-4 text-right text-sm text-foreground">
+                      <td className="py-2 text-right text-xs text-foreground">
                         ${loan.totalDeposits.toLocaleString()}
                       </td>
-                      <td className="py-4 text-right text-sm text-foreground">{loan.countDeposits}</td>
-                      <td className="py-4 text-right text-sm font-medium text-foreground">
+                      <td className="py-2 text-right text-xs text-foreground">{loan.countDeposits}</td>
+                      <td className="py-2 text-right text-xs font-medium text-foreground">
                         ${loan.totalPayments.toLocaleString()}
                       </td>
-                      <td className="py-4 text-right text-sm text-foreground">{loan.countPayments}</td>
-                      <td className="py-4 text-center">
-                        <Badge variant="outline">{loan.frequency}</Badge>
+                      <td className="py-2 text-right text-xs text-foreground">{loan.countPayments}</td>
+                      <td className="py-2 text-center">
+                        <Badge variant="outline" className="text-xs px-2 py-0.5">{loan.frequency}</Badge>
                       </td>
                     </tr>
                   ))}
@@ -153,12 +153,12 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-3 lg:grid-cols-2">
           <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Loan Payment Distribution</CardTitle>
+            <CardHeader className="pb-2 pt-4 px-4">
+              <CardTitle className="text-sm">Loan Payment Distribution</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 pb-4">
               {exploration === "decision" ? (
                 <ChartContainer
                   config={{
@@ -167,7 +167,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                       color: "hsl(var(--chart-1))",
                     },
                   }}
-                  className="h-64 pl-3"
+                  className="h-48 pl-2"
                 >
                   <BarChart data={paymentChartData}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -178,13 +178,13 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   </BarChart>
                 </ChartContainer>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {loanSources.map((loan, idx) => (
-                    <div key={idx} className="space-y-2">
-                      <div className="flex items-center justify-between text-sm">
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-foreground">{loan.name}</span>
-                          {loan.isCompetitor && <Badge variant="destructive" className="text-xs">Comp</Badge>}
+                          {loan.isCompetitor && <Badge variant="destructive" className="text-xs px-2 py-0.5">Comp</Badge>}
                         </div>
                         <span className="font-semibold text-foreground">
                           ${loan.totalPayments.toLocaleString()}
@@ -204,13 +204,13 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Lender Summary</CardTitle>
+            <CardHeader className="pb-2 pt-4 px-4">
+              <CardTitle className="text-sm">Lender Summary</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="px-4 pb-4">
+              <div className="space-y-3">
                 {loanSources.map((loan, idx) => (
-                  <div key={idx} className="rounded-lg border p-4">
+                  <div key={idx} className="rounded-lg border p-3">
                     <div className="mb-2 flex items-center justify-between">
                       <p className="font-medium text-foreground">{loan.name}</p>
                       {loan.isCompetitor ? (

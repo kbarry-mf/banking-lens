@@ -98,7 +98,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-48 pl-3"
+              className="h-48 pl-2"
             >
               {exploration === "decision" ? (
                 <BarChart data={revenueData}>
@@ -141,7 +141,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-4))",
                 },
               }}
-              className="h-48 pl-3"
+              className="h-48 pl-2"
             >
               {exploration === "decision" ? (
                 <BarChart data={cashFlowData}>
