@@ -158,7 +158,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm">Loan Payment Distribution</CardTitle>
             </CardHeader>
-            <CardContent className="px-4 pb-4">
+            <CardContent className="px-2 pb-4">
               {exploration === "decision" ? (
                 <ChartContainer
                   config={{
@@ -167,7 +167,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                       color: "hsl(var(--chart-1))",
                     },
                   }}
-                  className="h-48 pl-2"
+                  className="h-48 w-full"
                 >
                   <BarChart data={paymentChartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />

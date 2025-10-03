@@ -88,7 +88,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Revenue by Month</CardTitle>
           </CardHeader>
-          <CardContent className="px-4 pb-4">
+          <CardContent className="px-2 pb-4">
             <ChartContainer
               config={{
                 revenue: {
@@ -98,7 +98,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-48 pl-2"
+              className="h-48 w-full"
             >
               {exploration === "decision" ? (
                 <BarChart data={revenueData} margin={{ left: 32, right: 8 }}>
@@ -131,7 +131,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Cash Flow from Operations by Month</CardTitle>
           </CardHeader>
-          <CardContent className="px-4 pb-4">
+          <CardContent className="px-2 pb-4">
             <ChartContainer
               config={{
                 cashFlow: {
@@ -141,7 +141,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                          "hsl(var(--chart-4))",
                 },
               }}
-              className="h-48 pl-2"
+              className="h-48 w-full"
             >
               {exploration === "decision" ? (
                 <BarChart data={cashFlowData} margin={{ left: 32, right: 8 }}>

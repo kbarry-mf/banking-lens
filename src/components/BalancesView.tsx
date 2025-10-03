@@ -61,7 +61,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Average Balance Trend</CardTitle>
           </CardHeader>
-          <CardContent className="px-4 pb-4">
+          <CardContent className="px-2 pb-4">
             <ChartContainer
               config={{
                 avgBalance: {
@@ -71,7 +71,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-1))",
                 },
               }}
-              className="h-48 pl-2"
+              className="h-48 w-full"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
@@ -106,7 +106,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Minimum Balance Trend</CardTitle>
           </CardHeader>
-          <CardContent className="px-4 pb-4">
+          <CardContent className="px-2 pb-4">
             <ChartContainer
               config={{
                 minBalance: {
@@ -116,7 +116,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-48 pl-2"
+              className="h-48 w-full"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData} margin={{ left: 32, right: 8 }}>

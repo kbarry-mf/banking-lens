@@ -104,7 +104,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm">Cash Flow Trend</CardTitle>
             </CardHeader>
-            <CardContent className="px-4 pb-4">
+            <CardContent className="px-2 pb-4">
               <ChartContainer
                 config={{
                   cashFlow: {
@@ -112,7 +112,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: exploration === "executive" ? "hsl(var(--chart-2))" : "hsl(var(--chart-4))",
                   },
                 }}
-                className="h-48 pl-2"
+                className="h-48 w-full"
               >
                 {exploration === "decision" ? (
                   <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
@@ -139,7 +139,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm">Transfer Activity</CardTitle>
             </CardHeader>
-            <CardContent className="px-4 pb-4">
+            <CardContent className="px-2 pb-4">
               <ChartContainer
                 config={{
                   transfers: {
@@ -147,7 +147,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: exploration === "executive" ? "hsl(var(--primary))" : "hsl(var(--chart-3))",
                   },
                 }}
-                className="h-48 pl-2"
+                className="h-48 w-full"
               >
                 {exploration === "decision" ? (
                   <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
@@ -241,7 +241,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: "hsl(var(--success))",
                   },
                 }}
-                className="h-48"
+                className="h-48 w-full"
               >
                 <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" />
