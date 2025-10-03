@@ -14,7 +14,7 @@ export const CompanyHeader = ({
           <div className="flex items-start justify-between">
             <div>
               <CardTitle className="text-lg">Acme Corporation</CardTitle>
-              <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">dba First Capital Partners</p>
             </div>
             <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
