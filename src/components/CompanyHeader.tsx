@@ -2,15 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MetricCard } from "./MetricCard";
 import { DollarSign, Calendar, User, Building2, ExternalLink } from "lucide-react";
-
 interface CompanyHeaderProps {
   exploration: "executive" | "analyst" | "decision";
 }
-
-export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
+export const CompanyHeader = ({
+  exploration
+}: CompanyHeaderProps) => {
   if (exploration === "executive") {
-    return (
-      <Card className="shadow-none">
+    return <Card className="shadow-none">
         <CardHeader className="pb-2 pt-3 px-4">
           <div className="flex items-start justify-between">
             <div>
@@ -42,7 +41,7 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
           <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-xs">
             <div>
               <p className="font-medium text-muted-foreground">Requested Loan Amount</p>
-              <p className="mt-0.5 font-semibold text-foreground">$2,500,000</p>
+              <p className="mt-0.5 text-foreground font-normal">$2,500,000</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Application Date</p>
@@ -64,13 +63,10 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
             <a href="#" className="text-primary hover:underline">View Box Files</a>
           </div>
         </CardContent>
-      </Card>
-    );
+      </Card>;
   }
-
   if (exploration === "analyst") {
-    return (
-      <Card className="shadow-none">
+    return <Card className="shadow-none">
         <CardContent className="py-2 px-4">
           <div className="flex items-start justify-between mb-2">
             <div>
@@ -116,13 +112,11 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
             </div>
           </div>
         </CardContent>
-      </Card>
-    );
+      </Card>;
   }
 
   // Decision Dashboard
-  return (
-    <Card className="border-l-4 border-l-primary shadow-none">
+  return <Card className="border-l-4 border-l-primary shadow-none">
       <CardContent className="py-3 px-4">
         <div className="flex items-start justify-between mb-3">
           <div>
@@ -140,28 +134,11 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
           <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
         </div>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <MetricCard
-            label="Requested Loan Amount"
-            value="$2,500,000"
-            icon={DollarSign}
-          />
-          <MetricCard
-            label="Application Submitted"
-            value="Jan 15, 2025"
-            icon={Calendar}
-          />
-          <MetricCard
-            label="Underwriter"
-            value="Sarah Johnson"
-            icon={User}
-          />
-          <MetricCard
-            label="Application Type"
-            value="New"
-            icon={Building2}
-          />
+          <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
+          <MetricCard label="Application Submitted" value="Jan 15, 2025" icon={Calendar} />
+          <MetricCard label="Underwriter" value="Sarah Johnson" icon={User} />
+          <MetricCard label="Application Type" value="New" icon={Building2} />
         </div>
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
