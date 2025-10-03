@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CompanyHeader } from "./CompanyHeader";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -82,6 +83,9 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-6">
+        <div className="mb-6">
+          <CompanyHeader exploration={exploration} />
+        </div>
         {children}
       </main>
     </div>
