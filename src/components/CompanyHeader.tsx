@@ -75,7 +75,7 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
           <div className="flex items-start justify-between mb-2">
             <div>
               <h2 className="text-base font-semibold text-foreground">Acme Corporation</h2>
-              <p className="text-xs text-muted-foreground">Manufacturing & Distribution • LLC • 8 years</p>
+              <p className="text-xs text-muted-foreground">LLC • 8 years</p>
             </div>
             <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
@@ -86,15 +86,15 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
                 <span className="ml-1.5 text-foreground">First Capital Partners</span>
               </div>
               <div>
-                <span className="font-medium text-muted-foreground">NAICS:</span>
-                <span className="ml-1.5 text-foreground">423120</span>
+                <span className="font-medium text-muted-foreground">Industry:</span>
+                <span className="ml-1.5 text-foreground">325211: Plastics Material and Resin Manufacturing</span>
               </div>
               <div>
-                <span className="font-medium text-muted-foreground">Loan Amount:</span>
+                <span className="font-medium text-muted-foreground">Requested Amount:</span>
                 <span className="ml-1.5 font-semibold text-foreground">$2,500,000</span>
               </div>
               <div>
-                <span className="font-medium text-muted-foreground">Application:</span>
+                <span className="font-medium text-muted-foreground">Type:</span>
                 <span className="ml-1.5 text-foreground">New</span>
               </div>
             </div>
