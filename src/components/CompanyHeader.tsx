@@ -61,6 +61,8 @@ export const CompanyHeader = ({
             <a href="#" className="text-primary hover:underline">www.acmecorp.com</a>
             <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">View Box Files</a>
+            <span className="text-muted-foreground">•</span>
+            <a href="#" className="text-primary hover:underline">View Ocrolus Book</a>
           </div>
         </CardContent>
       </Card>;
@@ -109,6 +111,9 @@ export const CompanyHeader = ({
               <div>
                 <a href="#" className="text-primary hover:underline">View Box Files</a>
               </div>
+              <div>
+                <a href="#" className="text-primary hover:underline">View Ocrolus Book</a>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -129,6 +134,7 @@ export const CompanyHeader = ({
                 Website
               </a>
               <a href="#" className="text-primary hover:underline">Box Files</a>
+              <a href="#" className="text-primary hover:underline">Ocrolus Book</a>
             </div>
           </div>
           <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>

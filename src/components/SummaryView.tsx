@@ -27,7 +27,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
       {/* Credit Assessment */}
       <div>
         <h2 className="mb-2 text-sm font-semibold text-foreground">Credit Assessment</h2>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-2">
           <MetricCard
             label="FICO Score"
             value="677"
@@ -38,12 +38,6 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
             value="199"
             variant="success"
           />
-          <MetricCard
-            label="Ocrolus Detect Flags"
-            value="2"
-            variant="warning"
-            icon={AlertCircle}
-          />
         </div>
       </div>
 
@@ -51,6 +45,12 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
       <div>
         <h2 className="mb-2 text-sm font-semibold text-foreground">Banking Indicators</h2>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <MetricCard
+            label="Ocrolus Detect Flags"
+            value="2"
+            variant="warning"
+            icon={AlertCircle}
+          />
           <MetricCard
             label="Annualized Revenue"
             value="$8,450,000"
