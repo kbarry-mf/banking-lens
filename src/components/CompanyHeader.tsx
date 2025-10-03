@@ -13,8 +13,11 @@ export const CompanyHeader = ({
         <CardHeader className="pb-2 pt-3 px-4">
           <div className="flex items-start justify-between">
             <div>
-              <CardTitle className="text-lg">Acme Corporation</CardTitle>
-              <p className="mt-0.5 text-xs text-muted-foreground">dba First Capital Partners</p>
+              <div className="flex items-baseline gap-2">
+                <CardTitle className="text-lg">Acme Corporation</CardTitle>
+                <span className="text-xs text-muted-foreground">dba California Resins</span>
+              </div>
+              <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
             <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
@@ -72,7 +75,11 @@ export const CompanyHeader = ({
         <CardContent className="py-2 px-4">
           <div className="flex items-start justify-between mb-2">
             <div>
-              <h2 className="text-base font-semibold text-foreground">Acme Corporation</h2>
+              <div className="flex items-baseline gap-2">
+                <h2 className="text-base font-semibold text-foreground">Acme Corporation</h2>
+                <span className="text-xs text-muted-foreground">dba California Resins</span>
+              </div>
+              <p className="text-xs text-muted-foreground">First Capital Partners</p>
               <p className="text-xs text-muted-foreground">LLC • 8 years</p>
             </div>
             <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
@@ -125,7 +132,11 @@ export const CompanyHeader = ({
       <CardContent className="py-3 px-4">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h2 className="text-lg font-bold text-foreground">Acme Corporation</h2>
+            <div className="flex items-baseline gap-2">
+              <h2 className="text-lg font-bold text-foreground">Acme Corporation</h2>
+              <span className="text-xs text-muted-foreground">dba California Resins</span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-0.5">First Capital Partners</p>
             <p className="text-xs text-muted-foreground mt-0.5">Plastics Material and Resin Manufacturing</p>
             <div className="flex items-center gap-3 mt-1 text-xs">
               <span className="text-muted-foreground">LLC • 8 years</span>

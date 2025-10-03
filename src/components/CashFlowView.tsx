@@ -128,7 +128,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
                     <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                    <Line type="monotone" dataKey="cashFlow" stroke="var(--color-cashFlow)" strokeWidth={2} dot={{ fill: "var(--color-cashFlow)", r: 4 }} />
+                    <Line type="monotone" dataKey="cashFlow" stroke="var(--color-cashFlow)" strokeWidth={2} dot={{ fill: "var(--color-cashFlow)", r: 4 }} fill="none" />
                   </LineChart>
                 )}
               </ChartContainer>
@@ -158,13 +158,13 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <Bar dataKey="transfers" fill="var(--color-transfers)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
-                  <AreaChart data={chartData} margin={{ left: 32, right: 8 }}>
+                  <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
                     <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                    <Area type="monotone" dataKey="transfers" stroke="var(--color-transfers)" fill="var(--color-transfers)" fillOpacity={0.3} dot={{ fill: "var(--color-transfers)", r: 4 }} />
-                  </AreaChart>
+                    <Line type="monotone" dataKey="transfers" stroke="var(--color-transfers)" strokeWidth={2} dot={{ fill: "var(--color-transfers)", r: 4 }} fill="none" />
+                  </LineChart>
                 )}
               </ChartContainer>
             </CardContent>

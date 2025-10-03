@@ -17,16 +17,6 @@ export const OfferCalculator = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="border-b px-6 py-4">
-        <Tabs defaultValue="calculator" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="notes">Notes</TabsTrigger>
-            <TabsTrigger value="calculator">Calculator</TabsTrigger>
-            <TabsTrigger value="chatter">Chatter</TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
-
       <div className="flex-1 overflow-y-auto px-6 py-6">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
