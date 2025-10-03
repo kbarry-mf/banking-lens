@@ -71,7 +71,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-1))",
                 },
               }}
-              className="h-48"
+              className="h-48 pl-3"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData}>
@@ -116,7 +116,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                          "hsl(var(--chart-3))",
                 },
               }}
-              className="h-48"
+              className="h-48 pl-3"
             >
               {exploration === "decision" ? (
                 <BarChart data={chartData}>

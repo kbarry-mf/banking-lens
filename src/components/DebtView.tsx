@@ -167,7 +167,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                       color: "hsl(var(--chart-1))",
                     },
                   }}
-                  className="h-64"
+                  className="h-64 pl-3"
                 >
                   <BarChart data={paymentChartData}>
                     <CartesianGrid strokeDasharray="3 3" />

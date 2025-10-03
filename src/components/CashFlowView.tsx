@@ -112,7 +112,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: exploration === "executive" ? "hsl(var(--chart-2))" : "hsl(var(--chart-4))",
                   },
                 }}
-                className="h-48"
+                className="h-48 pl-3"
               >
                 {exploration === "decision" ? (
                   <BarChart data={chartData}>
@@ -147,7 +147,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: exploration === "executive" ? "hsl(var(--primary))" : "hsl(var(--chart-3))",
                   },
                 }}
-                className="h-48"
+                className="h-48 pl-3"
               >
                 {exploration === "decision" ? (
                   <BarChart data={chartData}>
@@ -241,7 +241,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     color: "hsl(var(--success))",
                   },
                 }}
-                className="h-48"
+                className="h-48 pl-3"
               >
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
