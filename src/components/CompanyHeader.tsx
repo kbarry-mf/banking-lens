@@ -35,8 +35,8 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
               <p className="mt-0.5 text-foreground">8 years</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">NAICS Code</p>
-              <p className="mt-0.5 text-foreground">423120</p>
+              <p className="font-medium text-muted-foreground">Industry</p>
+              <p className="mt-0.5 text-foreground">325211: Plastics Material and Resin Manufacturing</p>
             </div>
           </div>
           <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-xs">
@@ -127,9 +127,9 @@ export const CompanyHeader = ({ exploration }: CompanyHeaderProps) => {
         <div className="flex items-start justify-between mb-3">
           <div>
             <h2 className="text-lg font-bold text-foreground">Acme Corporation</h2>
-            <p className="text-xs text-muted-foreground mt-0.5">Manufacturing & Distribution</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Plastics Material and Resin Manufacturing</p>
             <div className="flex items-center gap-3 mt-1 text-xs">
-              <span className="text-muted-foreground">LLC • 8 years • NAICS 423120</span>
+              <span className="text-muted-foreground">LLC • 8 years</span>
               <a href="#" className="text-primary hover:underline flex items-center gap-1">
                 <ExternalLink className="h-3 w-3" />
                 Website
