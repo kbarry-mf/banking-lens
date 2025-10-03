@@ -1,10 +1,31 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Users, FileText, History } from "lucide-react";
+import { Users, FileText, History, Building2 } from "lucide-react";
 
 interface RelatedViewProps {
   exploration: "executive" | "analyst" | "decision";
 }
+
+const bankAccounts = [
+  {
+    accountNumber: "****5678",
+    bank: "Wells Fargo Bank",
+    accountHolder: "California Plastics Inc.",
+    address: "1234 Industrial Way, Los Angeles, CA 90001"
+  },
+  {
+    accountNumber: "****9012",
+    bank: "Bank of America",
+    accountHolder: "California Plastics Inc.",
+    address: "1234 Industrial Way, Los Angeles, CA 90001"
+  },
+  {
+    accountNumber: "****3456",
+    bank: "Chase Bank",
+    accountHolder: "California Plastics Inc.",
+    address: "1234 Industrial Way, Los Angeles, CA 90001"
+  }
+];
 
 const guarantors = [
   {
@@ -73,6 +94,50 @@ const applicationHistory = [
 export const RelatedView = ({ exploration }: RelatedViewProps) => {
   return (
     <div className="space-y-6">
+      {/* Bank Accounts */}
+      <Card>
+        <div className="p-4 border-b">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
+                <Building2 className="h-5 w-5 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-semibold">Bank Accounts ({bankAccounts.length})</h3>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground ml-13">
+            {bankAccounts.length} items • Sorted by Account Number • Updated a few seconds ago
+          </p>
+        </div>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Account Number</TableHead>
+                  <TableHead>Bank</TableHead>
+                  <TableHead>Account Holder</TableHead>
+                  <TableHead>Address</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {bankAccounts.map((account, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{account.accountNumber}</TableCell>
+                    <TableCell>{account.bank}</TableCell>
+                    <TableCell>{account.accountHolder}</TableCell>
+                    <TableCell>{account.address}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div className="p-4 text-center border-t">
+            <button className="text-sm text-primary hover:underline">View All</button>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Guarantors */}
       <Card>
         <div className="p-4 border-b">

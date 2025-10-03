@@ -136,8 +136,8 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                     type="monotone" 
                     dataKey="revenue" 
                     stroke="var(--color-revenue)" 
-                    fill="var(--color-revenue)" 
-                    fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                    fill="none"
+                    strokeWidth={2}
                     dot={{ fill: "var(--color-revenue)", r: 4 }}
                   />
                 </AreaChart>
@@ -179,8 +179,8 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
                     type="monotone" 
                     dataKey="cashFlow" 
                     stroke="var(--color-cashFlow)" 
-                    fill="var(--color-cashFlow)" 
-                    fillOpacity={exploration === "analyst" ? 0.2 : 0.4}
+                    fill="none"
+                    strokeWidth={2}
                     dot={{ fill: "var(--color-cashFlow)", r: 4 }}
                   />
                 </AreaChart>

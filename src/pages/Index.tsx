@@ -4,7 +4,6 @@ import { SummaryView } from "@/components/SummaryView";
 import { CashFlowView } from "@/components/CashFlowView";
 import { BalancesView } from "@/components/BalancesView";
 import { DebtView } from "@/components/DebtView";
-import { BankAccountView } from "@/components/BankAccountView";
 import { RelatedView } from "@/components/RelatedView";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -22,8 +21,6 @@ const Index = () => {
         return <BalancesView exploration={exploration} />;
       case "debt":
         return <DebtView exploration={exploration} />;
-      case "bank-account":
-        return <BankAccountView exploration={exploration} />;
       case "related":
         return <RelatedView exploration={exploration} />;
       default:
