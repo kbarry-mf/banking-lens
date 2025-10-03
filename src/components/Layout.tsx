@@ -107,6 +107,18 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
                 >
                   Debt
                 </TabsTrigger>
+                <TabsTrigger 
+                  value="bank-account"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Bank Account
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="related"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Related
+                </TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
