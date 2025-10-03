@@ -53,7 +53,7 @@ export const CompanyHeader = ({
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Application Type</p>
-              <p className="mt-0.5 text-foreground">New</p>
+              <p className="mt-0.5 text-foreground">Resubmit</p>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-xs">
@@ -93,7 +93,7 @@ export const CompanyHeader = ({
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">Type:</span>
-                <span className="ml-1.5 text-foreground">New</span>
+                <span className="ml-1.5 text-foreground">Resubmit</span>
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -143,7 +143,7 @@ export const CompanyHeader = ({
           <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
           <MetricCard label="Application Submitted" value="Jan 15, 2025" icon={Calendar} />
           <MetricCard label="Underwriter" value="Sarah Johnson" icon={User} />
-          <MetricCard label="Application Type" value="New" icon={Building2} />
+          <MetricCard label="Application Type" value="Resubmit" icon={Building2} />
         </div>
       </CardContent>
     </Card>;

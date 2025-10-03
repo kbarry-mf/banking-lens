@@ -32,11 +32,15 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
             label="FICO Score"
             value="677"
             variant="success"
+            priorValue="645"
+            changePercent={5}
           />
           <MetricCard
             label="Mulligan Custom Score"
             value="199"
             variant="success"
+            priorValue="182"
+            changePercent={9}
           />
         </div>
       </div>
@@ -50,34 +54,48 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
             value="2"
             variant="warning"
             icon={AlertCircle}
+            priorValue="4"
+            changePercent={-50}
           />
           <MetricCard
             label="Annualized Revenue"
             value="$8,450,000"
             icon={TrendingUp}
+            priorValue="$7,920,000"
+            changePercent={7}
           />
           <MetricCard
             label="Annualized Cash Flow"
             value="$1,250,000"
             icon={DollarSign}
+            priorValue="$1,180,000"
+            changePercent={6}
           />
           <MetricCard
             label="Average Daily Balance"
             value="$425,000"
+            priorValue="$398,000"
+            changePercent={7}
           />
           <MetricCard
             label="Adjusted Average Daily Balance"
             value="$398,500"
+            priorValue="$372,000"
+            changePercent={7}
           />
           <MetricCard
             label="Balance to Revenue Ratio"
             value="18.2%"
             variant="success"
+            priorValue="17.8%"
+            changePercent={2}
           />
           <MetricCard
             label="Cash Flow to Revenue Ratio"
             value="14.8%"
             variant="success"
+            priorValue="14.9%"
+            changePercent={-1}
           />
         </div>
       </div>
