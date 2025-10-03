@@ -66,16 +66,6 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
                     <OfferCalculator />
                   </SheetContent>
                 </Sheet>
-
-                {/* Sidebar Calculator */}
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
-                >
-                  <Calculator className="h-4 w-4 mr-2" />
-                  Calculator (Sidebar)
-                </Button>
               </div>
             </div>
           </div>
@@ -127,6 +117,17 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
           {children}
         </main>
       </div>
+
+      {/* Sidebar Toggle - Chevron */}
+      {!sidebarOpen && (
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="fixed right-0 top-1/2 -translate-y-1/2 bg-card border-l border-t border-b rounded-l-lg p-2 shadow-lg hover:bg-accent transition-colors z-50"
+          aria-label="Open calculator sidebar"
+        >
+          <ChevronLeft className="h-5 w-5 rotate-180" />
+        </button>
+      )}
 
       {/* Sidebar Calculator */}
       <div 
