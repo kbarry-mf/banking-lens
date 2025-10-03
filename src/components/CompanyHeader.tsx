@@ -14,7 +14,7 @@ export const CompanyHeader = ({
           <div className="flex items-start justify-between">
             <div>
               <CardTitle className="text-lg">Acme Corporation</CardTitle>
-              <p className="mt-0.5 text-xs text-muted-foreground">Manufacturing & Distribution</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
             <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
           </div>
@@ -22,8 +22,8 @@ export const CompanyHeader = ({
         <CardContent className="px-4 pb-3">
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-xs">
             <div>
-              <p className="font-medium text-muted-foreground">Broker</p>
-              <p className="mt-0.5 text-foreground">First Capital Partners</p>
+              <p className="font-medium text-muted-foreground">Address</p>
+              <p className="mt-0.5 text-foreground">456 Oak Avenue, Apt 10, Somewhere, CA 90210</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Legal Entity</p>
