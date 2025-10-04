@@ -151,32 +151,32 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
       {/* Detailed Analysis - Different formats per exploration */}
       {exploration === "analyst" ? (
         <Card>
-          <CardHeader>
-            <CardTitle>Detailed Monthly Balance Analysis</CardTitle>
+          <CardHeader className="pb-2 pt-3 px-3">
+            <CardTitle className="text-sm">Detailed Monthly Balance Analysis</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-3 pb-3">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-3 text-left text-sm font-medium text-muted-foreground">Month</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Avg Balance</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Min Balance</th>
-                    <th className="pb-3 text-right text-sm font-medium text-muted-foreground">Variance</th>
-                    <th className="pb-3 text-center text-sm font-medium text-muted-foreground">Negative Days</th>
+                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground">Month</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Min Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Variance</th>
+                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground">Negative Days</th>
                   </tr>
                 </thead>
                 <tbody>
                   {monthlyBalances.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-3 text-sm font-medium text-foreground">{data.month}</td>
-                      <td className="py-3 text-right text-sm text-foreground">${data.avgBalance.toLocaleString()}</td>
-                      <td className="py-3 text-right text-sm text-foreground">${data.minBalance.toLocaleString()}</td>
-                      <td className="py-3 text-right text-sm font-medium text-foreground">
+                      <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs font-medium text-foreground">
                         ${(data.avgBalance - data.minBalance).toLocaleString()}
                       </td>
-                      <td className="py-3 text-center">
-                        <Badge variant={data.negDays > 0 ? "destructive" : "outline"}>
+                      <td className="py-1.5 text-center">
+                        <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
                           {data.negDays}
                         </Badge>
                       </td>
