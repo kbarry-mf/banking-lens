@@ -12,12 +12,12 @@ interface CashFlowViewProps {
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const monthlyData = [
-    { month: "Jan", revenue: 685000, cashFlow: 92000, deposits: 42, transfers: 125000 },
-    { month: "Feb", revenue: 720000, cashFlow: 108000, deposits: 45, transfers: 132000 },
-    { month: "Mar", revenue: 695000, cashFlow: 95000, deposits: 41, transfers: 118000 },
-    { month: "Apr", revenue: 735000, cashFlow: 112000, deposits: 48, transfers: 145000 },
-    { month: "May", revenue: 710000, cashFlow: 102000, deposits: 44, transfers: 138000 },
-    { month: "Jun", revenue: 705000, cashFlow: 98000, deposits: 43, transfers: 128000 },
+    { month: "Apr", revenue: 682000, cashFlow: 88000, deposits: 39, transfers: 115000 },
+    { month: "May", revenue: 745000, cashFlow: 112000, deposits: 47, transfers: 152000 },
+    { month: "Jun", revenue: 698000, cashFlow: 94000, deposits: 41, transfers: 121000 },
+    { month: "Jul", revenue: 725000, cashFlow: 105000, deposits: 45, transfers: 143000 },
+    { month: "Aug", revenue: 691000, cashFlow: 89000, deposits: 38, transfers: 118000 },
+    { month: "Sep", revenue: 738000, cashFlow: 118000, deposits: 49, transfers: 158000 },
   ];
 
   const chartData = monthlyData.slice(-3);

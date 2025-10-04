@@ -12,12 +12,12 @@ interface BalancesViewProps {
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const monthlyBalances = [
-    { month: "Jan", avgBalance: 425000, minBalance: 185000, negDays: 0 },
-    { month: "Feb", avgBalance: 438000, minBalance: 195000, negDays: 0 },
-    { month: "Mar", avgBalance: 412000, minBalance: 175000, negDays: 1 },
-    { month: "Apr", avgBalance: 445000, minBalance: 205000, negDays: 0 },
-    { month: "May", avgBalance: 430000, minBalance: 190000, negDays: 0 },
-    { month: "Jun", avgBalance: 428000, minBalance: 188000, negDays: 0 },
+    { month: "Apr", avgBalance: 418000, minBalance: 178000, negDays: 1 },
+    { month: "May", avgBalance: 452000, minBalance: 212000, negDays: 0 },
+    { month: "Jun", avgBalance: 408000, minBalance: 171000, negDays: 0 },
+    { month: "Jul", avgBalance: 438000, minBalance: 198000, negDays: 0 },
+    { month: "Aug", avgBalance: 415000, minBalance: 182000, negDays: 0 },
+    { month: "Sep", avgBalance: 461000, minBalance: 221000, negDays: 0 },
   ];
 
   const chartData = monthlyBalances.slice(-3);
