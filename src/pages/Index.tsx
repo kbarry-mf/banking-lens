@@ -9,22 +9,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("summary");
-  const [exploration, setExploration] = useState<"executive" | "analyst" | "decision">("executive");
 
   const renderContent = () => {
     switch (activeTab) {
       case "summary":
-        return <SummaryView exploration={exploration} />;
+        return <SummaryView exploration="analyst" />;
       case "cash-flow":
-        return <CashFlowView exploration={exploration} />;
+        return <CashFlowView exploration="analyst" />;
       case "balances":
-        return <BalancesView exploration={exploration} />;
+        return <BalancesView exploration="analyst" />;
       case "debt":
-        return <DebtView exploration={exploration} />;
+        return <DebtView exploration="analyst" />;
       case "related":
-        return <RelatedView exploration={exploration} />;
+        return <RelatedView exploration="analyst" />;
       default:
-        return <SummaryView exploration={exploration} />;
+        return <SummaryView exploration="analyst" />;
     }
   };
 
@@ -32,8 +31,6 @@ const Index = () => {
     <Layout 
       activeTab={activeTab} 
       onTabChange={setActiveTab}
-      exploration={exploration}
-      onExplorationChange={setExploration}
     >
       {renderContent()}
     </Layout>

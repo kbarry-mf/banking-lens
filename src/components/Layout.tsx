@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2, Calculator, ChevronLeft } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
@@ -11,19 +9,10 @@ interface LayoutProps {
   children: React.ReactNode;
   activeTab: string;
   onTabChange: (value: string) => void;
-  exploration: "executive" | "analyst" | "decision";
-  onExplorationChange: (value: "executive" | "analyst" | "decision") => void;
 }
 
-export const Layout = ({ children, activeTab, onTabChange, exploration, onExplorationChange }: LayoutProps) => {
-  const [calculatorOpen, setCalculatorOpen] = useState(false);
+export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  const explorationTitles = {
-    executive: "Executive Brief",
-    analyst: "Analyst Workspace",
-    decision: "Decision Dashboard"
-  };
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -39,33 +28,29 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
                 </div>
                 <div>
                   <h1 className="text-lg font-semibold text-foreground">Banking Lens</h1>
-                  <p className="text-xs text-muted-foreground">{explorationTitles[exploration]}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Select value={exploration} onValueChange={onExplorationChange}>
-                  <SelectTrigger className="w-[180px] h-8 text-sm">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="executive">Executive Brief</SelectItem>
-                    <SelectItem value="analyst">Analyst Workspace</SelectItem>
-                    <SelectItem value="decision">Decision Dashboard</SelectItem>
-                  </SelectContent>
-                </Select>
-                
-                {/* Overlay Calculator */}
-                <Sheet open={calculatorOpen} onOpenChange={setCalculatorOpen}>
-                  <SheetTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      <Calculator className="h-4 w-4 mr-2" />
-                      Calculator (Overlay)
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent side="right" className="w-full sm:max-w-xl p-0">
-                    <OfferCalculator />
-                  </SheetContent>
-                </Sheet>
+                <Button variant="outline" size="sm">
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Claim
+                </Button>
+                <Button variant="outline" size="sm">
+                  <XCircle className="h-4 w-4 mr-2" />
+                  Decline
+                </Button>
+                <Button variant="outline" size="sm">
+                  <FileWarning className="h-4 w-4 mr-2" />
+                  Stip
+                </Button>
+                <Button variant="outline" size="sm">
+                  <Send className="h-4 w-4 mr-2" />
+                  Present
+                </Button>
+                <Button variant="default" size="sm">
+                  <Upload className="h-4 w-4 mr-2" />
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
@@ -74,7 +59,7 @@ export const Layout = ({ children, activeTab, onTabChange, exploration, onExplor
         {/* Company Header */}
         <div className="border-b bg-background">
           <div className="container mx-auto px-6 py-3">
-            <CompanyHeader exploration={exploration} />
+            <CompanyHeader exploration="analyst" />
           </div>
         </div>
 
