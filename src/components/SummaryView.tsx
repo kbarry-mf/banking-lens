@@ -6,15 +6,21 @@ import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "rec
 import { formatCurrency } from "@/lib/utils";
 
 const revenueData = [
-  { month: "Jul", revenue: 695000 },
-  { month: "Aug", revenue: 710000 },
-  { month: "Sep", revenue: 705000 },
+  { month: "Apr", revenue: 682000 },
+  { month: "May", revenue: 745000 },
+  { month: "Jun", revenue: 698000 },
+  { month: "Jul", revenue: 725000 },
+  { month: "Aug", revenue: 691000 },
+  { month: "Sep", revenue: 738000 },
 ];
 
 const cashFlowData = [
-  { month: "Jul", cashFlow: 95000 },
-  { month: "Aug", cashFlow: 102000 },
-  { month: "Sep", cashFlow: 98000 },
+  { month: "Apr", cashFlow: 88000 },
+  { month: "May", cashFlow: 112000 },
+  { month: "Jun", cashFlow: 94000 },
+  { month: "Jul", cashFlow: 105000 },
+  { month: "Aug", cashFlow: 89000 },
+  { month: "Sep", cashFlow: 118000 },
 ];
 
 interface SummaryViewProps {
@@ -24,80 +30,70 @@ interface SummaryViewProps {
 export const SummaryView = ({ exploration }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
-      {/* Credit Assessment */}
-      <div>
-        <h2 className="mb-2 text-sm font-semibold text-foreground">Credit Assessment</h2>
-        <div className="grid gap-3 md:grid-cols-2">
-          <MetricCard
-            label="FICO Score"
-            value="677"
-            variant="success"
-            priorValue="645"
-            changePercent={5}
-          />
-          <MetricCard
-            label="Mulligan Custom Score"
-            value="199"
-            variant="success"
-            priorValue="182"
-            changePercent={9}
-          />
-        </div>
-      </div>
-
-      {/* Banking Indicators */}
-      <div>
-        <h2 className="mb-2 text-sm font-semibold text-foreground">Banking Indicators</h2>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          <MetricCard
-            label="Ocrolus Detect Flags"
-            value="2"
-            variant="warning"
-            icon={AlertCircle}
-            priorValue="4"
-            changePercent={-50}
-          />
-          <MetricCard
-            label="Annualized Revenue"
-            value="$8,450,000"
-            icon={TrendingUp}
-            priorValue="$7,920,000"
-            changePercent={7}
-          />
-          <MetricCard
-            label="Annualized Cash Flow"
-            value="$1,250,000"
-            icon={DollarSign}
-            priorValue="$1,180,000"
-            changePercent={6}
-          />
-          <MetricCard
-            label="Average Daily Balance"
-            value="$425,000"
-            priorValue="$398,000"
-            changePercent={7}
-          />
-          <MetricCard
-            label="Adjusted Average Daily Balance"
-            value="$398,500"
-            priorValue="$372,000"
-            changePercent={7}
-          />
-          <MetricCard
-            label="Balance to Revenue Ratio"
-            value="18.2%"
-            variant="success"
-            priorValue="17.8%"
-            changePercent={2}
-          />
-          <MetricCard
-            label="Cash Flow to Revenue Ratio"
-            value="14.8%"
-            variant="success"
-            priorValue="14.9%"
-            changePercent={-1}
-          />
-        </div>
+      {/* All Metrics in Single Section */}
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <MetricCard
+          label="FICO Score"
+          value="677"
+          variant="success"
+          priorValue="645"
+          changePercent={5}
+        />
+        <MetricCard
+          label="Mulligan Custom Score"
+          value="199"
+          variant="success"
+          priorValue="182"
+          changePercent={9}
+        />
+        <MetricCard
+          label="Annualized Revenue"
+          value="$8,450,000"
+          icon={TrendingUp}
+          priorValue="$7,920,000"
+          changePercent={7}
+        />
+        <MetricCard
+          label="Annualized Cash Flow"
+          value="$1,250,000"
+          icon={DollarSign}
+          priorValue="$1,180,000"
+          changePercent={6}
+        />
+        <MetricCard
+          label="Average Daily Balance"
+          value="$425,000"
+          priorValue="$398,000"
+          changePercent={7}
+        />
+        <MetricCard
+          label="Adjusted Average Daily Balance"
+          value="$398,500"
+          priorValue="$372,000"
+          changePercent={7}
+        />
+        <MetricCard
+          label="Balance to Revenue Ratio"
+          value="18.2%"
+          variant="success"
+          priorValue="17.8%"
+          changePercent={2}
+        />
+        <MetricCard
+          label="Cash Flow to Revenue Ratio"
+          value="14.8%"
+          variant="success"
+          priorValue="14.9%"
+          changePercent={-1}
+        />
+        <MetricCard
+          label="Ocrolus Detect Flags"
+          value="2"
+          variant="warning"
+          icon={AlertCircle}
+          priorValue="4"
+          changePercent={-50}
+        />
       </div>
 
       {/* Charts Section */}
