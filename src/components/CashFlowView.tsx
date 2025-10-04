@@ -20,7 +20,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     { month: "Sep", revenue: 738000, cashFlow: 118000, deposits: 49, transfers: 158000 },
   ];
 
-  const chartData = monthlyData.slice(-3);
+  const chartData = monthlyData;
 
   return (
     <div className="space-y-4">

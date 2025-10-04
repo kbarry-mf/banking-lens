@@ -20,7 +20,7 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
     { month: "Sep", avgBalance: 461000, minBalance: 221000, negDays: 0 },
   ];
 
-  const chartData = monthlyBalances.slice(-3);
+  const chartData = monthlyBalances;
 
   return (
     <div className="space-y-4">
