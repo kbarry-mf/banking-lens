@@ -72,7 +72,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <MetricCard
           label="Balance to Revenue Ratio"
           value="18.2%"
-          variant="warning"
+          variant="destructive"
           priorValue="17.8%"
           changePercent={0.4}
         />
