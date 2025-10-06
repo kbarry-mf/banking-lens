@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
 import { formatCurrency } from "@/lib/utils";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface CashFlowViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -12,12 +13,17 @@ interface CashFlowViewProps {
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const monthlyData = [
-    { month: "Apr", revenue: 682000, cashFlow: 88000, deposits: 39, transfers: 115000 },
-    { month: "May", revenue: 745000, cashFlow: 112000, deposits: 47, transfers: 152000 },
-    { month: "Jun", revenue: 698000, cashFlow: 94000, deposits: 41, transfers: 121000 },
-    { month: "Jul", revenue: 725000, cashFlow: 105000, deposits: 45, transfers: 143000 },
-    { month: "Aug", revenue: 691000, cashFlow: 89000, deposits: 38, transfers: 118000 },
-    { month: "Sep", revenue: 738000, cashFlow: 118000, deposits: 49, transfers: 158000 },
+    { month: "Apr", revenue: 682000, cashFlow: 88000, deposits: 39, transfersIn: 115000, loanDeposits: 85000, loanPayments: 22000, transfersOut: 45000 },
+    { month: "May", revenue: 745000, cashFlow: 112000, deposits: 47, transfersIn: 152000, loanDeposits: 95000, loanPayments: 25000, transfersOut: 52000 },
+    { month: "Jun", revenue: 698000, cashFlow: 94000, deposits: 41, transfersIn: 121000, loanDeposits: 78000, loanPayments: 21000, transfersOut: 38000 },
+    { month: "Jul", revenue: 725000, cashFlow: 105000, deposits: 45, transfersIn: 143000, loanDeposits: 88000, loanPayments: 23000, transfersOut: 48000 },
+    { month: "Aug", revenue: 691000, cashFlow: 89000, deposits: 38, transfersIn: 118000, loanDeposits: 72000, loanPayments: 19000, transfersOut: 35000 },
+    { month: "Sep", revenue: 738000, cashFlow: 118000, deposits: 49, transfersIn: 158000, loanDeposits: 102000, loanPayments: 27000, transfersOut: 55000 },
+  ];
+
+  const bankAccounts = [
+    { last4: "4521", bankName: "Chase Business", accountType: "Checking", beginDate: "2023-01-15", endDate: "2024-09-30" },
+    { last4: "8832", bankName: "Wells Fargo", accountType: "Savings", beginDate: "2023-03-22", endDate: "2024-09-30" },
   ];
 
   const chartData = monthlyData;
@@ -53,11 +59,59 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
           </Card>
         </div>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <MetricCard label="Total Loan Payments" value="$125,000" variant="warning" />
-          <MetricCard label="Total Loan Proceeds" value="$500,000" />
-          <MetricCard label="Overdraft Count" value="3" variant="destructive" priorValue="5" changePercent={-40} lowerIsBetter={true} />
-          <MetricCard label="Bank Accounts" value="2 Accounts" description="Chase Business, Wells Fargo" />
+        <div className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="outline" className="px-3 py-1.5 text-xs">
+              <span className="font-medium">Total Loan Payments:</span>
+              <span className="ml-1.5 text-warning">$125,000</span>
+            </Badge>
+            <Badge variant="outline" className="px-3 py-1.5 text-xs">
+              <span className="font-medium">Total Loan Proceeds:</span>
+              <span className="ml-1.5">$500,000</span>
+            </Badge>
+            <Badge variant="outline" className="px-3 py-1.5 text-xs">
+              <span className="font-medium">Overdraft Count:</span>
+              <span className="ml-1.5 text-destructive">3</span>
+            </Badge>
+            <Badge variant="outline" className="px-3 py-1.5 text-xs">
+              <span className="font-medium">Total NSF Fees:</span>
+              <span className="ml-1.5 text-destructive">$450</span>
+            </Badge>
+            <Badge variant="outline" className="px-3 py-1.5 text-xs">
+              <span className="font-medium">Returned Items:</span>
+              <span className="ml-1.5 text-warning">$1,250</span>
+            </Badge>
+          </div>
+          
+          <Card>
+            <CardHeader className="pb-3 pt-4 px-4">
+              <CardTitle className="text-sm">Bank Accounts</CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="text-xs">Last 4</TableHead>
+                    <TableHead className="text-xs">Bank Name</TableHead>
+                    <TableHead className="text-xs">Account Type</TableHead>
+                    <TableHead className="text-xs">Begin Date</TableHead>
+                    <TableHead className="text-xs">End Date</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {bankAccounts.map((account, idx) => (
+                    <TableRow key={idx}>
+                      <TableCell className="text-xs font-medium">{account.last4}</TableCell>
+                      <TableCell className="text-xs">{account.bankName}</TableCell>
+                      <TableCell className="text-xs">{account.accountType}</TableCell>
+                      <TableCell className="text-xs">{account.beginDate}</TableCell>
+                      <TableCell className="text-xs">{account.endDate}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
         </div>
       )}
 
@@ -73,24 +127,30 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                 <thead>
                   <tr className="border-b">
                     <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Month</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Revenue</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
                     <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers In</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Deposits</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Revenue</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Payments</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
+                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
                   </tr>
                 </thead>
                 <tbody>
                   {monthlyData.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
                       <td className="py-2 text-xs font-medium text-foreground">{data.month}</td>
+                      <td className="py-2 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
+                      <td className="py-2 text-right text-xs text-foreground">${data.loanDeposits.toLocaleString()}</td>
                       <td className="py-2 text-right text-xs text-foreground">${data.revenue.toLocaleString()}</td>
+                      <td className="py-2 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
+                      <td className="py-2 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
                       <td className="py-2 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
+                      <td className="py-2 text-right text-xs text-foreground">{data.deposits}</td>
                       <td className="py-2 text-right text-xs font-medium text-success">
                         {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
                       </td>
-                      <td className="py-2 text-right text-xs text-foreground">{data.deposits}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.transfers.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -142,8 +202,8 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
             <CardContent className="px-2 pb-4">
               <ChartContainer
                 config={{
-                  transfers: {
-                    label: "Transfers",
+                  transfersIn: {
+                    label: "Transfers In",
                     color: exploration === "executive" ? "hsl(var(--primary))" : "hsl(var(--chart-3))",
                   },
                 }}
@@ -155,7 +215,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
                     <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                    <Bar dataKey="transfers" fill="var(--color-transfers)" radius={[8, 8, 0, 0]} />
+                    <Bar dataKey="transfersIn" fill="var(--color-transfersIn)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 ) : (
                   <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
@@ -163,7 +223,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(value) => formatCurrency(value)} />
                     <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                    <Line type="monotone" dataKey="transfers" stroke="var(--color-transfers)" strokeWidth={2} dot={{ fill: "var(--color-transfers)", r: 4 }} fill="none" />
+                    <Line type="monotone" dataKey="transfersIn" stroke="var(--color-transfersIn)" strokeWidth={2} dot={{ fill: "var(--color-transfersIn)", r: 4 }} fill="none" />
                   </LineChart>
                 )}
               </ChartContainer>
@@ -201,31 +261,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
             </div>
           </CardContent>
         </Card>
-      ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">NSF Fees & Returned Items</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="text-sm font-medium text-foreground">Total NSF Fees</p>
-                  <p className="mt-1 text-2xl font-semibold text-destructive">$450</p>
-                </div>
-                <Badge variant="destructive">3 Incidents</Badge>
-              </div>
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div>
-                  <p className="text-sm font-medium text-foreground">Returned Items</p>
-                  <p className="mt-1 text-2xl font-semibold text-warning">$1,250</p>
-                </div>
-                <Badge className="bg-warning text-warning-foreground">2 Items</Badge>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      ) : null}
     </div>
   );
 };
