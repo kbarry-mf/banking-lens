@@ -14,7 +14,9 @@ export const CompanyHeader = ({
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-baseline gap-2">
-                <CardTitle className="text-lg">Acme Corporation</CardTitle>
+                <CardTitle className="text-lg">
+                  <a href="#" className="hover:underline">Acme Corporation</a>
+                </CardTitle>
                 <span className="text-xs text-muted-foreground">dba California Plastics</span>
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
@@ -32,8 +34,8 @@ export const CompanyHeader = ({
               <p className="mt-0.5 text-foreground">1234 Industrial Way, Los Angeles, CA 90001</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Legal Entity</p>
-              <p className="mt-0.5 text-foreground">LLC</p>
+              <p className="font-medium text-muted-foreground">Application Type</p>
+              <p className="mt-0.5 text-foreground">Resubmit</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Years in Business</p>
@@ -51,15 +53,11 @@ export const CompanyHeader = ({
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Application Date</p>
-              <p className="mt-0.5 text-foreground">Jan 15, 2025</p>
+              <p className="mt-0.5 text-foreground">{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Underwriter</p>
               <p className="mt-0.5 text-foreground">Sarah Johnson</p>
-            </div>
-            <div>
-              <p className="font-medium text-muted-foreground">Application Type</p>
-              <p className="mt-0.5 text-foreground">Resubmit</p>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-xs">
@@ -79,7 +77,9 @@ export const CompanyHeader = ({
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-baseline gap-2">
-                <CardTitle className="text-lg">Acme Corporation</CardTitle>
+                <CardTitle className="text-lg">
+                  <a href="#" className="hover:underline">Acme Corporation</a>
+                </CardTitle>
                 <span className="text-xs text-muted-foreground">dba California Plastics</span>
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
@@ -97,8 +97,8 @@ export const CompanyHeader = ({
               <p className="mt-0.5 text-foreground">1234 Industrial Way, Los Angeles, CA 90001</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Legal Entity</p>
-              <p className="mt-0.5 text-foreground">LLC</p>
+              <p className="font-medium text-muted-foreground">Application Type</p>
+              <p className="mt-0.5 text-foreground">Resubmit</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Years in Business</p>
@@ -116,15 +116,11 @@ export const CompanyHeader = ({
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Application Date</p>
-              <p className="mt-0.5 text-foreground">Jan 15, 2025</p>
+              <p className="mt-0.5 text-foreground">{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Underwriter</p>
               <p className="mt-0.5 text-foreground">Sarah Johnson</p>
-            </div>
-            <div>
-              <p className="font-medium text-muted-foreground">Application Type</p>
-              <p className="mt-0.5 text-foreground">Resubmit</p>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-xs">
@@ -145,7 +141,9 @@ export const CompanyHeader = ({
         <div className="flex items-start justify-between mb-3">
           <div>
             <div className="flex items-baseline gap-2">
-              <h2 className="text-lg font-bold text-foreground">Acme Corporation</h2>
+              <h2 className="text-lg font-bold text-foreground">
+                <a href="#" className="hover:underline">Acme Corporation</a>
+              </h2>
               <span className="text-xs text-muted-foreground">dba California Plastics</span>
             </div>
             <p className="text-xs text-muted-foreground mt-0.5">First Capital Partners</p>
@@ -167,7 +165,7 @@ export const CompanyHeader = ({
         </div>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
-          <MetricCard label="Application Submitted" value="Jan 15, 2025" icon={Calendar} />
+          <MetricCard label="Application Submitted" value={new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} icon={Calendar} />
           <MetricCard label="Underwriter" value="Sarah Johnson" icon={User} />
           <MetricCard label="Application Type" value="Resubmit" icon={Building2} />
         </div>

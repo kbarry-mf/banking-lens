@@ -25,9 +25,8 @@ export const MetricCard = ({
   changePoints,
   lowerIsBetter = false
 }: MetricCardProps) => {
-  // Determine status indicator based on variant
-  const StatusIcon = variant === "warning" ? AlertCircle : variant === "destructive" ? AlertTriangle : null;
-  const statusIconColor = variant === "warning" ? "text-warning" : variant === "destructive" ? "text-destructive" : "";
+  // Determine status indicator color based on variant
+  const dotColor = variant === "warning" ? "bg-warning" : variant === "destructive" ? "bg-destructive" : null;
 
   // Calculate trend direction - flip logic if lower is better
   const changeValue = changePercent ?? changePoints;
@@ -40,8 +39,8 @@ export const MetricCard = ({
       <div className="flex items-start gap-2">
         <div className="flex-1">
           <div className="flex items-center gap-1.5">
-            {StatusIcon && (
-              <StatusIcon className={cn("h-3 w-3", statusIconColor)} />
+            {dotColor && (
+              <div className={cn("h-2 w-2 rounded-full", dotColor)} />
             )}
             <p className="text-xs font-medium text-muted-foreground">{label}</p>
           </div>
