@@ -12,14 +12,21 @@ interface CashFlowViewProps {
 }
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
+  // Calculate revenue and cash flow based on the formula:
+  // Transfer In + Loan Deposits = Revenue
+  // Revenue - Loan Payments - Transfers Out = Cash Flow
   const monthlyData = [
-    { month: "Apr", revenue: 682000, cashFlow: 88000, deposits: 39, transfersIn: 115000, loanDeposits: 85000, loanPayments: 22000, transfersOut: 45000 },
-    { month: "May", revenue: 745000, cashFlow: 112000, deposits: 47, transfersIn: 152000, loanDeposits: 95000, loanPayments: 25000, transfersOut: 52000 },
-    { month: "Jun", revenue: 698000, cashFlow: 94000, deposits: 41, transfersIn: 121000, loanDeposits: 78000, loanPayments: 21000, transfersOut: 38000 },
-    { month: "Jul", revenue: 725000, cashFlow: 105000, deposits: 45, transfersIn: 143000, loanDeposits: 88000, loanPayments: 23000, transfersOut: 48000 },
-    { month: "Aug", revenue: 691000, cashFlow: 89000, deposits: 38, transfersIn: 118000, loanDeposits: 72000, loanPayments: 19000, transfersOut: 35000 },
-    { month: "Sep", revenue: 738000, cashFlow: 118000, deposits: 49, transfersIn: 158000, loanDeposits: 102000, loanPayments: 27000, transfersOut: 55000 },
-  ];
+    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, loanPayments: 22000, transfersOut: 45000 },
+    { month: "May", transfersIn: 152000, loanDeposits: 95000, loanPayments: 25000, transfersOut: 52000 },
+    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, loanPayments: 21000, transfersOut: 38000 },
+    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, loanPayments: 23000, transfersOut: 48000 },
+    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, loanPayments: 19000, transfersOut: 35000 },
+    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, loanPayments: 27000, transfersOut: 55000 },
+  ].map(row => ({
+    ...row,
+    revenue: row.transfersIn + row.loanDeposits,
+    cashFlow: (row.transfersIn + row.loanDeposits) - row.loanPayments - row.transfersOut
+  }));
 
   const bankAccounts = [
     { last4: "4521", bankName: "Chase Business", accountType: "Checking", beginDate: "2023-01-15", endDate: "2024-09-30" },
@@ -133,7 +140,6 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Payments</th>
                     <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
                     <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
                     <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
                   </tr>
                 </thead>
@@ -147,7 +153,6 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                       <td className="py-2 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
                       <td className="py-2 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
                       <td className="py-2 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">{data.deposits}</td>
                       <td className="py-2 text-right text-xs font-medium text-success">
                         {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
                       </td>
