@@ -35,7 +35,6 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <MetricCard
           label="Annualized Revenue"
           value="$8,450,000"
-          variant="destructive"
           priorValue="$7,920,000"
           changePercent={7}
         />
@@ -73,14 +72,15 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <MetricCard
           label="Balance to Revenue Ratio"
           value="18.2%"
+          variant="warning"
           priorValue="17.8%"
-          changePercent={2}
+          changePercent={0.4}
         />
         <MetricCard
           label="Cash Flow to Revenue Ratio"
           value="14.8%"
           priorValue="14.9%"
-          changePercent={-1}
+          changePercent={-0.1}
         />
         <MetricCard
           label="Ocrolus Detect Signals"
