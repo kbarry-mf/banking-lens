@@ -19,7 +19,10 @@ export const CompanyHeader = ({
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
-            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+            <div className="flex gap-2">
+              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+            </div>
           </div>
         </CardHeader>
         <CardContent className="px-4 pb-3">
@@ -81,7 +84,10 @@ export const CompanyHeader = ({
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
-            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+            <div className="flex gap-2">
+              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+            </div>
           </div>
         </CardHeader>
         <CardContent className="px-4 pb-3">
@@ -154,7 +160,10 @@ export const CompanyHeader = ({
               <a href="#" className="text-primary hover:underline">Ocrolus Book</a>
             </div>
           </div>
-          <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+          <div className="flex gap-2">
+            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
+            <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+          </div>
         </div>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
