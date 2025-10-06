@@ -12,21 +12,25 @@ interface CashFlowViewProps {
 }
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
-  // Calculate revenue and cash flow based on the formula:
-  // Transfer In + Loan Deposits = Revenue
-  // Revenue - Loan Payments - Transfers Out = Cash Flow
+  // Match the values from SummaryView charts
   const monthlyData = [
-    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, loanPayments: 22000, transfersOut: 45000 },
-    { month: "May", transfersIn: 152000, loanDeposits: 95000, loanPayments: 25000, transfersOut: 52000 },
-    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, loanPayments: 21000, transfersOut: 38000 },
-    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, loanPayments: 23000, transfersOut: 48000 },
-    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, loanPayments: 19000, transfersOut: 35000 },
-    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, loanPayments: 27000, transfersOut: 55000 },
-  ].map(row => ({
-    ...row,
-    revenue: row.transfersIn + row.loanDeposits,
-    cashFlow: (row.transfersIn + row.loanDeposits) - row.loanPayments - row.transfersOut
-  }));
+    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000 },
+    { month: "May", transfersIn: 152000, loanDeposits: 95000, revenue: 745000, loanPayments: 25000, transfersOut: 52000, cashFlow: 112000 },
+    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, revenue: 698000, loanPayments: 21000, transfersOut: 38000, cashFlow: 94000 },
+    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, revenue: 725000, loanPayments: 23000, transfersOut: 48000, cashFlow: 105000 },
+    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, revenue: 691000, loanPayments: 19000, transfersOut: 35000, cashFlow: 89000 },
+    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, revenue: 738000, loanPayments: 27000, transfersOut: 55000, cashFlow: 118000 },
+  ];
+
+  // Calculate totals
+  const totals = monthlyData.reduce((acc, curr) => ({
+    transfersIn: acc.transfersIn + curr.transfersIn,
+    loanDeposits: acc.loanDeposits + curr.loanDeposits,
+    revenue: acc.revenue + curr.revenue,
+    loanPayments: acc.loanPayments + curr.loanPayments,
+    transfersOut: acc.transfersOut + curr.transfersOut,
+    cashFlow: acc.cashFlow + curr.cashFlow,
+  }), { transfersIn: 0, loanDeposits: 0, revenue: 0, loanPayments: 0, transfersOut: 0, cashFlow: 0 });
 
   const bankAccounts = [
     { last4: "4521", bankName: "Chase Business", accountType: "Checking", beginDate: "2023-01-15", endDate: "2024-09-30" },
@@ -68,14 +72,6 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
       ) : (
         <div className="space-y-3">
           <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="px-3 py-1.5 text-xs">
-              <span className="font-medium">Total Loan Payments:</span>
-              <span className="ml-1.5 text-warning">$125,000</span>
-            </Badge>
-            <Badge variant="outline" className="px-3 py-1.5 text-xs">
-              <span className="font-medium">Total Loan Proceeds:</span>
-              <span className="ml-1.5">$500,000</span>
-            </Badge>
             <Badge variant="outline" className="px-3 py-1.5 text-xs">
               <span className="font-medium">Overdraft Count:</span>
               <span className="ml-1.5 text-destructive">3</span>
@@ -119,51 +115,63 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
               </Table>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-4">
+              <CardTitle className="text-sm">Detailed Monthly Cash Flow Analysis</CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Month</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers In</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Deposits</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Revenue</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Payments</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {monthlyData.map((data, idx) => (
+                      <tr key={idx} className="border-b last:border-0">
+                        <td className="py-3 text-xs font-medium text-foreground">{data.month}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.loanDeposits.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.revenue.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs font-medium text-success">
+                          {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="border-t-2 font-semibold bg-muted/50">
+                      <td className="py-3 text-xs text-foreground">Total</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.transfersIn.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.loanDeposits.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.revenue.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.loanPayments.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.transfersOut.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs text-foreground">${totals.cashFlow.toLocaleString()}</td>
+                      <td className="py-3 text-right text-xs font-medium text-success">
+                        {((totals.cashFlow / totals.revenue) * 100).toFixed(1)}%
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
       {/* Monthly Analysis - Different views per exploration */}
-      {exploration === "analyst" ? (
-        <Card>
-          <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm">Detailed Monthly Cash Flow Analysis</CardTitle>
-          </CardHeader>
-          <CardContent className="px-4 pb-4">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Month</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers In</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Deposits</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Revenue</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Payments</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {monthlyData.map((data, idx) => (
-                    <tr key={idx} className="border-b last:border-0">
-                      <td className="py-2 text-xs font-medium text-foreground">{data.month}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.loanDeposits.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.revenue.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
-                      <td className="py-2 text-right text-xs font-medium text-success">
-                        {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-      ) : (
+      {exploration === "analyst" ? null : (
         <div className="grid gap-3 lg:grid-cols-2">
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
