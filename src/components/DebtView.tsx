@@ -94,10 +94,10 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
         </Card>
       ) : (
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <MetricCard label="Total Loan Payments" value="$125,000" icon={TrendingDown} />
-          <MetricCard label="Competitive Holdback" value="11.0%" variant="warning" icon={AlertCircle} />
-          <MetricCard label="Non-Competitive Holdback" value="3.8%" variant="success" />
-          <MetricCard label="Non-Fintech Loans" value="$500,000" icon={DollarSign} />
+          <MetricCard label="Total Loan Payments" value="$125,000" />
+          <MetricCard label="Competitive Holdback" value="11.0%" variant="warning" />
+          <MetricCard label="Non-Competitive Holdback" value="3.8%" />
+          <MetricCard label="Non-Fintech Loans" value="$500,000" />
         </div>
       )}
 

@@ -35,28 +35,26 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <MetricCard
           label="FICO Score"
           value="677"
-          variant="success"
           priorValue="645"
           changePercent={5}
         />
         <MetricCard
           label="Mulligan Custom Score"
           value="199"
-          variant="success"
+          variant="warning"
           priorValue="182"
           changePercent={9}
         />
         <MetricCard
           label="Annualized Revenue"
           value="$8,450,000"
-          icon={TrendingUp}
+          variant="destructive"
           priorValue="$7,920,000"
           changePercent={7}
         />
         <MetricCard
           label="Annualized Cash Flow"
           value="$1,250,000"
-          icon={DollarSign}
           priorValue="$1,180,000"
           changePercent={6}
         />
@@ -75,14 +73,12 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
         <MetricCard
           label="Balance to Revenue Ratio"
           value="18.2%"
-          variant="success"
           priorValue="17.8%"
           changePercent={2}
         />
         <MetricCard
           label="Cash Flow to Revenue Ratio"
           value="14.8%"
-          variant="success"
           priorValue="14.9%"
           changePercent={-1}
         />
@@ -90,9 +86,9 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           label="Ocrolus Detect Flags"
           value="2"
           variant="warning"
-          icon={AlertCircle}
           priorValue="4"
           changePercent={-50}
+          lowerIsBetter={true}
         />
       </div>
 

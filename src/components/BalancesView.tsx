@@ -49,9 +49,9 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
         </Card>
       ) : (
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          <MetricCard label="Average Daily Balance" value="$425,000" icon={TrendingUp} variant="success" />
-          <MetricCard label="Adjusted Average Daily Balance" value="$398,500" icon={TrendingUp} />
-          <MetricCard label="Minimum Balance (6 Mo)" value="$175,000" icon={TrendingDown} />
+          <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
+          <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
+          <MetricCard label="Minimum Balance (6 Mo)" value="$175,000" />
         </div>
       )}
 

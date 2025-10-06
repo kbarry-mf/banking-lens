@@ -54,9 +54,9 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
         </div>
       ) : (
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <MetricCard label="Total Loan Payments" value="$125,000" icon={TrendingDown} variant="warning" />
-          <MetricCard label="Total Loan Proceeds" value="$500,000" icon={TrendingUp} variant="success" />
-          <MetricCard label="Overdraft Count" value="3" icon={AlertTriangle} variant="destructive" />
+          <MetricCard label="Total Loan Payments" value="$125,000" variant="warning" />
+          <MetricCard label="Total Loan Proceeds" value="$500,000" />
+          <MetricCard label="Overdraft Count" value="3" variant="destructive" priorValue="5" changePercent={-40} lowerIsBetter={true} />
           <MetricCard label="Bank Accounts" value="2 Accounts" description="Chase Business, Wells Fargo" />
         </div>
       )}

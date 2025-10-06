@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { LucideIcon, TrendingUp, TrendingDown } from "lucide-react";
+import { LucideIcon, AlertCircle, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MetricCardProps {
@@ -10,6 +10,7 @@ interface MetricCardProps {
   description?: string;
   priorValue?: string;
   changePercent?: number;
+  lowerIsBetter?: boolean;
 }
 
 export const MetricCard = ({ 
@@ -19,45 +20,47 @@ export const MetricCard = ({
   variant = "default",
   description,
   priorValue,
-  changePercent
+  changePercent,
+  lowerIsBetter = false
 }: MetricCardProps) => {
-  const variantStyles = {
-    default: "border-border",
-    success: "border-l-4 border-l-success",
-    warning: "border-l-4 border-l-warning",
-    destructive: "border-l-4 border-l-destructive",
-  };
+  // Determine status indicator based on variant
+  const StatusIcon = variant === "warning" ? AlertCircle : variant === "destructive" ? AlertTriangle : null;
+  const statusIconColor = variant === "warning" ? "text-warning" : variant === "destructive" ? "text-destructive" : "";
 
-  const isPositive = changePercent !== undefined && changePercent >= 0;
-  const TrendIcon = isPositive ? TrendingUp : TrendingDown;
+  // Calculate trend direction - flip logic if lower is better
+  const isPositive = changePercent !== undefined 
+    ? (lowerIsBetter ? changePercent < 0 : changePercent >= 0)
+    : undefined;
 
   return (
-    <Card className={cn("p-3", variantStyles[variant])}>
+    <Card className="p-3">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <p className="text-xs font-medium text-muted-foreground">{label}</p>
           <div className="mt-1 flex items-baseline gap-2">
-            <p className="text-lg font-semibold text-foreground">{value}</p>
-            {priorValue && (
-              <p className="text-xs text-muted-foreground">vs {priorValue}</p>
+            <p className="text-2xl font-semibold text-foreground">{value}</p>
+            {changePercent !== undefined && (
+              <span className={cn(
+                "text-sm font-medium",
+                isPositive ? "text-success" : "text-destructive"
+              )}>
+                {changePercent > 0 ? "+" : ""}{changePercent}%
+              </span>
             )}
           </div>
-          {changePercent !== undefined && (
-            <div className={cn(
-              "mt-0.5 flex items-center gap-1 text-xs font-medium",
-              isPositive ? "text-success" : "text-destructive"
-            )}>
-              <TrendIcon className="h-3 w-3" />
-              <span>{Math.abs(changePercent)}% vs prior submission</span>
-            </div>
+          {priorValue && (
+            <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+              <span>→</span>
+              <span>{priorValue}</span>
+            </p>
           )}
           {description && (
             <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
           )}
         </div>
-        {Icon && (
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
-            <Icon className="h-4 w-4 text-primary" />
+        {StatusIcon && (
+          <div className="flex h-5 w-5 items-center justify-center">
+            <StatusIcon className={cn("h-5 w-5", statusIconColor)} />
           </div>
         )}
       </div>
