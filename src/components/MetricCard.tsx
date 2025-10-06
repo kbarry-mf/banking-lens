@@ -37,9 +37,14 @@ export const MetricCard = ({
 
   return (
     <Card className="p-3">
-      <div className="flex items-start justify-between">
+      <div className="flex items-start gap-2">
         <div className="flex-1">
-          <p className="text-xs font-medium text-muted-foreground">{label}</p>
+          <div className="flex items-center gap-1.5">
+            {StatusIcon && (
+              <StatusIcon className={cn("h-3 w-3", statusIconColor)} />
+            )}
+            <p className="text-xs font-medium text-muted-foreground">{label}</p>
+          </div>
           <div className="mt-1 flex items-baseline gap-2">
             <p className="text-2xl font-semibold text-foreground">{value}</p>
             {changePercent !== undefined && (
@@ -69,11 +74,6 @@ export const MetricCard = ({
             <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
           )}
         </div>
-        {StatusIcon && (
-          <div className="flex h-5 w-5 items-center justify-center">
-            <StatusIcon className={cn("h-5 w-5", statusIconColor)} />
-          </div>
-        )}
       </div>
     </Card>
   );
