@@ -30,62 +30,79 @@ interface SummaryViewProps {
 export const SummaryView = ({ exploration }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
-      {/* All Metrics in Single Section */}
+      {/* All Metrics in Single Section - Showcasing 5 Visual Variations */}
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {/* Variation 1: Left Border (Original) */}
         <MetricCard
           label="FICO Score"
           value="677"
           variant="success"
           priorValue="645"
           changePercent={5}
+          visualVariant="leftBorder"
         />
+        {/* Variation 2: Top Accent */}
         <MetricCard
           label="Mulligan Custom Score"
           value="199"
           variant="success"
           priorValue="182"
           changePercent={9}
+          visualVariant="topAccent"
         />
+        {/* Variation 3: Corner Badge */}
         <MetricCard
           label="Annualized Revenue"
           value="$8,450,000"
           icon={TrendingUp}
           priorValue="$7,920,000"
           changePercent={7}
+          visualVariant="cornerBadge"
         />
+        {/* Variation 4: Glow Effect */}
         <MetricCard
           label="Annualized Cash Flow"
           value="$1,250,000"
           icon={DollarSign}
           priorValue="$1,180,000"
           changePercent={6}
+          visualVariant="glowEffect"
         />
+        {/* Variation 5: Background Tint */}
         <MetricCard
           label="Average Daily Balance"
           value="$425,000"
           priorValue="$398,000"
           changePercent={7}
+          visualVariant="backgroundTint"
         />
+        {/* Showing warning with Left Border */}
         <MetricCard
           label="Adjusted Average Daily Balance"
           value="$398,500"
           priorValue="$372,000"
           changePercent={7}
+          visualVariant="leftBorder"
         />
+        {/* Showing success with Top Accent */}
         <MetricCard
           label="Balance to Revenue Ratio"
           value="18.2%"
           variant="success"
           priorValue="17.8%"
           changePercent={2}
+          visualVariant="topAccent"
         />
+        {/* Showing success with Corner Badge */}
         <MetricCard
           label="Cash Flow to Revenue Ratio"
           value="14.8%"
           variant="success"
           priorValue="14.9%"
           changePercent={-1}
+          visualVariant="cornerBadge"
         />
+        {/* Warning with all variations cycling */}
         <MetricCard
           label="Ocrolus Detect Flags"
           value="2"
@@ -93,6 +110,7 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           icon={AlertCircle}
           priorValue="4"
           changePercent={-50}
+          visualVariant="glowEffect"
         />
       </div>
 
