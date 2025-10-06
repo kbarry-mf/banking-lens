@@ -11,13 +11,13 @@ interface BalancesViewProps {
 }
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
-  const monthlyBalances = [
-    { month: "Apr", avgBalance: 418000, minBalance: 178000, negDays: 1 },
-    { month: "May", avgBalance: 452000, minBalance: 212000, negDays: 0 },
-    { month: "Jun", avgBalance: 408000, minBalance: 171000, negDays: 0 },
-    { month: "Jul", avgBalance: 438000, minBalance: 198000, negDays: 0 },
-    { month: "Aug", avgBalance: 415000, minBalance: 182000, negDays: 0 },
-    { month: "Sep", avgBalance: 461000, minBalance: 221000, negDays: 0 },
+const monthlyBalances = [
+    { month: "Apr", avgBalance: 418000, weightedAvgAdjBalance: 398000, maxBalance: 725000, minBalance: 178000, negDays: 1 },
+    { month: "May", avgBalance: 452000, weightedAvgAdjBalance: 431000, maxBalance: 782000, minBalance: 212000, negDays: 0 },
+    { month: "Jun", avgBalance: 408000, weightedAvgAdjBalance: 389000, maxBalance: 698000, minBalance: 171000, negDays: 0 },
+    { month: "Jul", avgBalance: 438000, weightedAvgAdjBalance: 418000, maxBalance: 751000, minBalance: 198000, negDays: 0 },
+    { month: "Aug", avgBalance: 415000, weightedAvgAdjBalance: 396000, maxBalance: 712000, minBalance: 182000, negDays: 0 },
+    { month: "Sep", avgBalance: 461000, weightedAvgAdjBalance: 441000, maxBalance: 798000, minBalance: 221000, negDays: 0 },
   ];
 
   const chartData = monthlyBalances;
@@ -48,10 +48,9 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-2">
           <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
           <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
-          <MetricCard label="Minimum Balance (6 Mo)" value="$175,000" />
         </div>
       )}
 
@@ -161,8 +160,9 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                   <tr className="border-b">
                     <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground">Month</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Weighted Avg Adj Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Max Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Min Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Variance</th>
                     <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground">Negative Days</th>
                   </tr>
                 </thead>
@@ -171,10 +171,9 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                     <tr key={idx} className="border-b last:border-0">
                       <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-xs font-medium text-foreground">
-                        ${(data.avgBalance - data.minBalance).toLocaleString()}
-                      </td>
                       <td className="py-1.5 text-center">
                         <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
                           {data.negDays}

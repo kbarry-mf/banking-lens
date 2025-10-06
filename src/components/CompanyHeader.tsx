@@ -63,9 +63,9 @@ export const CompanyHeader = ({
             <ExternalLink className="h-3 w-3 text-muted-foreground" />
             <a href="#" className="text-primary hover:underline">www.acmecorp.com</a>
             <span className="text-muted-foreground">•</span>
-            <a href="#" className="text-primary hover:underline">View Box Files</a>
+            <a href="#" className="text-primary hover:underline">Box</a>
             <span className="text-muted-foreground">•</span>
-            <a href="#" className="text-primary hover:underline">View Ocrolus Book</a>
+            <a href="#" className="text-primary hover:underline">Ocrolus</a>
           </div>
         </CardContent>
       </Card>;
@@ -125,9 +125,9 @@ export const CompanyHeader = ({
             <ExternalLink className="h-3 w-3 text-muted-foreground" />
             <a href="#" className="text-primary hover:underline">www.acmecorp.com</a>
             <span className="text-muted-foreground">•</span>
-            <a href="#" className="text-primary hover:underline">View Box Files</a>
+            <a href="#" className="text-primary hover:underline">Box</a>
             <span className="text-muted-foreground">•</span>
-            <a href="#" className="text-primary hover:underline">View Ocrolus Book</a>
+            <a href="#" className="text-primary hover:underline">Ocrolus</a>
           </div>
         </CardContent>
       </Card>;

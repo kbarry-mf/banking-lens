@@ -173,102 +173,59 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
       )}
 
       {/* Risk Indicators - Different presentations per exploration */}
-      <div className="grid gap-3 lg:grid-cols-2">
-        {exploration === "executive" ? (
-          <Card>
-            <CardHeader className="pb-2 pt-4 px-4">
-              <CardTitle className="text-sm">Risk Summary</CardTitle>
-            </CardHeader>
-            <CardContent className="px-4 pb-4">
-              <div className="space-y-3">
-                <div className="rounded-lg border-l-4 border-destructive bg-destructive/5 p-3">
-                  <div className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 text-destructive" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-foreground">NSF Activity Detected</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">$450 in fees across 3 overdrafts</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="rounded-lg border-l-4 border-warning bg-warning/5 p-3">
-                  <div className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 text-warning" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-foreground">Returned Items</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">$1,250 across 2 items</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">NSF Fees & Returned Items</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Total NSF Fees</p>
-                    <p className="mt-1 text-2xl font-semibold text-destructive">$450</p>
-                  </div>
-                  <Badge variant="destructive">3 Incidents</Badge>
-                </div>
-                <div className="flex items-center justify-between rounded-lg border p-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Returned Items</p>
-                    <p className="mt-1 text-2xl font-semibold text-warning">$1,250</p>
-                  </div>
-                  <Badge className="bg-warning text-warning-foreground">2 Items</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
+      {exploration === "executive" ? (
         <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Deposit Analysis</CardTitle>
+          <CardHeader className="pb-2 pt-4 px-4">
+            <CardTitle className="text-sm">Risk Summary</CardTitle>
           </CardHeader>
-          <CardContent>
-            {exploration === "decision" ? (
-              <ChartContainer
-                config={{
-                  deposits: {
-                    label: "Deposits",
-                    color: "hsl(var(--success))",
-                  },
-                }}
-                className="h-48 w-full"
-              >
-                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="deposits" fill="var(--color-deposits)" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ChartContainer>
-            ) : (
-              <div className="space-y-4">
-                {chartData.map((data, idx) => (
-                  <div key={idx} className="space-y-1">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">{data.month}</span>
-                      <span className="font-medium text-foreground">{data.deposits} deposits</span>
-                    </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
-                      <div className="h-full bg-success" style={{ width: `${(data.deposits / 50) * 100}%` }} />
-                    </div>
+          <CardContent className="px-4 pb-4">
+            <div className="space-y-3">
+              <div className="rounded-lg border-l-4 border-destructive bg-destructive/5 p-3">
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 text-destructive" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">NSF Activity Detected</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">$450 in fees across 3 overdrafts</p>
                   </div>
-                ))}
+                </div>
               </div>
-            )}
+              <div className="rounded-lg border-l-4 border-warning bg-warning/5 p-3">
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 text-warning" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">Returned Items</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">$1,250 across 2 items</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
-      </div>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">NSF Fees & Returned Items</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Total NSF Fees</p>
+                  <p className="mt-1 text-2xl font-semibold text-destructive">$450</p>
+                </div>
+                <Badge variant="destructive">3 Incidents</Badge>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Returned Items</p>
+                  <p className="mt-1 text-2xl font-semibold text-warning">$1,250</p>
+                </div>
+                <Badge className="bg-warning text-warning-foreground">2 Items</Badge>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };

@@ -33,24 +33,24 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
       {/* All Metrics in Single Section */}
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         <MetricCard
+          label="Annualized Revenue"
+          value="$8,450,000"
+          variant="destructive"
+          priorValue="$7,920,000"
+          changePercent={7}
+        />
+        <MetricCard
           label="FICO Score"
           value="677"
           priorValue="645"
-          changePercent={5}
+          changePoints={32}
         />
         <MetricCard
           label="Mulligan Custom Score"
           value="199"
           variant="warning"
           priorValue="182"
-          changePercent={9}
-        />
-        <MetricCard
-          label="Annualized Revenue"
-          value="$8,450,000"
-          variant="destructive"
-          priorValue="$7,920,000"
-          changePercent={7}
+          changePoints={17}
         />
         <MetricCard
           label="Annualized Cash Flow"
@@ -83,12 +83,9 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           changePercent={-1}
         />
         <MetricCard
-          label="Ocrolus Detect Flags"
+          label="Ocrolus Detect Signals"
           value="2"
           variant="warning"
-          priorValue="4"
-          changePercent={-50}
-          lowerIsBetter={true}
         />
       </div>
 

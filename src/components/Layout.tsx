@@ -41,7 +41,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 </Button>
                 <Button variant="outline" size="sm">
                   <FileWarning className="h-4 w-4 mr-2" />
-                  Stip
+                  Condition
                 </Button>
                 <Button variant="outline" size="sm">
                   <Send className="h-4 w-4 mr-2" />

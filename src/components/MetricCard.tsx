@@ -10,6 +10,7 @@ interface MetricCardProps {
   description?: string;
   priorValue?: string;
   changePercent?: number;
+  changePoints?: number; // For displaying change in points instead of percentage
   lowerIsBetter?: boolean;
 }
 
@@ -21,6 +22,7 @@ export const MetricCard = ({
   description,
   priorValue,
   changePercent,
+  changePoints,
   lowerIsBetter = false
 }: MetricCardProps) => {
   // Determine status indicator based on variant
@@ -28,8 +30,9 @@ export const MetricCard = ({
   const statusIconColor = variant === "warning" ? "text-warning" : variant === "destructive" ? "text-destructive" : "";
 
   // Calculate trend direction - flip logic if lower is better
-  const isPositive = changePercent !== undefined 
-    ? (lowerIsBetter ? changePercent < 0 : changePercent >= 0)
+  const changeValue = changePercent ?? changePoints;
+  const isPositive = changeValue !== undefined 
+    ? (lowerIsBetter ? changeValue < 0 : changeValue >= 0)
     : undefined;
 
   return (
@@ -45,6 +48,14 @@ export const MetricCard = ({
                 isPositive ? "text-success" : "text-destructive"
               )}>
                 {changePercent > 0 ? "+" : ""}{changePercent}%
+              </span>
+            )}
+            {changePoints !== undefined && (
+              <span className={cn(
+                "text-sm font-medium",
+                isPositive ? "text-success" : "text-destructive"
+              )}>
+                {changePoints > 0 ? "+" : ""}{changePoints} pts
               </span>
             )}
           </div>
