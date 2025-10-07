@@ -288,11 +288,15 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
                 {isoSubmissions.map((submission, index) => (
                   <TableRow key={index} className="h-9">
                     <TableCell className="font-medium text-xs py-1.5">{submission.broker}</TableCell>
-                    <TableCell className="text-center py-1.5">
-                      <Checkbox checked={submission.primaryISO} disabled className="h-3.5 w-3.5" />
+                    <TableCell className="py-1.5">
+                      <div className="flex items-center justify-center">
+                        <Checkbox checked={submission.primaryISO} disabled className="h-4 w-4 data-[state=checked]:bg-primary data-[state=checked]:border-primary" />
+                      </div>
                     </TableCell>
-                    <TableCell className="text-center py-1.5">
-                      <Checkbox checked={submission.originalISO} disabled className="h-3.5 w-3.5" />
+                    <TableCell className="py-1.5">
+                      <div className="flex items-center justify-center">
+                        <Checkbox checked={submission.originalISO} disabled className="h-4 w-4 data-[state=checked]:bg-primary data-[state=checked]:border-primary" />
+                      </div>
                     </TableCell>
                     <TableCell className="text-xs py-1.5">{submission.createdDate}</TableCell>
                   </TableRow>
