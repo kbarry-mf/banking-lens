@@ -38,24 +38,24 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
                 <Button variant="outline" size="sm" className="hidden lg:flex">
-                  <CheckCircle className="h-4 w-4 mr-2" />
+                  <CheckCircle className="h-4 w-4 mr-1" />
                   Claim
                 </Button>
                 <Button variant="outline" size="sm" className="hidden lg:flex">
-                  <XCircle className="h-4 w-4 mr-2" />
+                  <XCircle className="h-4 w-4 mr-1" />
                   Decline
                 </Button>
                 <Button variant="outline" size="sm" className="hidden md:flex">
-                  <FileWarning className="h-4 w-4 mr-2" />
+                  <FileWarning className="h-4 w-4 mr-1" />
                   Condition
                 </Button>
                 <Button variant="outline" size="sm" className="hidden sm:flex">
-                  <Send className="h-4 w-4 mr-2" />
-                  Present
+                  <Upload className="h-4 w-4 mr-1" />
+                  Submit
                 </Button>
                 <Button variant="default" size="sm">
-                  <Upload className="h-4 w-4 mr-2" />
-                  Submit
+                  <Send className="h-4 w-4 mr-1" />
+                  Present
                 </Button>
 
                 {/* Dropdown for overflow buttons - only show when buttons are hidden */}
@@ -66,10 +66,10 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 bg-card z-50">
-                    {/* Present - hidden on sm and up */}
+                    {/* Submit - hidden on sm and up */}
                     <DropdownMenuItem className="sm:hidden">
-                      <Send className="h-4 w-4 mr-2" />
-                      Present
+                      <Upload className="h-4 w-4 mr-2" />
+                      Submit
                     </DropdownMenuItem>
                     {/* Condition - hidden on md and up */}
                     <DropdownMenuItem className="md:hidden">
