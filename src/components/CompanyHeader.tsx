@@ -66,6 +66,8 @@ export const CompanyHeader = ({
             <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">Box</a>
             <span className="text-muted-foreground">•</span>
+            <a href="#" className="text-primary hover:underline">Middesk</a>
+            <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">Ocrolus</a>
           </div>
         </CardContent>
@@ -129,6 +131,8 @@ export const CompanyHeader = ({
             <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">Box</a>
             <span className="text-muted-foreground">•</span>
+            <a href="#" className="text-primary hover:underline">Middesk</a>
+            <span className="text-muted-foreground">•</span>
             <a href="#" className="text-primary hover:underline">Ocrolus</a>
           </div>
         </CardContent>
@@ -155,6 +159,7 @@ export const CompanyHeader = ({
                 Website
               </a>
               <a href="#" className="text-primary hover:underline">Box Files</a>
+              <a href="#" className="text-primary hover:underline">Middesk</a>
               <a href="#" className="text-primary hover:underline">Ocrolus Book</a>
             </div>
           </div>
