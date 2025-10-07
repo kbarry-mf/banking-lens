@@ -242,7 +242,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">
-              {exploration === "executive" ? "Competitive Risk" : "Competitive Debt Burden"}
+              {exploration === "executive" ? "Competitive Risk" : "Competitive Debt"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -258,19 +258,6 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   11.0% of monthly revenue - {exploration === "executive" ? "Monitor closely" : "Above recommended threshold"}
                 </p>
               </div>
-              {exploration !== "executive" && (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground">Payment Breakdown</p>
-                  {loanSources.filter(l => l.isCompetitor).map((loan, idx) => (
-                    <div key={idx} className="flex items-center justify-between rounded border p-2 text-sm">
-                      <span className="text-foreground">{loan.name}</span>
-                      <span className="font-medium text-foreground">
-                        ${loan.totalPayments.toLocaleString()}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </CardContent>
         </Card>
@@ -294,19 +281,6 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   3.8% of monthly revenue - {exploration === "executive" ? "Healthy level" : "Within acceptable range"}
                 </p>
               </div>
-              {exploration !== "executive" && (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground">Payment Breakdown</p>
-                  {loanSources.filter(l => !l.isCompetitor).map((loan, idx) => (
-                    <div key={idx} className="flex items-center justify-between rounded border p-2 text-sm">
-                      <span className="text-foreground">{loan.name}</span>
-                      <span className="font-medium text-foreground">
-                        ${loan.totalPayments.toLocaleString()}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </CardContent>
         </Card>
