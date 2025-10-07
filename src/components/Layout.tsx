@@ -261,16 +261,16 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   Calculator
                 </TabsTrigger>
                 <TabsTrigger 
-                  value="chatter"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
-                >
-                  Chatter
-                </TabsTrigger>
-                <TabsTrigger 
                   value="memo"
                   className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
                 >
                   Memo
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="chatter"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Chatter
                 </TabsTrigger>
               </TabsList>
             </Tabs>
