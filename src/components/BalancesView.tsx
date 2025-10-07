@@ -85,7 +85,14 @@ const monthlyBalances = [
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
                 <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                <Legend />
+                <Legend 
+                  formatter={(value) => {
+                    if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
+                    if (value === "maxBalance") return "Maximum Balance";
+                    if (value === "minBalance") return "Minimum Balance";
+                    return value;
+                  }}
+                />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
                 <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
@@ -96,7 +103,14 @@ const monthlyBalances = [
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
                 <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                <Legend />
+                <Legend 
+                  formatter={(value) => {
+                    if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
+                    if (value === "maxBalance") return "Maximum Balance";
+                    if (value === "minBalance") return "Minimum Balance";
+                    return value;
+                  }}
+                />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
                 <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
