@@ -71,7 +71,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
       >
         {/* Header */}
         <header className="border-b bg-card">
-          <div className="container mx-auto px-6 py-3">
+          <div className="container mx-auto px-6 py-3 max-w-[1600px]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
@@ -137,14 +137,14 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
 
         {/* Company Header */}
         <div className="border-b bg-background">
-          <div className="container mx-auto px-6 py-3">
+          <div className="container mx-auto px-6 py-3 max-w-[1600px]">
             <CompanyHeader exploration="analyst" />
           </div>
         </div>
 
         {/* Navigation Tabs */}
         <div className="border-b bg-card">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-6 max-w-[1600px]">
             <Tabs value={activeTab} onValueChange={onTabChange}>
               <TabsList className="h-10 w-full justify-start rounded-none border-none bg-transparent p-0">
                 <TabsTrigger 
@@ -189,7 +189,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
         </div>
 
         {/* Main Content */}
-        <main className="container mx-auto px-6 py-4 max-w-full">
+        <main className="container mx-auto px-6 py-4 max-w-[1600px]">
           {children}
         </main>
       </div>
