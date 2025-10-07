@@ -4,6 +4,7 @@ import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload
 import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
+import { MemoView } from "./MemoView";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ interface LayoutProps {
 
 export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter">("calculator");
+  const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter" | "memo">("calculator");
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -129,7 +130,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
       >
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
-            <Tabs value={sidebarTab} onValueChange={(value) => setSidebarTab(value as "calculator" | "chatter")} className="flex-1">
+            <Tabs value={sidebarTab} onValueChange={(value) => setSidebarTab(value as "calculator" | "chatter" | "memo")} className="flex-1">
               <TabsList className="h-9 w-full justify-start bg-transparent p-0">
                 <TabsTrigger 
                   value="calculator"
@@ -143,6 +144,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 >
                   Chatter
                 </TabsTrigger>
+                <TabsTrigger 
+                  value="memo"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Memo
+                </TabsTrigger>
               </TabsList>
             </Tabs>
             <Button 
@@ -153,9 +160,11 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </div>
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-auto">
             {sidebarTab === "calculator" ? (
               <OfferCalculator />
+            ) : sidebarTab === "memo" ? (
+              <MemoView />
             ) : (
               <div className="p-4">
                 <p className="text-sm text-muted-foreground">Chatter tab content</p>
