@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Users, FileText, History, Building2, Network } from "lucide-react";
+import { Users, FileText, History, Building2, Network, DollarSign } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface RelatedViewProps {
@@ -162,19 +162,19 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
         </CardContent>
       </Card>
 
-      {/* Guarantors */}
+      {/* Offers */}
       <Card>
         <div className="p-2.5 border-b">
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-red-100">
-                <Users className="h-3.5 w-3.5 text-red-600" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100">
+                <DollarSign className="h-3.5 w-3.5 text-blue-600" />
               </div>
-              <h3 className="text-sm font-semibold">Guarantors ({guarantors.length})</h3>
+              <h3 className="text-sm font-semibold">Offers ({offers.length})</h3>
             </div>
           </div>
           <p className="text-[11px] text-muted-foreground ml-9">
-            {guarantors.length} item • Sorted by Primary Contact • Updated a few seconds ago
+            {offers.length} items • Sorted by Status • Updated a few seconds ago
           </p>
         </div>
         <CardContent className="p-0">
@@ -182,21 +182,27 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
             <Table>
               <TableHeader>
                 <TableRow className="h-8">
-                  <TableHead className="text-xs py-1.5">Name</TableHead>
-                  <TableHead className="text-xs py-1.5">Social Security Number</TableHead>
-                  <TableHead className="text-xs py-1.5">Date of Birth</TableHead>
-                  <TableHead className="text-xs py-1.5">Credit Score</TableHead>
-                  <TableHead className="text-xs py-1.5">Ownership Percentage</TableHead>
+                  <TableHead className="text-xs py-1.5">Status</TableHead>
+                  <TableHead className="text-xs py-1.5">Amount</TableHead>
+                  <TableHead className="text-xs py-1.5">Tier</TableHead>
+                  <TableHead className="text-xs py-1.5">Term</TableHead>
+                  <TableHead className="text-xs py-1.5">Rate</TableHead>
+                  <TableHead className="text-xs py-1.5">Markup</TableHead>
+                  <TableHead className="text-xs py-1.5">Factor</TableHead>
+                  <TableHead className="text-xs py-1.5">Type</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {guarantors.map((guarantor, index) => (
+                {offers.map((offer, index) => (
                   <TableRow key={index} className="h-9">
-                    <TableCell className="font-medium text-primary text-xs py-1.5">{guarantor.name}</TableCell>
-                    <TableCell className="text-xs py-1.5">{guarantor.ssn}</TableCell>
-                    <TableCell className="text-xs py-1.5">{guarantor.dob}</TableCell>
-                    <TableCell className="text-xs py-1.5">{guarantor.creditScore}</TableCell>
-                    <TableCell className="text-xs py-1.5">{guarantor.ownership}</TableCell>
+                    <TableCell className="font-medium text-xs py-1.5">{offer.status}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.amount}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.tier}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.term}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.rate}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.markup}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.factor}</TableCell>
+                    <TableCell className="text-xs py-1.5">{offer.type}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
