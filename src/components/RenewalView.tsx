@@ -50,11 +50,11 @@ export const RenewalView = ({ exploration = "analyst" }: RenewalViewProps) => {
   ];
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4">
       {/* Top-Up Offer(s) Table */}
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between pb-4">
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="flex flex-row items-center justify-between py-3 px-4">
+          <CardTitle className="flex items-center gap-2 text-base">
             <RefreshCw className="h-5 w-5 text-primary" />
             Top-Up Offer(s)
           </CardTitle>
@@ -62,51 +62,53 @@ export const RenewalView = ({ exploration = "analyst" }: RenewalViewProps) => {
             Refinance Loan <RefreshCw className="h-4 w-4" />
           </Button>
         </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[300px]"></TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Active Loan 1
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Active Loan 2
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Refinanced Loan
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {topUpData.map((row, idx) => (
-                <TableRow key={idx} className={row.highlight ? "bg-blue-50 dark:bg-blue-950" : ""}>
-                  <TableCell className="font-medium text-muted-foreground">{row.label}</TableCell>
-                  <TableCell className={`text-center ${row.loan1.includes('$') || row.loan1.includes('%') || !isNaN(Number(row.loan1)) ? 'text-primary font-semibold' : ''}`}>
-                    {row.loan1 || '-'}
-                  </TableCell>
-                  <TableCell className="text-center">{row.loan2 || '-'}</TableCell>
-                  <TableCell className="text-center">{row.refinanced || '-'}</TableCell>
+        <CardContent className="p-0">
+          <div className="overflow-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[280px] h-9 px-3 py-2"></TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Active Loan 1
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Active Loan 2
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Refinanced Loan
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {topUpData.map((row, idx) => (
+                  <TableRow key={idx} className={row.highlight ? "bg-blue-50 dark:bg-blue-950" : ""}>
+                    <TableCell className="font-medium text-muted-foreground px-3 py-1.5 text-sm">{row.label}</TableCell>
+                    <TableCell className={`text-center px-3 py-1.5 text-sm ${row.loan1.includes('$') || row.loan1.includes('%') || !isNaN(Number(row.loan1)) ? 'text-primary font-semibold' : ''}`}>
+                      {row.loan1 || '-'}
+                    </TableCell>
+                    <TableCell className="text-center px-3 py-1.5 text-sm">{row.loan2 || '-'}</TableCell>
+                    <TableCell className="text-center px-3 py-1.5 text-sm">{row.refinanced || '-'}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
       {/* Pricing Table */}
       <Card>
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="py-3 px-4">
+          <CardTitle className="flex items-center gap-2 text-base">
             <div className="rounded-full bg-primary p-2">
               <svg className="h-5 w-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
@@ -115,45 +117,47 @@ export const RenewalView = ({ exploration = "analyst" }: RenewalViewProps) => {
             Pricing
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[300px]"></TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Active Loan 1
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Active Loan 2
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-                <TableHead className="text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    Refinanced Loan
-                    <ChevronDown className="h-4 w-4" />
-                  </div>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {pricingData.map((row, idx) => (
-                <TableRow key={idx}>
-                  <TableCell className="font-medium text-muted-foreground">{row.label}</TableCell>
-                  <TableCell className={`text-center ${row.loan1.includes('$') || !isNaN(Number(row.loan1)) ? 'text-primary font-semibold' : ''}`}>
-                    {row.loan1 || '-'}
-                  </TableCell>
-                  <TableCell className="text-center">{row.loan2 || '-'}</TableCell>
-                  <TableCell className="text-center">{row.refinanced || '-'}</TableCell>
+        <CardContent className="p-0">
+          <div className="overflow-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[280px] h-9 px-3 py-2"></TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Active Loan 1
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Active Loan 2
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
+                  <TableHead className="text-center h-9 px-3 py-2">
+                    <div className="flex items-center justify-center gap-2">
+                      Refinanced Loan
+                      <ChevronDown className="h-4 w-4" />
+                    </div>
+                  </TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <div className="flex justify-end mt-6">
+              </TableHeader>
+              <TableBody>
+                {pricingData.map((row, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell className="font-medium text-muted-foreground px-3 py-1.5 text-sm">{row.label}</TableCell>
+                    <TableCell className={`text-center px-3 py-1.5 text-sm ${row.loan1.includes('$') || !isNaN(Number(row.loan1)) ? 'text-primary font-semibold' : ''}`}>
+                      {row.loan1 || '-'}
+                    </TableCell>
+                    <TableCell className="text-center px-3 py-1.5 text-sm">{row.loan2 || '-'}</TableCell>
+                    <TableCell className="text-center px-3 py-1.5 text-sm">{row.refinanced || '-'}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div className="flex justify-end p-4">
             <Button size="lg" className="bg-[#1a5f7a] hover:bg-[#144a5f]">
               Create Offer(s)
             </Button>
