@@ -76,70 +76,102 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
 
       {/* Loan Sources - Different presentations per exploration */}
       {exploration === "analyst" ? (
-        <Card>
-          <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm">Detailed Loan Sources Analysis</CardTitle>
-          </CardHeader>
-          <CardContent className="px-4 pb-4">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Lender</th>
-                    <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Type</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposit Count</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payments</th>
-                    <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payment Count</th>
-                    <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Frequency</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loanSources.map((loan, idx) => (
-                    <tr key={idx} className="border-b">
-                      <td className="py-2">
-                        <p className="text-xs font-medium text-foreground">{loan.name}</p>
-                      </td>
-                      <td className="py-2 text-center">
-                        {loan.isCompetitor ? (
-                          <Badge variant="destructive" className="text-xs px-2 py-0.5">Competitor</Badge>
-                        ) : (
-                          <Badge className="bg-muted text-muted-foreground text-xs px-2 py-0.5">Other</Badge>
-                        )}
-                      </td>
-                      <td className="py-2 text-right text-xs text-foreground">
-                        ${loan.totalDeposits.toLocaleString()}
-                      </td>
-                      <td className="py-2 text-right text-xs text-foreground">{loan.countDeposits}</td>
-                      <td className="py-2 text-right text-xs font-medium text-foreground">
-                        ${loan.totalPayments.toLocaleString()}
-                      </td>
-                      <td className="py-2 text-right text-xs text-foreground">{loan.countPayments}</td>
-                      <td className="py-2 text-center">
-                        <Badge variant="outline" className="text-xs px-2 py-0.5">{loan.frequency}</Badge>
-                      </td>
+        <>
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-4">
+              <CardTitle className="text-sm">Detailed Loan Sources Analysis</CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Lender</th>
+                      <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Type</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposits</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Deposit Count</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payments</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Payment Count</th>
+                      <th className="pb-2 text-center text-xs font-medium text-muted-foreground">Frequency</th>
                     </tr>
-                  ))}
-                  <tr className="border-t-2 font-semibold bg-muted/30">
-                    <td className="py-2">
-                      <p className="text-xs font-semibold text-foreground">Total</p>
-                    </td>
-                    <td className="py-2"></td>
-                    <td className="py-2 text-right text-xs text-foreground">
-                      ${totalDeposits.toLocaleString()}
-                    </td>
-                    <td className="py-2 text-right text-xs text-foreground">{totalDepositCount}</td>
-                    <td className="py-2 text-right text-xs font-medium text-foreground">
-                      ${totalPayments.toLocaleString()}
-                    </td>
-                    <td className="py-2 text-right text-xs text-foreground">{totalPaymentCount}</td>
-                    <td className="py-2"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
+                  </thead>
+                  <tbody>
+                    {loanSources.map((loan, idx) => (
+                      <tr key={idx} className="border-b">
+                        <td className="py-2">
+                          <p className="text-xs font-medium text-foreground">{loan.name}</p>
+                        </td>
+                        <td className="py-2 text-center">
+                          {loan.isCompetitor ? (
+                            <Badge variant="destructive" className="text-xs px-2 py-0.5">Competitor</Badge>
+                          ) : (
+                            <Badge className="bg-muted text-muted-foreground text-xs px-2 py-0.5">Other</Badge>
+                          )}
+                        </td>
+                        <td className="py-2 text-right text-xs text-foreground">
+                          ${loan.totalDeposits.toLocaleString()}
+                        </td>
+                        <td className="py-2 text-right text-xs text-foreground">{loan.countDeposits}</td>
+                        <td className="py-2 text-right text-xs font-medium text-foreground">
+                          ${loan.totalPayments.toLocaleString()}
+                        </td>
+                        <td className="py-2 text-right text-xs text-foreground">{loan.countPayments}</td>
+                        <td className="py-2 text-center">
+                          <Badge variant="outline" className="text-xs px-2 py-0.5">{loan.frequency}</Badge>
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="border-t-2 font-semibold bg-muted/30">
+                      <td className="py-2">
+                        <p className="text-xs font-semibold text-foreground">Total</p>
+                      </td>
+                      <td className="py-2"></td>
+                      <td className="py-2 text-right text-xs text-foreground">
+                        ${totalDeposits.toLocaleString()}
+                      </td>
+                      <td className="py-2 text-right text-xs text-foreground">{totalDepositCount}</td>
+                      <td className="py-2 text-right text-xs font-medium text-foreground">
+                        ${totalPayments.toLocaleString()}
+                      </td>
+                      <td className="py-2 text-right text-xs text-foreground">{totalPaymentCount}</td>
+                      <td className="py-2"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Debt Burden Analysis below analyst table */}
+          <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
+            <Card className="p-3">
+              <div className="flex items-start gap-3">
+                <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-warning" />
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-muted-foreground">Competitive Loan Payments</p>
+                  <div className="mt-1 flex items-baseline gap-2">
+                    <p className="text-2xl font-semibold text-foreground">
+                      ${totalCompetitorPayments.toLocaleString()}
+                    </p>
+                    <p className="text-xs text-muted-foreground">11.0% Holdback</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-3">
+              <div className="flex-1">
+                <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <p className="text-2xl font-semibold text-foreground">
+                    ${totalNonCompetitorPayments.toLocaleString()}
+                  </p>
+                  <p className="text-xs text-muted-foreground">3.8% Holdback</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </>
       ) : (
         <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
           <Card>
