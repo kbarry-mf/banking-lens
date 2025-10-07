@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "./MetricCard";
-import { TrendingUp, TrendingDown, AlertCircle, ChevronDown } from "lucide-react";
+import { TrendingUp, TrendingDown, AlertCircle, ChevronDown, ChevronUp, ArrowUpDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
@@ -13,6 +13,8 @@ interface BalancesViewProps {
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
   const monthlyBalances = [
     { month: "Apr 2025", avgBalance: 418000, weightedAvgAdjBalance: 398000, maxBalance: 725000, minBalance: 178000, negDays: 1 },
@@ -36,6 +38,42 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const avgWeightedAvgAdjBalance = Math.round(totals.weightedAvgAdjBalance / monthlyBalances.length);
   const avgBalance = Math.round(totals.avgBalance / monthlyBalances.length);
 
+  const handleSort = (column: string) => {
+    if (sortColumn === column) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortedData = () => {
+    if (!sortColumn) return monthlyBalances;
+    
+    return [...monthlyBalances].sort((a, b) => {
+      const aVal = a[sortColumn as keyof typeof a];
+      const bVal = b[sortColumn as keyof typeof b];
+      
+      if (typeof aVal === 'string' && typeof bVal === 'string') {
+        return sortDirection === 'asc' 
+          ? aVal.localeCompare(bVal)
+          : bVal.localeCompare(aVal);
+      }
+      
+      return sortDirection === 'asc' 
+        ? (aVal as number) - (bVal as number)
+        : (bVal as number) - (aVal as number);
+    });
+  };
+
+  const SortIcon = ({ column }: { column: string }) => {
+    if (sortColumn !== column) return <ArrowUpDown className="h-3 w-3 ml-1 inline opacity-0 group-hover:opacity-50" />;
+    return sortDirection === 'asc' 
+      ? <ChevronUp className="h-3 w-3 ml-1 inline" />
+      : <ChevronDown className="h-3 w-3 ml-1 inline" />;
+  };
+
+  const sortedData = getSortedData();
   const chartData = monthlyBalances;
 
   return (
@@ -87,16 +125,28 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
                 <table className="w-full table-fixed">
                   <thead>
                     <tr className="border-b">
-                      <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground" style={{ width: '8%' }}>Month</th>
-                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '20%' }}>Weighted Avg Adj Balance</th>
-                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Avg Balance</th>
-                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Max Balance</th>
-                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Min Balance</th>
-                      <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Negative Days</th>
+                      <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '8%' }} onClick={() => handleSort('month')}>
+                        Month<SortIcon column="month" />
+                      </th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '20%' }} onClick={() => handleSort('weightedAvgAdjBalance')}>
+                        Weighted Avg Adj Balance<SortIcon column="weightedAvgAdjBalance" />
+                      </th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '18%' }} onClick={() => handleSort('avgBalance')}>
+                        Avg Balance<SortIcon column="avgBalance" />
+                      </th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '18%' }} onClick={() => handleSort('maxBalance')}>
+                        Max Balance<SortIcon column="maxBalance" />
+                      </th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '18%' }} onClick={() => handleSort('minBalance')}>
+                        Min Balance<SortIcon column="minBalance" />
+                      </th>
+                      <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" style={{ width: '18%' }} onClick={() => handleSort('negDays')}>
+                        Negative Days<SortIcon column="negDays" />
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {isExpanded && monthlyBalances.map((data, idx) => (
+                    {isExpanded && sortedData.map((data, idx) => (
                       <tr key={idx} className="border-b">
                         <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
                         <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>

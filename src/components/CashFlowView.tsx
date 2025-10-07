@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "./MetricCard";
-import { AlertTriangle, TrendingUp, TrendingDown, DollarSign, ChevronDown } from "lucide-react";
+import { AlertTriangle, TrendingUp, TrendingDown, DollarSign, ChevronDown, ChevronUp, ArrowUpDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
@@ -15,6 +15,8 @@ interface CashFlowViewProps {
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   // Match the values from SummaryView charts
   const monthlyData = [
     { month: "Apr 2025", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000, overdrafts: 0 },
@@ -41,6 +43,42 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     { last4: "8832", bankName: "Wells Fargo", accountType: "Savings", beginDate: "2023-03-22", endDate: "2024-09-30" },
   ];
 
+  const handleSort = (column: string) => {
+    if (sortColumn === column) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortedData = () => {
+    if (!sortColumn) return monthlyData;
+    
+    return [...monthlyData].sort((a, b) => {
+      const aVal = a[sortColumn as keyof typeof a];
+      const bVal = b[sortColumn as keyof typeof b];
+      
+      if (typeof aVal === 'string' && typeof bVal === 'string') {
+        return sortDirection === 'asc' 
+          ? aVal.localeCompare(bVal)
+          : bVal.localeCompare(aVal);
+      }
+      
+      return sortDirection === 'asc' 
+        ? (aVal as number) - (bVal as number)
+        : (bVal as number) - (aVal as number);
+    });
+  };
+
+  const SortIcon = ({ column }: { column: string }) => {
+    if (sortColumn !== column) return <ArrowUpDown className="h-3 w-3 ml-1 inline opacity-0 group-hover:opacity-50" />;
+    return sortDirection === 'asc' 
+      ? <ChevronUp className="h-3 w-3 ml-1 inline" />
+      : <ChevronDown className="h-3 w-3 ml-1 inline" />;
+  };
+
+  const sortedData = getSortedData();
   const chartData = monthlyData;
 
   return (
@@ -97,19 +135,35 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="pb-2 text-left text-xs font-medium text-muted-foreground">Month</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers In</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Deposits</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Revenue</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Loan Payments</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
+                      <th className="pb-2 text-left text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('month')}>
+                        Month<SortIcon column="month" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('transfersIn')}>
+                        Transfers In<SortIcon column="transfersIn" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('loanDeposits')}>
+                        Loan Deposits<SortIcon column="loanDeposits" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('revenue')}>
+                        Revenue<SortIcon column="revenue" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('loanPayments')}>
+                        Loan Payments<SortIcon column="loanPayments" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('transfersOut')}>
+                        Transfers Out<SortIcon column="transfersOut" />
+                      </th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('cashFlow')}>
+                        Cash Flow<SortIcon column="cashFlow" />
+                      </th>
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Overdrafts</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('overdrafts')}>
+                        Overdrafts<SortIcon column="overdrafts" />
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {isExpanded && monthlyData.map((data, idx) => (
+                    {isExpanded && sortedData.map((data, idx) => (
                       <tr key={idx} className="border-b">
                         <td className="py-3 text-xs font-medium text-foreground">{data.month}</td>
                         <td className="py-3 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
