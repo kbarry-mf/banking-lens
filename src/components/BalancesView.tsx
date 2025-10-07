@@ -49,103 +49,60 @@ const monthlyBalances = [
         </Card>
       ) : (
         <div className="grid gap-3 md:grid-cols-2">
-          <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
           <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
+          <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
         </div>
       )}
 
-      {/* Balance Trend Visualization - Different views per exploration */}
-      <div className="grid gap-3 lg:grid-cols-2">
-        <Card>
-          <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm">Average Balance Trend</CardTitle>
-          </CardHeader>
-          <CardContent className="px-2 pb-4">
-            <ChartContainer
-              config={{
-                avgBalance: {
-                  label: "Avg Balance",
-                  color: exploration === "executive" ? "hsl(var(--success))" : 
-                         exploration === "analyst" ? "hsl(var(--primary))" : 
-                         "hsl(var(--chart-1))",
-                },
-              }}
-              className="h-48 w-full"
-            >
-              {exploration === "decision" ? (
-                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Bar dataKey="avgBalance" fill="var(--color-avgBalance)" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              ) : exploration === "analyst" ? (
-                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Line type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" strokeWidth={3} dot={{ fill: "var(--color-avgBalance)", r: 4 }} fill="none" />
-                </LineChart>
-              ) : (
-                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Line type="monotone" dataKey="avgBalance" stroke="var(--color-avgBalance)" strokeWidth={2} dot={{ fill: "var(--color-avgBalance)", r: 4 }} fill="none" />
-                </LineChart>
-              )}
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm">Minimum Balance Trend</CardTitle>
-          </CardHeader>
-          <CardContent className="px-2 pb-4">
-            <ChartContainer
-              config={{
-                minBalance: {
-                  label: "Min Balance",
-                  color: exploration === "executive" ? "hsl(var(--chart-2))" : 
-                         exploration === "analyst" ? "hsl(var(--warning))" : 
-                         "hsl(var(--chart-3))",
-                },
-              }}
-              className="h-48 w-full"
-            >
-              {exploration === "decision" ? (
-                <BarChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Bar dataKey="minBalance" fill="var(--color-minBalance)" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              ) : exploration === "analyst" ? (
-                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={3} dot={{ fill: "var(--color-minBalance)", r: 4 }} fill="none" />
-                </LineChart>
-              ) : (
-                <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                  <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
-                  <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} fill="none" />
-                </LineChart>
-              )}
-            </ChartContainer>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Balance Trend Visualization - Full width chart with multiple lines */}
+      <Card>
+        <CardHeader className="pb-2 pt-4 px-4">
+          <CardTitle className="text-sm">Weighted Average Adjusted Balance</CardTitle>
+        </CardHeader>
+        <CardContent className="px-2 pb-4">
+          <ChartContainer
+            config={{
+              weightedAvgAdjBalance: {
+                label: "Weighted Avg Adj Balance",
+                color: exploration === "executive" ? "hsl(var(--primary))" : 
+                       exploration === "analyst" ? "hsl(var(--primary))" : 
+                       "hsl(var(--chart-1))",
+              },
+              maxBalance: {
+                label: "Max Balance",
+                color: "hsl(var(--success))",
+              },
+              minBalance: {
+                label: "Min Balance",
+                color: "hsl(var(--warning))",
+              },
+            }}
+            className="h-80 w-full"
+          >
+            {exploration === "decision" ? (
+              <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
+                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+              </LineChart>
+            ) : (
+              <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
+                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+              </LineChart>
+            )}
+          </ChartContainer>
+        </CardContent>
+      </Card>
 
       {/* Detailed Analysis - Different formats per exploration */}
       {exploration === "analyst" ? (
@@ -159,8 +116,8 @@ const monthlyBalances = [
                 <thead>
                   <tr className="border-b">
                     <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground">Month</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Weighted Avg Adj Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Max Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Min Balance</th>
                     <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground">Negative Days</th>
@@ -170,8 +127,8 @@ const monthlyBalances = [
                   {monthlyBalances.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
                       <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
-                      <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-center">
