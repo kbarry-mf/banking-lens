@@ -50,9 +50,9 @@ export const MetricCard = ({
     >
       <div className="flex items-start gap-3">
         {dotColor && (
-          <div className={cn("w-1 h-full rounded-full flex-shrink-0", dotColor)} />
+          <div className={cn("w-1 self-stretch rounded-full flex-shrink-0", dotColor)} />
         )}
-        <div className="flex-1">
+        <div className="flex-1 min-h-full">
           <div className="flex items-center gap-1.5">
             <p className="text-xs font-medium text-muted-foreground">{label}</p>
           </div>
