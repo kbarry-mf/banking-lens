@@ -77,17 +77,16 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
         <div className="space-y-3">
           
           <Card>
-            <CardHeader className="pb-2 pt-4 px-4">
+            <CardHeader 
+              className="pb-2 pt-4 px-4 cursor-pointer hover:bg-accent/50 transition-colors"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm">Monthly Cash Flow Analysis</CardTitle>
-                <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
-                  <CollapsibleTrigger asChild>
-                    <button className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
-                      {isExpanded ? "Hide Details" : "Show Details"}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                    </button>
-                  </CollapsibleTrigger>
-                </Collapsible>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  {isExpanded ? "Hide Details" : "Show Details"}
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                </div>
               </div>
             </CardHeader>
             <CardContent className="px-4 pb-4">
