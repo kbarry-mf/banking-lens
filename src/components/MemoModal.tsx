@@ -27,103 +27,102 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
           <style>
             body {
               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-              padding: 40px;
+              padding: 48px;
               line-height: 1.6;
-              color: #333;
+              background: white;
+              color: #1f2937;
             }
+            
+            #memo-content {
+              max-width: 1200px;
+              margin: 0 auto;
+            }
+            
             h1 {
               font-size: 28px;
-              margin-bottom: 24px;
-              color: #000;
               font-weight: bold;
+              margin-bottom: 24px;
+              padding-bottom: 16px;
+              color: #111827;
+              border-bottom: 2px solid #111827;
             }
+            
             h2 {
               font-size: 20px;
-              margin-top: 28px;
-              margin-bottom: 16px;
-              color: #000;
               font-weight: bold;
-              border-bottom: 2px solid #333;
-              padding-bottom: 6px;
+              margin-top: 32px;
+              margin-bottom: 16px;
+              padding-bottom: 8px;
+              color: #111827;
+              border-bottom: 1px solid #d1d5db;
             }
+            
             h3 {
-              font-size: 14px;
-              margin-top: 16px;
+              font-size: 16px;
+              font-weight: 600;
               margin-bottom: 8px;
-              color: #555;
+              color: #374151;
             }
-            .header {
-              margin-bottom: 32px;
-              border-bottom: 3px solid #000;
-              padding-bottom: 16px;
+            
+            .space-y-3 > div {
+              margin-bottom: 12px;
             }
-            .company-info {
-              font-size: 12px;
-              color: #666;
-              margin-bottom: 4px;
-            }
-            .memo-field {
-              margin-bottom: 20px;
-            }
-            h3 {
-              font-size: 14px;
+            
+            .font-semibold {
               font-weight: 600;
-              margin-bottom: 6px;
-              color: #333;
+              color: #4b5563;
             }
-            .metric-value {
-              font-size: 18px;
-              font-weight: 600;
-              color: #000;
-              margin-bottom: 2px;
+            
+            .ml-4 {
+              margin-left: 16px;
             }
-            .section {
+            
+            .mb-6 {
               margin-bottom: 24px;
-              page-break-inside: avoid;
             }
-            .offer-details {
-              background: #f9f9f9;
-              padding: 16px;
-              border-radius: 4px;
-              margin: 12px 0;
+            
+            .mb-8 {
+              margin-bottom: 32px;
             }
-            .offer-row {
-              display: flex;
-              justify-content: space-between;
-              padding: 6px 0;
-              border-bottom: 1px solid #e5e5e5;
+            
+            .prose {
+              line-height: 1.75;
             }
-            .offer-row:last-child {
-              border-bottom: none;
+            
+            .prose p {
+              margin-bottom: 12px;
             }
-            .offer-label {
-              font-size: 12px;
-              color: #666;
+            
+            .prose ul, .prose ol {
+              margin-left: 24px;
+              margin-bottom: 12px;
             }
-            .offer-value {
-              font-size: 12px;
+            
+            .prose strong {
               font-weight: 600;
+              color: #111827;
             }
-            .memo-text {
-              font-size: 12px;
-              line-height: 1.8;
-              color: #444;
-            }
-            .memo-text p {
-              margin-bottom: 8px;
-            }
-            .memo-text ul, .memo-text ol {
-              margin-left: 20px;
-              margin-bottom: 8px;
-            }
-            .memo-text strong {
-              font-weight: 600;
-            }
-            .memo-text em {
+            
+            .prose em {
               font-style: italic;
             }
+            
             @media print {
-              body { padding: 20px; }
+              body { 
+                padding: 24px;
+              }
+              
+              h1 {
+                page-break-after: avoid;
+              }
+              
+              h2, h3 {
+                page-break-after: avoid;
+              }
+              
+              .mb-6, .mb-8 {
+                page-break-inside: avoid;
+              }
             }
           </style>
         </head>
@@ -188,172 +187,242 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex-1 overflow-y-auto px-6 py-4">
-          <div id="memo-content">
+        <div className="flex-1 overflow-y-auto">
+          <div id="memo-content" className="bg-white dark:bg-gray-900 p-12 max-w-5xl mx-auto shadow-lg">
             {/* Company Name as Title */}
-            <div className="header">
-              <h1>{companyData.name}</h1>
+            <div className="mb-8 pb-4 border-b-2 border-gray-800 dark:border-gray-200">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{companyData.name}</h1>
             </div>
 
             {/* Company Overview */}
-            <div className="section">
-              <h2>Company Overview</h2>
-              <div className="memo-field">
-                <h3>Address</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: companyData.address }} />
-              </div>
-              <div className="memo-field">
-                <h3>Years in Business</h3>
-                <div className="memo-text">{companyData.yearsInBusiness}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Industry</h3>
-                <div className="memo-text">{companyData.industry}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Website</h3>
-                <div className="memo-text">{companyData.website}</div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Company Overview
+              </h2>
+              <div className="space-y-3 ml-4">
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Address: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{companyData.address}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Years in Business: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{companyData.yearsInBusiness}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Industry: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{companyData.industry}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Website: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{companyData.website}</span>
+                </div>
               </div>
             </div>
 
             {/* Application Overview */}
-            <div className="section">
-              <h2>Application Overview</h2>
-              <div className="memo-field">
-                <h3>Application ID</h3>
-                <div className="memo-text">{applicationData.id}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Application Date</h3>
-                <div className="memo-text">{applicationData.date}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Requested Loan Amount</h3>
-                <div className="memo-text">{applicationData.requestedAmount}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Application Type</h3>
-                <div className="memo-text">{applicationData.type}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Broker</h3>
-                <div className="memo-text">{applicationData.broker}</div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Application Overview
+              </h2>
+              <div className="space-y-3 ml-4">
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Application ID: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{applicationData.id}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Application Date: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{applicationData.date}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Requested Loan Amount: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{applicationData.requestedAmount}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Application Type: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{applicationData.type}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Broker: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{applicationData.broker}</span>
+                </div>
               </div>
             </div>
 
             {/* Credit Overview */}
-            <div className="section">
-              <h2>Credit Overview</h2>
-              <div className="memo-field">
-                <h3>FICO Score</h3>
-                <div className="memo-text">677</div>
-              </div>
-              <div className="memo-field">
-                <h3>Mulligan Custom Score</h3>
-                <div className="memo-text">199</div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Credit Overview
+              </h2>
+              <div className="space-y-3 ml-4">
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">FICO Score: </span>
+                  <span className="text-gray-900 dark:text-gray-100">677</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Mulligan Custom Score: </span>
+                  <span className="text-gray-900 dark:text-gray-100">199</span>
+                </div>
               </div>
             </div>
 
             {/* Banking Overview */}
-            <div className="section">
-              <h2>Banking Overview</h2>
-              <div className="memo-field">
-                <h3>Annualized Revenue</h3>
-                <div className="memo-text">{formatCurrency(8450000)}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Annualized Cash Flow</h3>
-                <div className="memo-text">{formatCurrency(1250000)}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Adjusted Average Daily Balance</h3>
-                <div className="memo-text">{formatCurrency(398500)}</div>
-              </div>
-              <div className="memo-field">
-                <h3>Balance to Revenue Ratio</h3>
-                <div className="memo-text">18.2%</div>
-              </div>
-              <div className="memo-field">
-                <h3>Cash Flow to Revenue Ratio</h3>
-                <div className="memo-text">14.8%</div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Banking Overview
+              </h2>
+              <div className="space-y-3 ml-4">
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Annualized Revenue: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{formatCurrency(8450000)}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Annualized Cash Flow: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{formatCurrency(1250000)}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Adjusted Average Daily Balance: </span>
+                  <span className="text-gray-900 dark:text-gray-100">{formatCurrency(398500)}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Balance to Revenue Ratio: </span>
+                  <span className="text-gray-900 dark:text-gray-100">18.2%</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Cash Flow to Revenue Ratio: </span>
+                  <span className="text-gray-900 dark:text-gray-100">14.8%</span>
+                </div>
               </div>
             </div>
 
             {/* Offer Details */}
-            <div className="section">
-              <h2>Offer Details</h2>
-              <div className="memo-field">
-                <h3>Funding Amount</h3>
-                <div className="memo-text">$5,300.00</div>
-              </div>
-              <div className="memo-field">
-                <h3>Term</h3>
-                <div className="memo-text">63 days</div>
-              </div>
-              <div className="memo-field">
-                <h3>Pricing Tier</h3>
-                <div className="memo-text">MCS Tier 1 (50%) - 3 Months</div>
-              </div>
-              <div className="memo-field">
-                <h3>Buy Rate</h3>
-                <div className="memo-text">1.12000</div>
-              </div>
-              <div className="memo-field">
-                <h3>Max Markup</h3>
-                <div className="memo-text">12%</div>
-              </div>
-              <div className="memo-field">
-                <h3>Factor</h3>
-                <div className="memo-text">1.24</div>
-              </div>
-              <div className="memo-field">
-                <h3>Payment Frequency</h3>
-                <div className="memo-text">Weekly</div>
-              </div>
-              <div className="memo-field">
-                <h3>Monthly Holdback %</h3>
-                <div className="memo-text">3.23%</div>
-              </div>
-              <div className="memo-field">
-                <h3>Origination Fee</h3>
-                <div className="memo-text">$295.00 (5.57%)</div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Offer Details
+              </h2>
+              <div className="space-y-3 ml-4">
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Funding Amount: </span>
+                  <span className="text-gray-900 dark:text-gray-100">$5,300.00</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Term: </span>
+                  <span className="text-gray-900 dark:text-gray-100">63 days</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Pricing Tier: </span>
+                  <span className="text-gray-900 dark:text-gray-100">MCS Tier 1 (50%) - 3 Months</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Buy Rate: </span>
+                  <span className="text-gray-900 dark:text-gray-100">1.12000</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Max Markup: </span>
+                  <span className="text-gray-900 dark:text-gray-100">12%</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Factor: </span>
+                  <span className="text-gray-900 dark:text-gray-100">1.24</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Payment Frequency: </span>
+                  <span className="text-gray-900 dark:text-gray-100">Weekly</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Monthly Holdback %: </span>
+                  <span className="text-gray-900 dark:text-gray-100">3.23%</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">Origination Fee: </span>
+                  <span className="text-gray-900 dark:text-gray-100">$295.00 (5.57%)</span>
+                </div>
               </div>
             </div>
 
             {/* Memo */}
-            <div className="section">
-              <h2>Memo</h2>
-              <div className="memo-field">
-                <h3>Business Description & Request Overview</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.businessDescription }} />
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-600">
+                Memo
+              </h2>
+              
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Business Description & Request Overview
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.businessDescription }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Credit</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.credit }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Credit
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.credit }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Banking</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.banking }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Banking
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.banking }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Financials</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.financials }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Financials
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.financials }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Public Records</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.publicRecords }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Public Records
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.publicRecords }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Underwriter Call Notes</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.underwriterNotes }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Underwriter Call Notes
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.underwriterNotes }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Internal Team Discussion</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.teamDiscussion }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Internal Team Discussion
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.teamDiscussion }} 
+                />
               </div>
-              <div className="memo-field">
-                <h3>Credit Recommendation & Rationale</h3>
-                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.recommendation }} />
+
+              <div className="mb-6">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                  Credit Recommendation & Rationale
+                </h3>
+                <div 
+                  className="text-gray-900 dark:text-gray-100 leading-relaxed prose prose-sm max-w-none ml-4"
+                  dangerouslySetInnerHTML={{ __html: sampleMemoData.recommendation }} 
+                />
               </div>
             </div>
           </div>
