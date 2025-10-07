@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useState, useEffect } from "react";
+import { RichTextEditor } from "./RichTextEditor";
+import "react-quill/dist/quill.snow.css";
 
 interface MemoField {
   id: string;
@@ -74,12 +75,10 @@ export const MemoView = () => {
             <Label htmlFor={field.id} className="text-sm font-medium">
               {field.label}
             </Label>
-            <Textarea
-              id={field.id}
-              placeholder={field.placeholder}
+            <RichTextEditor
               value={memoData[field.id] || ""}
-              onChange={(e) => handleChange(field.id, e.target.value)}
-              className="min-h-[120px] resize-y"
+              onChange={(value) => handleChange(field.id, value)}
+              placeholder={field.placeholder}
             />
           </div>
         </Card>

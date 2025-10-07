@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Download, FileText } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import "react-quill/dist/quill.snow.css";
 
 interface MemoModalProps {
   open: boolean;
@@ -106,8 +107,20 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
             .memo-text {
               font-size: 12px;
               line-height: 1.8;
-              white-space: pre-wrap;
               color: #444;
+            }
+            .memo-text p {
+              margin-bottom: 8px;
+            }
+            .memo-text ul, .memo-text ol {
+              margin-left: 20px;
+              margin-bottom: 8px;
+            }
+            .memo-text strong {
+              font-weight: 600;
+            }
+            .memo-text em {
+              font-style: italic;
             }
             @media print {
               body { padding: 20px; }
@@ -187,7 +200,7 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
               <h2>Company Overview</h2>
               <div className="memo-field">
                 <h3>Address</h3>
-                <div className="memo-text">{companyData.address}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: companyData.address }} />
               </div>
               <div className="memo-field">
                 <h3>Years in Business</h3>
@@ -312,35 +325,35 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
               <h2>Memo</h2>
               <div className="memo-field">
                 <h3>Business Description & Request Overview</h3>
-                <div className="memo-text">{sampleMemoData.businessDescription}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.businessDescription }} />
               </div>
               <div className="memo-field">
                 <h3>Credit</h3>
-                <div className="memo-text">{sampleMemoData.credit}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.credit }} />
               </div>
               <div className="memo-field">
                 <h3>Banking</h3>
-                <div className="memo-text">{sampleMemoData.banking}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.banking }} />
               </div>
               <div className="memo-field">
                 <h3>Financials</h3>
-                <div className="memo-text">{sampleMemoData.financials}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.financials }} />
               </div>
               <div className="memo-field">
                 <h3>Public Records</h3>
-                <div className="memo-text">{sampleMemoData.publicRecords}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.publicRecords }} />
               </div>
               <div className="memo-field">
                 <h3>Underwriter Call Notes</h3>
-                <div className="memo-text">{sampleMemoData.underwriterNotes}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.underwriterNotes }} />
               </div>
               <div className="memo-field">
                 <h3>Internal Team Discussion</h3>
-                <div className="memo-text">{sampleMemoData.teamDiscussion}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.teamDiscussion }} />
               </div>
               <div className="memo-field">
                 <h3>Credit Recommendation & Rationale</h3>
-                <div className="memo-text">{sampleMemoData.recommendation}</div>
+                <div className="memo-text" dangerouslySetInnerHTML={{ __html: sampleMemoData.recommendation }} />
               </div>
             </div>
           </div>
