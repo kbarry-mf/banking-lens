@@ -189,6 +189,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 >
                   Related
                 </TabsTrigger>
+                <TabsTrigger 
+                  value="renewal"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Renewal
+                </TabsTrigger>
               </TabsList>
             </Tabs>
           </div>

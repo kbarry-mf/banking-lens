@@ -6,6 +6,7 @@ import { CashFlowView } from "@/components/CashFlowView";
 import { BalancesView } from "@/components/BalancesView";
 import { DebtView } from "@/components/DebtView";
 import { RelatedView } from "@/components/RelatedView";
+import { RenewalView } from "@/components/RenewalView";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Index = () => {
@@ -25,6 +26,8 @@ const Index = () => {
         return <DebtView exploration="analyst" />;
       case "related":
         return <RelatedView exploration="analyst" />;
+      case "renewal":
+        return <RenewalView exploration="analyst" />;
       default:
         return <SummaryView exploration="analyst" onTabChange={setActiveTab} />;
     }
