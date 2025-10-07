@@ -237,49 +237,34 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
 
       {/* Debt Burden Analysis - Different presentations per exploration */}
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              {exploration === "executive" ? "Competitive Risk" : "Competitive Debt"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-warning" />
-                  <p className="text-sm font-medium text-foreground">Loan Payments</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-destructive">
-                    ${totalCompetitorPayments.toLocaleString()}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">11.0% Holdback</p>
-                </div>
+        <Card className="p-3">
+          <div className="flex items-start gap-3">
+            <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-warning" />
+            <div className="flex-1">
+              <p className="text-xs font-medium text-muted-foreground">Competitive Loan Payments</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <p className="text-2xl font-semibold text-foreground">
+                  ${totalCompetitorPayments.toLocaleString()}
+                </p>
+                <p className="text-xs text-muted-foreground">11.0% Holdback</p>
               </div>
             </div>
-          </CardContent>
+          </div>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              {exploration === "executive" ? "Traditional Debt" : "Non-Competitive Debt"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg border border-success/20 bg-success/5 p-4">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-foreground">Loan Payments</p>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-success">
-                    ${totalNonCompetitorPayments.toLocaleString()}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">3.8% Holdback</p>
-                </div>
+        <Card className="p-3">
+          <div className="flex items-start gap-3">
+            <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-success" />
+            <div className="flex-1">
+              <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <p className="text-2xl font-semibold text-foreground">
+                  ${totalNonCompetitorPayments.toLocaleString()}
+                </p>
+                <p className="text-xs text-muted-foreground">3.8% Holdback</p>
               </div>
             </div>
-          </CardContent>
+          </div>
         </Card>
       </div>
     </div>
