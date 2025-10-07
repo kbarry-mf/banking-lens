@@ -95,9 +95,9 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
       ) : (
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard label="Total Loan Payments" value="$125,000" />
+          <MetricCard label="Total Loan Proceeds" value="$725,000" />
           <MetricCard label="Competitive Holdback" value="11.0%" variant="warning" />
           <MetricCard label="Non-Competitive Holdback" value="3.8%" />
-          <MetricCard label="Non-Fintech Loans" value="$500,000" />
         </div>
       )}
 
@@ -249,13 +249,16 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
             <div className="space-y-4">
               <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4">
                 <div className="mb-2 flex items-center justify-between">
-                  <p className="text-sm font-medium text-foreground">Competitor Payments</p>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-warning" />
+                    <p className="text-sm font-medium text-foreground">Competitor Payments</p>
+                  </div>
                   <p className="text-xl font-semibold text-destructive">
                     ${totalCompetitorPayments.toLocaleString()}
                   </p>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  11.0% of monthly revenue - {exploration === "executive" ? "Monitor closely" : "Above recommended threshold"}
+                  11.0% of Monthly Revenue
                 </p>
               </div>
             </div>
@@ -278,7 +281,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                   </p>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  3.8% of monthly revenue - {exploration === "executive" ? "Healthy level" : "Within acceptable range"}
+                  3.8% of Monthly Revenue
                 </p>
               </div>
             </div>
