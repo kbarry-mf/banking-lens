@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload } from "lucide-react";
+import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
@@ -35,26 +36,63 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm">
+                {/* All buttons visible on xl screens */}
+                <Button variant="outline" size="sm" className="hidden xl:flex">
                   <CheckCircle className="h-4 w-4 mr-2" />
                   Claim
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="hidden xl:flex">
                   <XCircle className="h-4 w-4 mr-2" />
                   Decline
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="hidden xl:flex">
                   <FileWarning className="h-4 w-4 mr-2" />
                   Condition
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="hidden lg:flex">
                   <Send className="h-4 w-4 mr-2" />
                   Present
                 </Button>
-                <Button variant="default" size="sm">
+                <Button variant="default" size="sm" className="hidden md:flex">
                   <Upload className="h-4 w-4 mr-2" />
                   Submit
                 </Button>
+
+                {/* Dropdown for overflow buttons */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48 bg-card z-50">
+                    {/* Submit - hidden on md and up */}
+                    <DropdownMenuItem className="md:hidden">
+                      <Upload className="h-4 w-4 mr-2" />
+                      Submit
+                    </DropdownMenuItem>
+                    {/* Present - hidden on lg and up */}
+                    <DropdownMenuItem className="lg:hidden">
+                      <Send className="h-4 w-4 mr-2" />
+                      Present
+                    </DropdownMenuItem>
+                    {/* Condition - hidden on xl and up */}
+                    <DropdownMenuItem className="xl:hidden">
+                      <FileWarning className="h-4 w-4 mr-2" />
+                      Condition
+                    </DropdownMenuItem>
+                    {/* Decline - hidden on xl and up */}
+                    <DropdownMenuItem className="xl:hidden">
+                      <XCircle className="h-4 w-4 mr-2" />
+                      Decline
+                    </DropdownMenuItem>
+                    {/* Claim - hidden on xl and up */}
+                    <DropdownMenuItem className="xl:hidden">
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Claim
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
