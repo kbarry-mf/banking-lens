@@ -78,7 +78,8 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Loan Payments</p>
-                <p className="text-xl font-bold text-foreground">$125K</p>
+                <p className="text-xl font-bold text-foreground">$125,000</p>
+                <p className="text-xs text-muted-foreground">14.8% Holdback</p>
               </div>
             </div>
             
@@ -88,7 +89,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Loan Proceeds</p>
-                <p className="text-xl font-bold text-foreground">$725K</p>
+                <p className="text-xl font-bold text-foreground">$725,000</p>
               </div>
             </div>
             
@@ -98,7 +99,8 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Competitor Payments</p>
-                <p className="text-xl font-bold text-foreground">$93K</p>
+                <p className="text-xl font-bold text-foreground">$93,000</p>
+                <p className="text-xs text-muted-foreground">11.0% Holdback</p>
               </div>
             </div>
             
@@ -108,7 +110,8 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Non-Comp Payments</p>
-                <p className="text-xl font-bold text-foreground">$32K</p>
+                <p className="text-xl font-bold text-foreground">$32,000</p>
+                <p className="text-xs text-muted-foreground">3.8% Holdback</p>
               </div>
             </div>
           </div>
