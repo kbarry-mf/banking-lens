@@ -82,7 +82,10 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
               onClick={() => setIsExpanded(!isExpanded)}
             >
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm">Monthly Cash Flow Analysis</CardTitle>
+                <div>
+                  <CardTitle className="text-sm">Monthly Cash Flow Analysis</CardTitle>
+                  <p className="text-xs text-muted-foreground mt-0.5">{monthlyData.length} months</p>
+                </div>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   {isExpanded ? "Hide Details" : "Show Details"}
                   <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
