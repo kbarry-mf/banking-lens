@@ -47,7 +47,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     <div className="space-y-4">
       {/* Summary Metrics - Different layouts per exploration */}
       {exploration === "executive" ? (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
           <Card>
             <CardContent className="pt-4 pb-3 px-4">
               <div className="flex items-center justify-between">
@@ -141,7 +141,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
           </Card>
 
           {/* Risk Metrics Summary */}
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
             <MetricCard 
               label="Total NSF Fees" 
               value="$450" 
@@ -190,7 +190,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
 
       {/* Monthly Analysis - Different views per exploration */}
       {exploration === "analyst" ? null : (
-        <div className="grid gap-3 lg:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm">Cash Flow Trend</CardTitle>

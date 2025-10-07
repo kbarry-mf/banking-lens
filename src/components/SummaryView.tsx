@@ -32,7 +32,7 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
       {/* All Metrics Grouped Together */}
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
         <MetricCard
           label="Annualized Revenue"
           value="$8,450,000"
@@ -91,7 +91,7 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
       </div>
 
       {/* Charts Section - Clickable */}
-      <div className="grid gap-3 lg:grid-cols-2">
+      <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
         <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => onTabChange?.("cash-flow")}>
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Revenue by Month</CardTitle>

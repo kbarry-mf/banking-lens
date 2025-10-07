@@ -72,7 +72,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
       {exploration === "executive" ? (
         <Card>
           <CardContent className="pt-4 pb-3 px-4">
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
               <div>
                 <p className="text-xs font-medium text-muted-foreground">Debt Risk Assessment</p>
                 <div className="mt-2 flex items-baseline gap-2">
@@ -93,7 +93,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
           <MetricCard label="Total Loan Payments" value="$125,000" />
           <MetricCard label="Total Loan Proceeds" value="$725,000" />
         </div>
@@ -151,7 +151,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-3 lg:grid-cols-2">
+        <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm">Loan Payment Distribution</CardTitle>
@@ -236,7 +236,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
       )}
 
       {/* Debt Burden Analysis - Different presentations per exploration */}
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
         <Card className="p-3">
           <div className="flex items-start gap-3">
             <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-warning" />

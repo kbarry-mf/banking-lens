@@ -28,7 +28,7 @@ const monthlyBalances = [
       {exploration === "executive" ? (
         <Card>
           <CardContent className="pt-4 pb-3 px-4">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
               <div className="text-center">
                 <p className="text-xs font-medium text-muted-foreground">Average Daily Balance</p>
                 <p className="mt-1 text-2xl font-bold text-success">$425K</p>
@@ -48,7 +48,7 @@ const monthlyBalances = [
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-4 xl:grid-cols-[1fr_280px]">
           {/* Balance by Month Chart */}
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
@@ -163,7 +163,7 @@ const monthlyBalances = [
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Balance Health Indicators</CardTitle>
