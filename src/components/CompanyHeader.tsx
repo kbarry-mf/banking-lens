@@ -28,7 +28,7 @@ export const CompanyHeader = ({
           </div>
         </CardHeader>
         <CardContent className="px-4 pb-3">
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 text-xs">
+          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 text-xs">
             <div>
               <p className="font-medium text-muted-foreground">Address</p>
               <p className="mt-0.5 text-foreground">1234 Industrial Way, Los Angeles, CA 90001</p>
@@ -46,7 +46,7 @@ export const CompanyHeader = ({
               <p className="mt-0.5 text-foreground">325211: Plastics Material and Resin Manufacturing</p>
             </div>
           </div>
-          <div className="mt-3 grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 text-xs">
+          <div className="mt-3 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 text-xs">
             <div>
               <p className="font-medium text-muted-foreground">Requested Loan Amount</p>
               <p className="mt-0.5 text-foreground font-normal">$2,500,000</p>
@@ -93,7 +93,7 @@ export const CompanyHeader = ({
           </div>
         </CardHeader>
         <CardContent className="px-4 pb-3">
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 text-xs">
+          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 text-xs">
             <div>
               <p className="font-medium text-muted-foreground">Address</p>
               <p className="mt-0.5 text-foreground">1234 Industrial Way, Los Angeles, CA 90001</p>
@@ -111,7 +111,7 @@ export const CompanyHeader = ({
               <p className="mt-0.5 text-foreground">325211: Plastics Material and Resin Manufacturing</p>
             </div>
           </div>
-          <div className="mt-3 grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 text-xs">
+          <div className="mt-3 grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 text-xs">
             <div>
               <p className="font-medium text-muted-foreground">Requested Loan Amount</p>
               <p className="mt-0.5 text-foreground font-normal">$2,500,000</p>
@@ -168,7 +168,7 @@ export const CompanyHeader = ({
             <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5 whitespace-nowrap">Mid Market</Badge>
           </div>
         </div>
-        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
           <MetricCard label="Application Submitted" value={new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} icon={Calendar} />
           <MetricCard label="Underwriter" value="Sarah Johnson" icon={User} />
