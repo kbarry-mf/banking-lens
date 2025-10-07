@@ -59,27 +59,20 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
               color: #666;
               margin-bottom: 4px;
             }
-            .metrics-grid {
-              display: grid;
-              grid-template-columns: repeat(2, 1fr);
-              gap: 16px;
-              margin: 16px 0;
+            .memo-field {
+              margin-bottom: 20px;
             }
-            .metric {
-              padding: 12px;
-              border: 1px solid #ddd;
-              border-radius: 4px;
-            }
-            .metric-label {
-              font-size: 11px;
-              color: #666;
-              text-transform: uppercase;
-              margin-bottom: 4px;
+            h3 {
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 6px;
+              color: #333;
             }
             .metric-value {
-              font-size: 16px;
+              font-size: 18px;
               font-weight: 600;
               color: #000;
+              margin-bottom: 2px;
             }
             .section {
               margin-bottom: 24px;
@@ -107,9 +100,6 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
             .offer-value {
               font-size: 12px;
               font-weight: 600;
-            }
-            .memo-field {
-              margin-bottom: 20px;
             }
             .memo-text {
               font-size: 12px;
@@ -147,13 +137,13 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
   // Sample data for memo fields
   const sampleMemoData = {
     businessDescription: memoData.businessDescription || "Acme Corporation (dba California Plastics) is an 8-year-old manufacturer of plastic materials and resins based in Los Angeles, CA. The company is requesting $2,500,000 in funding to support working capital needs and consolidate existing debt. This is a resubmit application following previous engagement with our institution.",
-    credit: memoData.credit || "Personal FICO score of 677 represents a 32-point improvement from prior review (645), indicating positive credit trajectory. Mulligan Custom Score of 199 (up 17 points from 182) suggests moderate risk profile. Review of credit reports shows consistent payment history with no recent delinquencies. Existing credit lines remain current with utilization at 42%.",
-    banking: memoData.banking || "Six months of bank statements reviewed via Ocrolus show consistent deposit activity with annualized revenue of $8.45M (+7% YoY). Average daily balance of $398,500 represents 18.2% balance-to-revenue ratio, slightly elevated but within acceptable parameters. Two Ocrolus Detect signals identified relate to minor formatting inconsistencies, not indicative of fraud. NSF activity minimal with only 1 occurrence in review period.",
-    financials: memoData.financials || "Annualized cash flow from operations of $1.25M demonstrates 14.8% cash flow-to-revenue ratio, providing adequate debt service coverage. Monthly cash flow averaging $104,000 shows consistency with seasonal variations expected in manufacturing. Revenue trend positive with 7% growth trajectory. Working capital position adequate to support operations and proposed debt structure.",
+    credit: memoData.credit || "Personal FICO score of 677 indicates moderate credit strength. Mulligan Custom Score of 199 suggests moderate risk profile. Review of credit reports shows consistent payment history with no recent delinquencies. Existing credit lines remain current with utilization at 42%.",
+    banking: memoData.banking || "Six months of bank statements reviewed via Ocrolus show consistent deposit activity with annualized revenue of $8.45M. Average daily balance of $398,500 represents 18.2% balance-to-revenue ratio, slightly elevated but within acceptable parameters. Two Ocrolus Detect signals identified relate to minor formatting inconsistencies, not indicative of fraud. NSF activity minimal with only 1 occurrence in review period.",
+    financials: memoData.financials || "Annualized cash flow from operations of $1.25M demonstrates 14.8% cash flow-to-revenue ratio, providing adequate debt service coverage. Monthly cash flow averaging $104,000 shows consistency with seasonal variations expected in manufacturing. Revenue trend positive with steady growth trajectory. Working capital position adequate to support operations and proposed debt structure.",
     publicRecords: memoData.publicRecords || "Corporate records verified through Middesk show company in good standing with California Secretary of State. No tax liens, judgments, or bankruptcies identified. Business entity properly registered as LLC. Principal address matches application. No adverse legal proceedings identified in public record search.",
     underwriterNotes: memoData.underwriterNotes || "Call conducted with John Smith, CEO, on " + new Date().toLocaleDateString() + ". Confirmed use of proceeds for working capital and debt consolidation. Discussed seasonal cash flow patterns tied to manufacturing cycles. Management expressed confidence in current order pipeline and customer relationships. Company maintains relationships with major automotive and consumer goods manufacturers.",
-    teamDiscussion: memoData.teamDiscussion || "Underwriting team reviewed application in committee meeting. Consensus that credit profile has improved materially since last review. Banking activity supports revenue claims. Existing debt structure presents opportunity for consolidation with favorable pricing. Recommend approval with standard monitoring covenants.",
-    recommendation: memoData.recommendation || "APPROVE - Recommend funding at requested amount of $2,500,000. Credit profile demonstrates improvement trajectory with manageable risk indicators. Cash flow adequate for proposed debt service. Pricing tier MCS Tier 1 appropriate given score and banking performance. Standard monitoring and reporting covenants recommended."
+    teamDiscussion: memoData.teamDiscussion || "Underwriting team reviewed application in committee meeting. Credit profile shows solid fundamentals with manageable risk indicators. Banking activity supports revenue claims. Existing debt structure presents opportunity for consolidation with favorable pricing. Recommend approval with standard monitoring covenants.",
+    recommendation: memoData.recommendation || "APPROVE - Recommend funding at requested amount of $2,500,000. Credit profile demonstrates solid fundamentals with manageable risk indicators. Cash flow adequate for proposed debt service. Pricing tier MCS Tier 1 appropriate given score and banking performance. Standard monitoring and reporting covenants recommended."
   };
 
   return (
@@ -180,49 +170,44 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
             {/* Executive Summary */}
             <div className="section">
               <h2>Executive Summary</h2>
-              <div className="metrics-grid">
-                <div className="metric">
-                  <div className="metric-label">Company</div>
-                  <div className="metric-value">Acme Corporation</div>
-                  <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                    Plastics Material and Resin Manufacturing
-                  </div>
+              
+              <div className="memo-field">
+                <h3>Company</h3>
+                <div className="metric-value">Acme Corporation</div>
+                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
+                  Plastics Material and Resin Manufacturing
                 </div>
-                <div className="metric">
-                  <div className="metric-label">Requested Amount</div>
-                  <div className="metric-value">$2,500,000</div>
-                  <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                    Years in Business: 8
-                  </div>
+              </div>
+
+              <div className="memo-field">
+                <h3>Requested Amount</h3>
+                <div className="metric-value">$2,500,000</div>
+                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
+                  Years in Business: 8
                 </div>
-                <div className="metric">
-                  <div className="metric-label">Annualized Revenue</div>
-                  <div className="metric-value">{formatCurrency(8450000)}</div>
-                  <div style={{ fontSize: '11px', color: '#16a34a', marginTop: '4px' }}>
-                    ↑ 7% YoY
-                  </div>
+              </div>
+
+              <div className="memo-field">
+                <h3>Annualized Revenue</h3>
+                <div className="metric-value">{formatCurrency(8450000)}</div>
+              </div>
+
+              <div className="memo-field">
+                <h3>FICO Score</h3>
+                <div className="metric-value">677</div>
+              </div>
+
+              <div className="memo-field">
+                <h3>Annualized Cash Flow</h3>
+                <div className="metric-value">{formatCurrency(1250000)}</div>
+                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
+                  14.8% of revenue
                 </div>
-                <div className="metric">
-                  <div className="metric-label">FICO Score</div>
-                  <div className="metric-value">677</div>
-                  <div style={{ fontSize: '11px', color: '#16a34a', marginTop: '4px' }}>
-                    ↑ 32 points
-                  </div>
-                </div>
-                <div className="metric">
-                  <div className="metric-label">Annualized Cash Flow</div>
-                  <div className="metric-value">{formatCurrency(1250000)}</div>
-                  <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                    14.8% of revenue
-                  </div>
-                </div>
-                <div className="metric">
-                  <div className="metric-label">Mulligan Custom Score</div>
-                  <div className="metric-value">199</div>
-                  <div style={{ fontSize: '11px', color: '#16a34a', marginTop: '4px' }}>
-                    ↑ 17 points
-                  </div>
-                </div>
+              </div>
+
+              <div className="memo-field">
+                <h3>Mulligan Custom Score</h3>
+                <div className="metric-value">199</div>
               </div>
             </div>
 
