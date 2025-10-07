@@ -18,13 +18,6 @@ export const OfferCalculator = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 overflow-y-auto px-6 py-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Calculator className="w-5 h-5 text-primary" />
-          </div>
-          <h2 className="text-xl font-semibold">Offer Calculator</h2>
-        </div>
-
         <div className="space-y-6">
           {/* Display Fields */}
           <div className="grid grid-cols-2 gap-4">

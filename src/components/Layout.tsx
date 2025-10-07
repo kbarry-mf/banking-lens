@@ -138,7 +138,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   value="calculator"
                   className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
                 >
-                  Offer Calculator
+                  Calculator
                 </TabsTrigger>
                 <TabsTrigger 
                   value="chatter"
