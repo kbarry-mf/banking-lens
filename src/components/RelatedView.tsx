@@ -115,19 +115,19 @@ const isoSubmissions = [
 
 export const RelatedView = ({ exploration }: RelatedViewProps) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Guarantors */}
       <Card>
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-                <Users className="h-5 w-5 text-red-600" />
+        <div className="p-2.5 border-b">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-red-100">
+                <Users className="h-3.5 w-3.5 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold">Guarantors ({guarantors.length})</h3>
+              <h3 className="text-sm font-semibold">Guarantors ({guarantors.length})</h3>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground ml-13">
+          <p className="text-[11px] text-muted-foreground ml-9">
             {guarantors.length} item • Sorted by Primary Contact • Updated a few seconds ago
           </p>
         </div>
@@ -135,45 +135,45 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Social Security Number</TableHead>
-                  <TableHead>Date of Birth</TableHead>
-                  <TableHead>Credit Score</TableHead>
-                  <TableHead>Ownership Percentage</TableHead>
+                <TableRow className="h-8">
+                  <TableHead className="text-xs py-1.5">Name</TableHead>
+                  <TableHead className="text-xs py-1.5">Social Security Number</TableHead>
+                  <TableHead className="text-xs py-1.5">Date of Birth</TableHead>
+                  <TableHead className="text-xs py-1.5">Credit Score</TableHead>
+                  <TableHead className="text-xs py-1.5">Ownership Percentage</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {guarantors.map((guarantor, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium text-primary">{guarantor.name}</TableCell>
-                    <TableCell>{guarantor.ssn}</TableCell>
-                    <TableCell>{guarantor.dob}</TableCell>
-                    <TableCell>{guarantor.creditScore}</TableCell>
-                    <TableCell>{guarantor.ownership}</TableCell>
+                  <TableRow key={index} className="h-9">
+                    <TableCell className="font-medium text-primary text-xs py-1.5">{guarantor.name}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.ssn}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.dob}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.creditScore}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.ownership}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-          <div className="p-4 text-center border-t">
-            <button className="text-sm text-primary hover:underline">View All</button>
+          <div className="p-2 text-center border-t">
+            <button className="text-xs text-primary hover:underline">View All</button>
           </div>
         </CardContent>
       </Card>
 
       {/* Guarantors */}
       <Card>
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-                <Users className="h-5 w-5 text-red-600" />
+        <div className="p-2.5 border-b">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-red-100">
+                <Users className="h-3.5 w-3.5 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold">Guarantors ({guarantors.length})</h3>
+              <h3 className="text-sm font-semibold">Guarantors ({guarantors.length})</h3>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground ml-13">
+          <p className="text-[11px] text-muted-foreground ml-9">
             {guarantors.length} item • Sorted by Primary Contact • Updated a few seconds ago
           </p>
         </div>
@@ -181,45 +181,45 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Social Security Number</TableHead>
-                  <TableHead>Date of Birth</TableHead>
-                  <TableHead>Credit Score</TableHead>
-                  <TableHead>Ownership Percentage</TableHead>
+                <TableRow className="h-8">
+                  <TableHead className="text-xs py-1.5">Name</TableHead>
+                  <TableHead className="text-xs py-1.5">Social Security Number</TableHead>
+                  <TableHead className="text-xs py-1.5">Date of Birth</TableHead>
+                  <TableHead className="text-xs py-1.5">Credit Score</TableHead>
+                  <TableHead className="text-xs py-1.5">Ownership Percentage</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {guarantors.map((guarantor, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium text-primary">{guarantor.name}</TableCell>
-                    <TableCell>{guarantor.ssn}</TableCell>
-                    <TableCell>{guarantor.dob}</TableCell>
-                    <TableCell>{guarantor.creditScore}</TableCell>
-                    <TableCell>{guarantor.ownership}</TableCell>
+                  <TableRow key={index} className="h-9">
+                    <TableCell className="font-medium text-primary text-xs py-1.5">{guarantor.name}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.ssn}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.dob}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.creditScore}</TableCell>
+                    <TableCell className="text-xs py-1.5">{guarantor.ownership}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-          <div className="p-4 text-center border-t">
-            <button className="text-sm text-primary hover:underline">View All</button>
+          <div className="p-2 text-center border-t">
+            <button className="text-xs text-primary hover:underline">View All</button>
           </div>
         </CardContent>
       </Card>
 
       {/* Application History */}
       <Card>
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                <History className="h-5 w-5 text-green-600" />
+        <div className="p-2.5 border-b">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-green-100">
+                <History className="h-3.5 w-3.5 text-green-600" />
               </div>
-              <h3 className="text-lg font-semibold">Application History ({applicationHistory.length})</h3>
+              <h3 className="text-sm font-semibold">Application History ({applicationHistory.length})</h3>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground ml-13">
+          <p className="text-[11px] text-muted-foreground ml-9">
             {applicationHistory.length} items • Sorted by Close Date • Updated a few seconds ago
           </p>
         </div>
@@ -227,43 +227,43 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Close Date</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Decision</TableHead>
+                <TableRow className="h-8">
+                  <TableHead className="text-xs py-1.5">Close Date</TableHead>
+                  <TableHead className="text-xs py-1.5">Amount</TableHead>
+                  <TableHead className="text-xs py-1.5">Status</TableHead>
+                  <TableHead className="text-xs py-1.5">Decision</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {applicationHistory.map((history, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{history.closeDate}</TableCell>
-                    <TableCell>{history.amount}</TableCell>
-                    <TableCell>{history.status}</TableCell>
-                    <TableCell>{history.decision}</TableCell>
+                  <TableRow key={index} className="h-9">
+                    <TableCell className="font-medium text-xs py-1.5">{history.closeDate}</TableCell>
+                    <TableCell className="text-xs py-1.5">{history.amount}</TableCell>
+                    <TableCell className="text-xs py-1.5">{history.status}</TableCell>
+                    <TableCell className="text-xs py-1.5">{history.decision}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-          <div className="p-4 text-center border-t">
-            <button className="text-sm text-primary hover:underline">View All</button>
+          <div className="p-2 text-center border-t">
+            <button className="text-xs text-primary hover:underline">View All</button>
           </div>
         </CardContent>
       </Card>
 
       {/* ISO Submissions */}
       <Card>
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100">
-                <Network className="h-5 w-5 text-orange-600" />
+        <div className="p-2.5 border-b">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-100">
+                <Network className="h-3.5 w-3.5 text-orange-600" />
               </div>
-              <h3 className="text-lg font-semibold">ISO Submissions ({isoSubmissions.length})</h3>
+              <h3 className="text-sm font-semibold">ISO Submissions ({isoSubmissions.length})</h3>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground ml-13">
+          <p className="text-[11px] text-muted-foreground ml-9">
             {isoSubmissions.length} items • Sorted by Created Date • Updated a few seconds ago
           </p>
         </div>
@@ -271,31 +271,31 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Broker</TableHead>
-                  <TableHead className="text-center">Primary ISO</TableHead>
-                  <TableHead className="text-center">Original ISO</TableHead>
-                  <TableHead>Created Date</TableHead>
+                <TableRow className="h-8">
+                  <TableHead className="text-xs py-1.5">Broker</TableHead>
+                  <TableHead className="text-center text-xs py-1.5">Primary ISO</TableHead>
+                  <TableHead className="text-center text-xs py-1.5">Original ISO</TableHead>
+                  <TableHead className="text-xs py-1.5">Created Date</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isoSubmissions.map((submission, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{submission.broker}</TableCell>
-                    <TableCell className="text-center">
-                      <Checkbox checked={submission.primaryISO} disabled />
+                  <TableRow key={index} className="h-9">
+                    <TableCell className="font-medium text-xs py-1.5">{submission.broker}</TableCell>
+                    <TableCell className="text-center py-1.5">
+                      <Checkbox checked={submission.primaryISO} disabled className="h-3.5 w-3.5" />
                     </TableCell>
-                    <TableCell className="text-center">
-                      <Checkbox checked={submission.originalISO} disabled />
+                    <TableCell className="text-center py-1.5">
+                      <Checkbox checked={submission.originalISO} disabled className="h-3.5 w-3.5" />
                     </TableCell>
-                    <TableCell>{submission.createdDate}</TableCell>
+                    <TableCell className="text-xs py-1.5">{submission.createdDate}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-          <div className="p-4 text-center border-t">
-            <button className="text-sm text-primary hover:underline">View All</button>
+          <div className="p-2 text-center border-t">
+            <button className="text-xs text-primary hover:underline">View All</button>
           </div>
         </CardContent>
       </Card>
