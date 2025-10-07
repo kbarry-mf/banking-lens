@@ -3,7 +3,7 @@ import { MetricCard } from "./MetricCard";
 import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Legend } from "recharts";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
 import { formatCurrency } from "@/lib/utils";
 
 interface BalancesViewProps {
@@ -64,17 +64,15 @@ const monthlyBalances = [
             config={{
               weightedAvgAdjBalance: {
                 label: "Weighted Average Adjusted Balance",
-                color: exploration === "executive" ? "hsl(var(--primary))" : 
-                       exploration === "analyst" ? "hsl(var(--primary))" : 
-                       "hsl(var(--chart-1))",
+                color: "hsl(var(--primary))",
               },
               maxBalance: {
                 label: "Maximum Balance",
-                color: "hsl(var(--success))",
+                color: "hsl(var(--primary))",
               },
               minBalance: {
                 label: "Minimum Balance",
-                color: "hsl(var(--warning))",
+                color: "hsl(var(--primary))",
               },
             }}
             className="h-80 w-full"
@@ -94,14 +92,6 @@ const monthlyBalances = [
                     }} 
                   />} 
                 />
-                <Legend 
-                  formatter={(value) => {
-                    if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
-                    if (value === "maxBalance") return "Maximum Balance";
-                    if (value === "minBalance") return "Minimum Balance";
-                    return value;
-                  }}
-                />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
                 <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
@@ -120,14 +110,6 @@ const monthlyBalances = [
                       return [`${label}: ${formatCurrency(Number(value))}`];
                     }} 
                   />} 
-                />
-                <Legend 
-                  formatter={(value) => {
-                    if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
-                    if (value === "maxBalance") return "Maximum Balance";
-                    if (value === "minBalance") return "Minimum Balance";
-                    return value;
-                  }}
                 />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
