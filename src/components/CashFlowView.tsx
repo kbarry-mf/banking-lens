@@ -78,7 +78,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
           
           <Card>
             <CardHeader 
-              className="pb-2 pt-4 px-4 cursor-pointer hover:bg-accent/50 transition-colors"
+              className="pb-2 pt-4 px-4 cursor-pointer"
               onClick={() => setIsExpanded(!isExpanded)}
             >
               <div className="flex items-center justify-between">
