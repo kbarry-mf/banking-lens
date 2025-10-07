@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MetricCard } from "./MetricCard";
 import { DollarSign, Calendar, User, Building2, ExternalLink } from "lucide-react";
-import { AnimatedBackground } from "./AnimatedBackground";
 interface CompanyHeaderProps {
   exploration: "executive" | "analyst" | "decision";
 }
@@ -10,8 +9,7 @@ export const CompanyHeader = ({
   exploration
 }: CompanyHeaderProps) => {
   if (exploration === "executive") {
-    return <Card className="shadow-none relative overflow-hidden">
-        <AnimatedBackground opacity={0.08} />
+    return <Card className="shadow-none">
         <CardHeader className="pb-2 pt-3 px-4">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">
@@ -76,8 +74,7 @@ export const CompanyHeader = ({
       </Card>;
   }
   if (exploration === "analyst") {
-    return <Card className="shadow-none relative overflow-hidden">
-        <AnimatedBackground opacity={0.08} />
+    return <Card className="shadow-none">
         <CardHeader className="pb-2 pt-3 px-4">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">
