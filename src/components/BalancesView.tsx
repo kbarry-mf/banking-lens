@@ -90,7 +90,7 @@ const monthlyBalances = [
                       const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
                                    name === "maxBalance" ? "Maximum Balance" :
                                    name === "minBalance" ? "Minimum Balance" : name;
-                      return [formatCurrency(Number(value)), label];
+                      return [`${label}: ${formatCurrency(Number(value))}`];
                     }} 
                   />} 
                 />
@@ -117,7 +117,7 @@ const monthlyBalances = [
                       const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
                                    name === "maxBalance" ? "Maximum Balance" :
                                    name === "minBalance" ? "Minimum Balance" : name;
-                      return [formatCurrency(Number(value)), label];
+                      return [`${label}: ${formatCurrency(Number(value))}`];
                     }} 
                   />} 
                 />
