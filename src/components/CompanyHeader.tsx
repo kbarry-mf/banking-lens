@@ -4,9 +4,11 @@ import { MetricCard } from "./MetricCard";
 import { DollarSign, Calendar, User, Building2, ExternalLink } from "lucide-react";
 interface CompanyHeaderProps {
   exploration: "executive" | "analyst" | "decision";
+  underwriter?: string;
 }
 export const CompanyHeader = ({
-  exploration
+  exploration,
+  underwriter = ""
 }: CompanyHeaderProps) => {
   if (exploration === "executive") {
     return <Card className="shadow-none">
@@ -57,7 +59,7 @@ export const CompanyHeader = ({
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Underwriter</p>
-              <p className="mt-0.5 text-foreground">Sarah Johnson</p>
+              <p className="mt-0.5 text-foreground">{underwriter || ""}</p>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-xs">
@@ -122,7 +124,7 @@ export const CompanyHeader = ({
             </div>
             <div>
               <p className="font-medium text-muted-foreground">Underwriter</p>
-              <p className="mt-0.5 text-foreground">Sarah Johnson</p>
+              <p className="mt-0.5 text-foreground">{underwriter || ""}</p>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-xs">
@@ -171,7 +173,7 @@ export const CompanyHeader = ({
         <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <MetricCard label="Requested Loan Amount" value="$2,500,000" icon={DollarSign} />
           <MetricCard label="Application Submitted" value={new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} icon={Calendar} />
-          <MetricCard label="Underwriter" value="Sarah Johnson" icon={User} />
+          <MetricCard label="Underwriter" value={underwriter || ""} icon={User} />
           <MetricCard label="Application Type" value="Resubmit" icon={Building2} />
         </div>
       </CardContent>

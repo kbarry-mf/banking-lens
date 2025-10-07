@@ -23,6 +23,11 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarWidth, setSidebarWidth] = useState(384); // 96 * 4 = 384px (w-96)
   const [isResizing, setIsResizing] = useState(false);
   const [memoModalOpen, setMemoModalOpen] = useState(false);
+  const [underwriter, setUnderwriter] = useState<string>("");
+
+  const handleClaimToggle = () => {
+    setUnderwriter(prev => prev ? "" : "Kenny Barry");
+  };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsResizing(true);
@@ -90,7 +95,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   <FileText className="h-4 w-4" />
                   Memo
                 </Button>
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleClaimToggle}
+                  className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'} ${!underwriter ? 'bg-primary text-primary-foreground hover:bg-primary/90' : ''}`}
+                >
                   <CheckCircle className="h-4 w-4" />
                   Claim
                 </Button>
@@ -130,7 +140,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                       Decline
                     </DropdownMenuItem>
                     {/* Claim - hidden on xl and up */}
-                    <DropdownMenuItem className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
+                    <DropdownMenuItem onClick={handleClaimToggle} className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Claim
                     </DropdownMenuItem>
@@ -144,7 +154,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
         {/* Company Header */}
         <div className="border-b bg-background">
           <div className="container mx-auto px-6 py-3 max-w-[1600px]">
-            <CompanyHeader exploration="analyst" />
+            <CompanyHeader exploration="analyst" underwriter={underwriter} />
           </div>
         </div>
 
