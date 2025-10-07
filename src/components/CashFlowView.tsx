@@ -17,12 +17,12 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   // Match the values from SummaryView charts
   const monthlyData = [
-    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000 },
-    { month: "May", transfersIn: 152000, loanDeposits: 95000, revenue: 745000, loanPayments: 25000, transfersOut: 52000, cashFlow: 112000 },
-    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, revenue: 698000, loanPayments: 21000, transfersOut: 38000, cashFlow: 94000 },
-    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, revenue: 725000, loanPayments: 23000, transfersOut: 48000, cashFlow: 105000 },
-    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, revenue: 691000, loanPayments: 19000, transfersOut: 35000, cashFlow: 89000 },
-    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, revenue: 738000, loanPayments: 27000, transfersOut: 55000, cashFlow: 118000 },
+    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000, overdrafts: 0 },
+    { month: "May", transfersIn: 152000, loanDeposits: 95000, revenue: 745000, loanPayments: 25000, transfersOut: 52000, cashFlow: 112000, overdrafts: 1 },
+    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, revenue: 698000, loanPayments: 21000, transfersOut: 38000, cashFlow: 94000, overdrafts: 0 },
+    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, revenue: 725000, loanPayments: 23000, transfersOut: 48000, cashFlow: 105000, overdrafts: 1 },
+    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, revenue: 691000, loanPayments: 19000, transfersOut: 35000, cashFlow: 89000, overdrafts: 1 },
+    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, revenue: 738000, loanPayments: 27000, transfersOut: 55000, cashFlow: 118000, overdrafts: 0 },
   ];
 
   // Calculate totals
@@ -33,7 +33,8 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     loanPayments: acc.loanPayments + curr.loanPayments,
     transfersOut: acc.transfersOut + curr.transfersOut,
     cashFlow: acc.cashFlow + curr.cashFlow,
-  }), { transfersIn: 0, loanDeposits: 0, revenue: 0, loanPayments: 0, transfersOut: 0, cashFlow: 0 });
+    overdrafts: acc.overdrafts + curr.overdrafts,
+  }), { transfersIn: 0, loanDeposits: 0, revenue: 0, loanPayments: 0, transfersOut: 0, cashFlow: 0, overdrafts: 0 });
 
   const bankAccounts = [
     { last4: "4521", bankName: "Chase Business", accountType: "Checking", beginDate: "2023-01-15", endDate: "2024-09-30" },
@@ -74,20 +75,6 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
         </div>
       ) : (
         <div className="space-y-3">
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="px-3 py-1.5 text-xs">
-              <span className="font-medium">Overdraft Count:</span>
-              <span className="ml-1.5 text-destructive">3</span>
-            </Badge>
-            <Badge variant="outline" className="px-3 py-1.5 text-xs">
-              <span className="font-medium">Total NSF Fees:</span>
-              <span className="ml-1.5 text-destructive">$450</span>
-            </Badge>
-            <Badge variant="outline" className="px-3 py-1.5 text-xs">
-              <span className="font-medium">Returned Items:</span>
-              <span className="ml-1.5 text-warning">$1,250</span>
-            </Badge>
-          </div>
           
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
@@ -116,6 +103,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Transfers Out</th>
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Cash Flow</th>
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">Overdrafts</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -131,6 +119,7 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                         <td className="py-3 text-right text-xs font-medium text-success">
                           {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
                         </td>
+                        <td className="py-3 text-right text-xs text-foreground">{data.overdrafts}</td>
                       </tr>
                     ))}
                     <tr className="border-t-2 font-semibold bg-muted/50">
@@ -144,12 +133,41 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                       <td className="py-3 text-right text-xs font-medium text-success">
                         {((totals.cashFlow / totals.revenue) * 100).toFixed(1)}%
                       </td>
+                      <td className="py-3 text-right text-xs text-foreground">{totals.overdrafts}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
+
+          {/* Risk Metrics Summary */}
+          <div className="grid gap-3 md:grid-cols-2">
+            <Card className="border-l-4 border-destructive">
+              <CardContent className="pt-4 pb-3 px-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">Total NSF Fees</p>
+                    <p className="mt-1 text-2xl font-bold text-destructive">$450</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">3 incidents</p>
+                  </div>
+                  <AlertTriangle className="h-8 w-8 text-destructive/20" />
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-l-4 border-warning">
+              <CardContent className="pt-4 pb-3 px-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">Returned Items</p>
+                    <p className="mt-1 text-2xl font-bold text-warning">$1,250</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">2 items</p>
+                  </div>
+                  <AlertTriangle className="h-8 w-8 text-warning/20" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
           <Card>
             <CardHeader className="pb-3 pt-4 px-4">
