@@ -6,6 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
 import { useState } from "react";
 import { formatCurrency } from "@/lib/utils";
+import { parse } from "date-fns";
 
 interface BalancesViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -53,6 +54,15 @@ export const BalancesView = ({ exploration }: BalancesViewProps) => {
     return [...monthlyBalances].sort((a, b) => {
       const aVal = a[sortColumn as keyof typeof a];
       const bVal = b[sortColumn as keyof typeof b];
+      
+      // Special handling for month column to sort chronologically
+      if (sortColumn === 'month' && typeof aVal === 'string' && typeof bVal === 'string') {
+        const aDate = parse(aVal, 'MMM yyyy', new Date());
+        const bDate = parse(bVal, 'MMM yyyy', new Date());
+        return sortDirection === 'asc' 
+          ? aDate.getTime() - bDate.getTime()
+          : bDate.getTime() - aDate.getTime();
+      }
       
       if (typeof aVal === 'string' && typeof bVal === 'string') {
         return sortDirection === 'asc' 

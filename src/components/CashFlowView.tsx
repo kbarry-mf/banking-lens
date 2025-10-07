@@ -8,6 +8,7 @@ import { formatCurrency } from "@/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
+import { parse } from "date-fns";
 
 interface CashFlowViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -58,6 +59,15 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     return [...monthlyData].sort((a, b) => {
       const aVal = a[sortColumn as keyof typeof a];
       const bVal = b[sortColumn as keyof typeof b];
+      
+      // Special handling for month column to sort chronologically
+      if (sortColumn === 'month' && typeof aVal === 'string' && typeof bVal === 'string') {
+        const aDate = parse(aVal, 'MMM yyyy', new Date());
+        const bDate = parse(bVal, 'MMM yyyy', new Date());
+        return sortDirection === 'asc' 
+          ? aDate.getTime() - bDate.getTime()
+          : bDate.getTime() - aDate.getTime();
+      }
       
       if (typeof aVal === 'string' && typeof bVal === 'string') {
         return sortDirection === 'asc' 
