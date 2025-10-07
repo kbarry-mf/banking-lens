@@ -31,7 +31,7 @@ interface SummaryViewProps {
 export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
-      {/* Top Metrics - Non-Ratio Fields */}
+      {/* All Metrics Grouped Together */}
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         <MetricCard
           label="Annualized Revenue"
@@ -69,6 +69,24 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
           changePercent={7}
           clickable
           onClick={() => onTabChange?.("balances")}
+        />
+        <MetricCard
+          label="Balance to Revenue Ratio"
+          value="18.2%"
+          variant="destructive"
+          priorValue="17.8%"
+          changePercent={0.4}
+        />
+        <MetricCard
+          label="Cash Flow to Revenue Ratio"
+          value="14.8%"
+          priorValue="14.9%"
+          changePercent={-0.1}
+        />
+        <MetricCard
+          label="Ocrolus Detect Signals"
+          value="2"
+          variant="warning"
         />
       </div>
 
@@ -160,28 +178,6 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
             </ChartContainer>
           </CardContent>
         </Card>
-      </div>
-
-      {/* Bottom Metrics - Ratios and Detect Signals */}
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-        <MetricCard
-          label="Balance to Revenue Ratio"
-          value="18.2%"
-          variant="destructive"
-          priorValue="17.8%"
-          changePercent={0.4}
-        />
-        <MetricCard
-          label="Cash Flow to Revenue Ratio"
-          value="14.8%"
-          priorValue="14.9%"
-          changePercent={-0.1}
-        />
-        <MetricCard
-          label="Ocrolus Detect Signals"
-          value="2"
-          variant="warning"
-        />
       </div>
     </div>
   );
