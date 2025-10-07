@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "./MetricCard";
-import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
+import { TrendingUp, TrendingDown, AlertCircle, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
+import { useState } from "react";
 import { formatCurrency } from "@/lib/utils";
 
 interface BalancesViewProps {
@@ -11,7 +12,9 @@ interface BalancesViewProps {
 }
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
-const monthlyBalances = [
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  const monthlyBalances = [
     { month: "Apr 2025", avgBalance: 418000, weightedAvgAdjBalance: 398000, maxBalance: 725000, minBalance: 178000, negDays: 1 },
     { month: "May 2025", avgBalance: 452000, weightedAvgAdjBalance: 431000, maxBalance: 782000, minBalance: 212000, negDays: 0 },
     { month: "Jun 2025", avgBalance: 408000, weightedAvgAdjBalance: 389000, maxBalance: 698000, minBalance: 171000, negDays: 0 },
@@ -19,6 +22,19 @@ const monthlyBalances = [
     { month: "Aug 2025", avgBalance: 415000, weightedAvgAdjBalance: 396000, maxBalance: 712000, minBalance: 182000, negDays: 0 },
     { month: "Sep 2025", avgBalance: 461000, weightedAvgAdjBalance: 441000, maxBalance: 798000, minBalance: 221000, negDays: 0 },
   ];
+
+  // Calculate totals
+  const totals = monthlyBalances.reduce((acc, curr) => ({
+    avgBalance: acc.avgBalance + curr.avgBalance,
+    weightedAvgAdjBalance: acc.weightedAvgAdjBalance + curr.weightedAvgAdjBalance,
+    maxBalance: Math.max(acc.maxBalance, curr.maxBalance),
+    minBalance: acc.minBalance === 0 ? curr.minBalance : Math.min(acc.minBalance, curr.minBalance),
+    negDays: acc.negDays + curr.negDays,
+  }), { avgBalance: 0, weightedAvgAdjBalance: 0, maxBalance: 0, minBalance: 0, negDays: 0 });
+
+  // Calculate averages
+  const avgWeightedAvgAdjBalance = Math.round(totals.weightedAvgAdjBalance / monthlyBalances.length);
+  const avgBalance = Math.round(totals.avgBalance / monthlyBalances.length);
 
   const chartData = monthlyBalances;
 
@@ -48,7 +64,67 @@ const monthlyBalances = [
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 xl:grid-cols-[1fr_280px]">
+        <div className="space-y-3">
+          {/* Detailed Monthly Balance Analysis - Collapsible Table */}
+          <Card>
+            <CardHeader 
+              className="pb-2 pt-4 px-4 cursor-pointer"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-sm">Detailed Monthly Balance Analysis</CardTitle>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  {isExpanded ? "Hide Details" : "Show Details"}
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="px-3 pb-3">
+              <div className="overflow-x-auto">
+                <table className="w-full table-fixed">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground" style={{ width: '8%' }}>Month</th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '20%' }}>Weighted Avg Adj Balance</th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Avg Balance</th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Max Balance</th>
+                      <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Min Balance</th>
+                      <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Negative Days</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {isExpanded && monthlyBalances.map((data, idx) => (
+                      <tr key={idx} className="border-b">
+                        <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
+                        <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
+                        <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
+                        <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
+                        <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
+                        <td className="py-1.5 text-center">
+                          <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
+                            {data.negDays}
+                          </Badge>
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="border-t-2 font-semibold bg-muted/50">
+                      <td className="py-1.5 text-xs text-foreground">Total</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${avgWeightedAvgAdjBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${avgBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${totals.maxBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-xs text-foreground">${totals.minBalance.toLocaleString()}</td>
+                      <td className="py-1.5 text-center">
+                        <Badge variant={totals.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
+                          {totals.negDays}
+                        </Badge>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Balance by Month Chart */}
           <Card>
             <CardHeader className="pb-2 pt-4 px-4">
@@ -114,55 +190,11 @@ const monthlyBalances = [
               </ChartContainer>
             </CardContent>
           </Card>
-
-          {/* Metric Cards - Vertical Stack */}
-          <div className="flex flex-col gap-3">
-            <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
-            <MetricCard label="Total Negative Days" value="1" priorValue="3" changePoints={-2} changeUnit="days" lowerIsBetter={true} variant="warning" />
-          </div>
         </div>
       )}
 
       {/* Detailed Analysis - Different formats per exploration */}
-      {exploration === "analyst" ? (
-        <Card>
-          <CardHeader className="pb-2 pt-3 px-3">
-            <CardTitle className="text-sm">Detailed Monthly Balance Analysis</CardTitle>
-          </CardHeader>
-          <CardContent className="px-3 pb-3">
-            <div className="overflow-x-auto">
-              <table className="w-full table-fixed">
-                <thead>
-                  <tr className="border-b">
-                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground" style={{ width: '8%' }}>Month</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '20%' }}>Weighted Avg Adj Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Avg Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Max Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Min Balance</th>
-                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Negative Days</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {monthlyBalances.map((data, idx) => (
-                    <tr key={idx} className="border-b last:border-0">
-                      <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
-                      <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-center">
-                        <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
-                          {data.negDays}
-                        </Badge>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-      ) : (
+      {exploration === "analyst" ? null : (
         <div className="grid gap-4 xl:grid-cols-2">
           <Card>
             <CardHeader>
