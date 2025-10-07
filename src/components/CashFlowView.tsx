@@ -119,24 +119,20 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
-                      <CollapsibleContent>
-                        {monthlyData.map((data, idx) => (
-                          <tr key={idx} className="border-b">
-                            <td className="py-3 text-xs font-medium text-foreground">{data.month}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.loanDeposits.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.revenue.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
-                            <td className="py-3 text-right text-xs font-medium text-success">
-                              {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
-                            </td>
-                          </tr>
-                        ))}
-                      </CollapsibleContent>
-                    </Collapsible>
+                    {isExpanded && monthlyData.map((data, idx) => (
+                      <tr key={idx} className="border-b">
+                        <td className="py-3 text-xs font-medium text-foreground">{data.month}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.transfersIn.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.loanDeposits.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.revenue.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.loanPayments.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.transfersOut.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs text-foreground">${data.cashFlow.toLocaleString()}</td>
+                        <td className="py-3 text-right text-xs font-medium text-success">
+                          {((data.cashFlow / data.revenue) * 100).toFixed(1)}%
+                        </td>
+                      </tr>
+                    ))}
                     <tr className="border-t-2 font-semibold bg-muted/50">
                       <td className="py-3 text-xs text-foreground">Total</td>
                       <td className="py-3 text-right text-xs text-foreground">${totals.transfersIn.toLocaleString()}</td>
