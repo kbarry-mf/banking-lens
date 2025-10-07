@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface MemoField {
   id: string;
@@ -53,7 +53,14 @@ const memoFields: MemoField[] = [
 ];
 
 export const MemoView = () => {
-  const [memoData, setMemoData] = useState<Record<string, string>>({});
+  const [memoData, setMemoData] = useState<Record<string, string>>(() => {
+    const savedData = localStorage.getItem("memoData");
+    return savedData ? JSON.parse(savedData) : {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem("memoData", JSON.stringify(memoData));
+  }, [memoData]);
 
   const handleChange = (id: string, value: string) => {
     setMemoData((prev) => ({ ...prev, [id]: value }));
