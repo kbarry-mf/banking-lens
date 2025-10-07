@@ -67,6 +67,8 @@ export const DetailsView = () => {
   const [companyInfo, setCompanyInfo] = useState({
     businessDescription: "Custom Plastic Injection Molding",
     controlPerson: "Theresa Yates",
+    qaReviewer: "Michael Chen",
+    personReviewingRecord: "Sarah Johnson",
     useOfProceeds: "Finance Accounts Receivable",
     corporateStructure: "LLC",
   });
@@ -113,6 +115,16 @@ export const DetailsView = () => {
                 label="Control Person"
                 value={companyInfo.controlPerson}
                 onSave={(value) => updateField("controlPerson", value)}
+              />
+              <EditableField
+                label="QA Reviewer"
+                value={companyInfo.qaReviewer}
+                onSave={(value) => updateField("qaReviewer", value)}
+              />
+              <EditableField
+                label="Person Reviewing Record"
+                value={companyInfo.personReviewingRecord}
+                onSave={(value) => updateField("personReviewingRecord", value)}
               />
             </div>
           </AccordionContent>
