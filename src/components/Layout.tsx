@@ -22,7 +22,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-background flex">
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'mr-96' : ''}`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:mr-96' : ''}`}>
         {/* Header */}
         <header className="border-b bg-card">
           <div className="container mx-auto px-6 py-3">
@@ -166,7 +166,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
 
       {/* Sidebar Calculator */}
       <div 
-        className={`fixed right-0 top-0 h-full w-96 bg-card border-l shadow-lg transform transition-transform duration-300 ${
+        className={`fixed right-0 top-0 h-full w-full lg:w-96 bg-card border-l shadow-lg transform transition-transform duration-300 z-50 ${
           sidebarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
