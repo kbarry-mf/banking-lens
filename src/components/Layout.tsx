@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import * as React from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload, MoreVertical } from "lucide-react";
+import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload, MoreVertical, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
 import { MemoView } from "./MemoView";
 import { ChatterView } from "./ChatterView";
 import { DetailsView } from "./DetailsView";
+import { MemoModal } from "./MemoModal";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter" | "memo">("calculator");
   const [sidebarWidth, setSidebarWidth] = useState(384); // 96 * 4 = 384px (w-96)
   const [isResizing, setIsResizing] = useState(false);
+  const [memoModalOpen, setMemoModalOpen] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsResizing(true);
@@ -84,6 +86,10 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               </div>
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
+                <Button variant="outline" size="sm" onClick={() => setMemoModalOpen(true)} className="flex">
+                  <FileText className="h-4 w-4" />
+                  Memo
+                </Button>
                 <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
                   <CheckCircle className="h-4 w-4" />
                   Claim
@@ -265,6 +271,9 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
           </div>
         </div>
       </div>
+
+      {/* Memo Modal */}
+      <MemoModal open={memoModalOpen} onOpenChange={setMemoModalOpen} />
     </div>
   );
 };
