@@ -31,7 +31,7 @@ interface SummaryViewProps {
 export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
-      {/* All Metrics in Single Section */}
+      {/* Top Metrics - Non-Ratio Fields */}
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         <MetricCard
           label="Annualized Revenue"
@@ -70,29 +70,11 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
           clickable
           onClick={() => onTabChange?.("balances")}
         />
-        <MetricCard
-          label="Balance to Revenue Ratio"
-          value="18.2%"
-          variant="destructive"
-          priorValue="17.8%"
-          changePercent={0.4}
-        />
-        <MetricCard
-          label="Cash Flow to Revenue Ratio"
-          value="14.8%"
-          priorValue="14.9%"
-          changePercent={-0.1}
-        />
-        <MetricCard
-          label="Ocrolus Detect Signals"
-          value="2"
-          variant="warning"
-        />
       </div>
 
-      {/* Charts Section */}
+      {/* Charts Section - Clickable */}
       <div className="grid gap-3 lg:grid-cols-2">
-        <Card>
+        <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => onTabChange?.("cash-flow")}>
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Revenue by Month</CardTitle>
           </CardHeader>
@@ -135,7 +117,7 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => onTabChange?.("cash-flow")}>
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm">Cash Flow from Operations by Month</CardTitle>
           </CardHeader>
@@ -178,6 +160,28 @@ export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
             </ChartContainer>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Bottom Metrics - Ratios and Detect Signals */}
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <MetricCard
+          label="Balance to Revenue Ratio"
+          value="18.2%"
+          variant="destructive"
+          priorValue="17.8%"
+          changePercent={0.4}
+        />
+        <MetricCard
+          label="Cash Flow to Revenue Ratio"
+          value="14.8%"
+          priorValue="14.9%"
+          changePercent={-0.1}
+        />
+        <MetricCard
+          label="Ocrolus Detect Signals"
+          value="2"
+          variant="warning"
+        />
       </div>
     </div>
   );
