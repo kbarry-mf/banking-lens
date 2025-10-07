@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,11 +10,36 @@ import { formatCurrency } from "@/lib/utils";
 export const OfferCalculator = () => {
   const [monthlySales] = useState(67891.00);
   const [totalRepayment] = useState(6572.00);
-  const [fundingAmount, setFundingAmount] = useState("5,300.00");
-  const [term, setTerm] = useState("63");
-  const [buyRate, setBuyRate] = useState("1.12000");
-  const [maxMarkup, setMaxMarkup] = useState("0.12000");
-  const [originationFee, setOriginationFee] = useState("295.00");
+  const [fundingAmount, setFundingAmount] = useState(() => {
+    const saved = localStorage.getItem("calculatorData");
+    return saved ? JSON.parse(saved).fundingAmount : "5,300.00";
+  });
+  const [term, setTerm] = useState(() => {
+    const saved = localStorage.getItem("calculatorData");
+    return saved ? JSON.parse(saved).term : "63";
+  });
+  const [buyRate, setBuyRate] = useState(() => {
+    const saved = localStorage.getItem("calculatorData");
+    return saved ? JSON.parse(saved).buyRate : "1.12000";
+  });
+  const [maxMarkup, setMaxMarkup] = useState(() => {
+    const saved = localStorage.getItem("calculatorData");
+    return saved ? JSON.parse(saved).maxMarkup : "0.12000";
+  });
+  const [originationFee, setOriginationFee] = useState(() => {
+    const saved = localStorage.getItem("calculatorData");
+    return saved ? JSON.parse(saved).originationFee : "295.00";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("calculatorData", JSON.stringify({
+      fundingAmount,
+      term,
+      buyRate,
+      maxMarkup,
+      originationFee
+    }));
+  }, [fundingAmount, term, buyRate, maxMarkup, originationFee]);
 
   return (
     <div className="flex flex-col h-full">
