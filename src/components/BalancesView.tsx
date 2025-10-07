@@ -13,7 +13,7 @@ interface BalancesViewProps {
 }
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
