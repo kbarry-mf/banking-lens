@@ -57,6 +57,15 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
     if (!sortColumn) return monthlyData;
     
     return [...monthlyData].sort((a, b) => {
+      // Special handling for CF % (calculated field)
+      if (sortColumn === 'cfPercent') {
+        const aPercent = (a.cashFlow / a.revenue) * 100;
+        const bPercent = (b.cashFlow / b.revenue) * 100;
+        return sortDirection === 'asc' 
+          ? aPercent - bPercent
+          : bPercent - aPercent;
+      }
+      
       const aVal = a[sortColumn as keyof typeof a];
       const bVal = b[sortColumn as keyof typeof b];
       
@@ -166,7 +175,9 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('cashFlow')}>
                         Cash Flow<SortIcon column="cashFlow" />
                       </th>
-                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground">CF %</th>
+                      <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('cfPercent')}>
+                        CF %<SortIcon column="cfPercent" />
+                      </th>
                       <th className="pb-2 text-right text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground group" onClick={() => handleSort('overdrafts')}>
                         Overdrafts<SortIcon column="overdrafts" />
                       </th>
