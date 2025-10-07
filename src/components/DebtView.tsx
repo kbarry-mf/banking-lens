@@ -245,18 +245,17 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </CardHeader>
           <CardContent>
             <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4">
-              <div className="mb-3 flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-warning" />
-                  <p className="text-sm font-medium text-foreground">Competitor Payments</p>
+                  <p className="text-sm font-medium text-foreground">Loan Payments</p>
                 </div>
-                <p className="text-2xl font-bold text-destructive">
-                  ${totalCompetitorPayments.toLocaleString()}
-                </p>
-              </div>
-              <div className="flex items-baseline gap-2 border-t border-destructive/10 pt-3">
-                <p className="text-xl font-semibold text-warning">11.0%</p>
-                <p className="text-xs text-muted-foreground">Holdback / Monthly Revenue</p>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-destructive">
+                    ${totalCompetitorPayments.toLocaleString()}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">11.0% Holdback</p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -270,15 +269,14 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
           </CardHeader>
           <CardContent>
             <div className="rounded-lg border border-success/20 bg-success/5 p-4">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-sm font-medium text-foreground">Non-Competitor Payments</p>
-                <p className="text-2xl font-bold text-success">
-                  ${totalNonCompetitorPayments.toLocaleString()}
-                </p>
-              </div>
-              <div className="flex items-baseline gap-2 border-t border-success/10 pt-3">
-                <p className="text-xl font-semibold text-success">3.8%</p>
-                <p className="text-xs text-muted-foreground">Holdback / Monthly Revenue</p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-foreground">Loan Payments</p>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-success">
+                    ${totalNonCompetitorPayments.toLocaleString()}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">3.8% Holdback</p>
+                </div>
               </div>
             </div>
           </CardContent>
