@@ -81,28 +81,15 @@ export const ChatterView = () => {
             </Button>
           </div>
 
-          <div className="text-xs text-muted-foreground text-right">
-            To link to a record, enter / then start typing the record name.
-          </div>
 
-          {/* To Field and Actions */}
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 flex-1">
-              <span className="text-sm font-medium text-foreground whitespace-nowrap">To</span>
-              <Button variant="ghost" className="h-8 px-2 justify-between flex-1 max-w-[200px]">
-                <span className="text-sm truncate">Mulligan Funding,... Only</span>
-                <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
-              </Button>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Paperclip className="h-4 w-4" />
-              </Button>
-              <Button className="h-8 px-6">
-                Share
-              </Button>
-            </div>
+          {/* Actions */}
+          <div className="flex items-center justify-end gap-2">
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Paperclip className="h-4 w-4" />
+            </Button>
+            <Button className="h-8 px-6">
+              Share
+            </Button>
           </div>
         </div>
       </Card>
