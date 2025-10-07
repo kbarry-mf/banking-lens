@@ -16,7 +16,7 @@ interface CashFlowViewProps {
 
 export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortColumn, setSortColumn] = useState<string | null>('month');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   // Match the values from SummaryView charts
   const monthlyData = [
