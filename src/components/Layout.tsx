@@ -84,19 +84,19 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               </div>
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden 2xl:flex' : 'hidden lg:flex'}`}>
+                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
                   <CheckCircle className="h-4 w-4" />
                   Claim
                 </Button>
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden 2xl:flex' : 'hidden lg:flex'}`}>
+                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
                   <XCircle className="h-4 w-4" />
                   Decline
                 </Button>
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
+                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden lg:flex' : 'flex'}`}>
                   <FileWarning className="h-4 w-4" />
                   Condition
                 </Button>
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden lg:flex' : 'hidden sm:flex'}`}>
+                <Button variant="outline" size="sm" className="flex">
                   <Upload className="h-4 w-4" />
                   Submit
                 </Button>
@@ -108,28 +108,23 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 {/* Dropdown for overflow buttons - only show when buttons are hidden */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className={`${sidebarOpen ? '2xl:hidden' : 'lg:hidden'}`}>
+                    <Button variant="outline" size="sm" className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 bg-card z-50">
-                    {/* Submit - hidden on lg and up */}
-                    <DropdownMenuItem className={`${sidebarOpen ? 'lg:hidden' : 'sm:hidden'}`}>
-                      <Upload className="h-4 w-4 mr-2" />
-                      Submit
-                    </DropdownMenuItem>
-                    {/* Condition - hidden on xl and up */}
-                    <DropdownMenuItem className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
+                    {/* Condition - hidden on lg and up when sidebar open, always visible when closed */}
+                    <DropdownMenuItem className={`${sidebarOpen ? 'lg:hidden' : 'hidden'}`}>
                       <FileWarning className="h-4 w-4 mr-2" />
                       Condition
                     </DropdownMenuItem>
-                    {/* Decline - hidden on 2xl and up */}
-                    <DropdownMenuItem className={`${sidebarOpen ? '2xl:hidden' : 'lg:hidden'}`}>
+                    {/* Decline - hidden on xl and up */}
+                    <DropdownMenuItem className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
                       <XCircle className="h-4 w-4 mr-2" />
                       Decline
                     </DropdownMenuItem>
-                    {/* Claim - hidden on 2xl and up */}
-                    <DropdownMenuItem className={`${sidebarOpen ? '2xl:hidden' : 'lg:hidden'}`}>
+                    {/* Claim - hidden on xl and up */}
+                    <DropdownMenuItem className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Claim
                     </DropdownMenuItem>
