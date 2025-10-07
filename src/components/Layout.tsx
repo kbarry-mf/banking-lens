@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as React from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload, MoreVertical } from "lucide-react";
@@ -18,11 +19,56 @@ interface LayoutProps {
 export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter" | "memo">("calculator");
+  const [sidebarWidth, setSidebarWidth] = useState(384); // 96 * 4 = 384px (w-96)
+  const [isResizing, setIsResizing] = useState(false);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsResizing(true);
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isResizing) return;
+    
+    const newWidth = window.innerWidth - e.clientX;
+    // Clamp width between 280px (min) and 600px (max)
+    const clampedWidth = Math.min(Math.max(newWidth, 280), 600);
+    setSidebarWidth(clampedWidth);
+  };
+
+  const handleMouseUp = () => {
+    setIsResizing(false);
+  };
+
+  // Add/remove mouse event listeners for resizing
+  React.useEffect(() => {
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'ew-resize';
+      document.body.style.userSelect = 'none';
+    } else {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+  }, [isResizing]);
 
   return (
     <div className="min-h-screen bg-background flex">
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'mr-0 lg:mr-96' : ''}`}>
+      <div 
+        className="flex-1 flex flex-col transition-all duration-300" 
+        style={{ marginRight: sidebarOpen ? `${sidebarWidth}px` : '0' }}
+      >
         {/* Header */}
         <header className="border-b bg-card">
           <div className="container mx-auto px-6 py-3">
@@ -166,10 +212,21 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
 
       {/* Sidebar Calculator */}
       <div 
-        className={`fixed right-0 top-0 h-full w-full lg:w-96 bg-card border-l shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed right-0 top-0 h-full bg-card border-l shadow-lg transform transition-transform duration-300 z-50 ${
           sidebarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ width: sidebarOpen ? `${sidebarWidth}px` : '100%', maxWidth: '100%' }}
       >
+        {/* Resize Handle */}
+        {sidebarOpen && (
+          <div
+            onMouseDown={handleMouseDown}
+            className="absolute left-0 top-0 bottom-0 w-1 cursor-ew-resize hover:bg-primary/20 active:bg-primary/40 transition-colors group"
+            style={{ touchAction: 'none' }}
+          >
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-border group-hover:bg-primary/40 rounded-r transition-colors" />
+          </div>
+        )}
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
             <Tabs value={sidebarTab} onValueChange={(value) => setSidebarTab(value as "calculator" | "chatter" | "memo")} className="flex-1">
