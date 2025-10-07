@@ -253,16 +253,13 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
         </Card>
 
         <Card className="p-3">
-          <div className="flex items-start gap-3">
-            <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-success" />
-            <div className="flex-1">
-              <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
-              <div className="mt-1 flex items-baseline gap-2">
-                <p className="text-2xl font-semibold text-foreground">
-                  ${totalNonCompetitorPayments.toLocaleString()}
-                </p>
-                <p className="text-xs text-muted-foreground">3.8% Holdback</p>
-              </div>
+          <div className="flex-1">
+            <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <p className="text-2xl font-semibold text-foreground">
+                ${totalNonCompetitorPayments.toLocaleString()}
+              </p>
+              <p className="text-xs text-muted-foreground">3.8% Holdback</p>
             </div>
           </div>
         </Card>
