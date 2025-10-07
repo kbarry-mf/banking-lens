@@ -3,7 +3,7 @@ import { MetricCard } from "./MetricCard";
 import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from "recharts";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Legend } from "recharts";
 import { formatCurrency } from "@/lib/utils";
 
 interface BalancesViewProps {
@@ -57,44 +57,46 @@ const monthlyBalances = [
       {/* Balance Trend Visualization - Full width chart with multiple lines */}
       <Card>
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm">Weighted Average Adjusted Balance</CardTitle>
+          <CardTitle className="text-sm">Balance by Month</CardTitle>
         </CardHeader>
         <CardContent className="px-2 pb-4">
           <ChartContainer
             config={{
               weightedAvgAdjBalance: {
-                label: "Weighted Avg Adj Balance",
+                label: "Weighted Average Adjusted Balance",
                 color: exploration === "executive" ? "hsl(var(--primary))" : 
                        exploration === "analyst" ? "hsl(var(--primary))" : 
                        "hsl(var(--chart-1))",
               },
               maxBalance: {
-                label: "Max Balance",
+                label: "Maximum Balance",
                 color: "hsl(var(--success))",
               },
               minBalance: {
-                label: "Min Balance",
+                label: "Minimum Balance",
                 color: "hsl(var(--warning))",
               },
             }}
             className="h-80 w-full"
           >
             {exploration === "decision" ? (
-              <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
+              <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
                 <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <Legend />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
                 <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
               </LineChart>
             ) : (
-              <LineChart data={chartData} margin={{ left: 32, right: 8 }}>
+              <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
                 <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <Legend />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
                 <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
                 <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
