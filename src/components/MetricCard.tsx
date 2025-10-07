@@ -43,15 +43,15 @@ export const MetricCard = ({
   return (
     <Card 
       className={cn(
-        "p-3 relative overflow-hidden",
+        "p-3",
         clickable && "cursor-pointer"
       )}
       onClick={onClick}
     >
-      {dotColor && (
-        <div className={cn("absolute left-0 top-0 bottom-0 w-1 rounded-l-lg", dotColor)} />
-      )}
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-3">
+        {dotColor && (
+          <div className={cn("w-1 h-full rounded-full flex-shrink-0", dotColor)} />
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-1.5">
             <p className="text-xs font-medium text-muted-foreground">{label}</p>
