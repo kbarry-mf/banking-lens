@@ -42,7 +42,7 @@ export const MetricCard = ({
     <Card 
       className={cn(
         "p-3",
-        clickable && "cursor-pointer hover:bg-accent/50 transition-colors"
+        clickable && "cursor-pointer"
       )}
       onClick={onClick}
     >
