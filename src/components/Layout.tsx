@@ -26,11 +26,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
           <div className="container mx-auto px-6 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary">
                   <Building2 className="h-5 w-5 text-primary-foreground" />
                 </div>
-                <div>
-                  <h1 className="text-lg font-semibold text-foreground">Banking Lens</h1>
+                <div className="flex flex-col">
+                  <span className="text-xs text-muted-foreground">Underwriting</span>
+                  <h1 className="text-xl font-bold text-foreground">UND-00597881</h1>
                 </div>
               </div>
               <div className="flex items-center gap-2">
