@@ -128,26 +128,26 @@ const monthlyBalances = [
           </CardHeader>
           <CardContent className="px-3 pb-3">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full table-fixed">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground w-12">Month</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Weighted Avg Adj Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Max Balance</th>
-                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Min Balance</th>
-                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground w-24">Negative Days</th>
+                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground" style={{ width: '8%' }}>Month</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '20%' }}>Weighted Avg Adj Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Avg Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Max Balance</th>
+                    <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Min Balance</th>
+                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground" style={{ width: '18%' }}>Negative Days</th>
                   </tr>
                 </thead>
                 <tbody>
                   {monthlyBalances.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-1.5 text-xs font-medium text-foreground w-12">{data.month}</td>
+                      <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-center w-24">
+                      <td className="py-1.5 text-center">
                         <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
                           {data.negDays}
                         </Badge>
