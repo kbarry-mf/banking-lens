@@ -67,10 +67,31 @@ export const MemoView = () => {
 
   const [memoData, setMemoData] = useState<Record<string, string>>(() => {
     const savedData = localStorage.getItem("memoData");
+
+    const sanitize = (val: string | undefined, fallback: string): string => {
+      if (!val) return fallback;
+      // Strip HTML tags from any previously saved rich-text values
+      const el = document.createElement("div");
+      el.innerHTML = val;
+      const text = (el.textContent || el.innerText || "").trim();
+      return text.length === 0 ? fallback : text;
+    };
+
     if (savedData) {
-      const parsed = JSON.parse(savedData);
-      // Merge with defaults to ensure all fields have values
-      return { ...defaultMemoData, ...parsed };
+      try {
+        const parsed = JSON.parse(savedData) as Record<string, string>;
+        const merged: Record<string, string> = { ...defaultMemoData };
+        for (const key of Object.keys(defaultMemoData)) {
+          const fb = (defaultMemoData as Record<string, string>)[key];
+          merged[key] = sanitize(parsed[key], fb);
+        }
+        // Persist cleaned values so the UI stays consistent
+        localStorage.setItem("memoData", JSON.stringify(merged));
+        return merged;
+      } catch {
+        // If parsing fails, fall back to defaults
+        return defaultMemoData;
+      }
     }
     return defaultMemoData;
   });
