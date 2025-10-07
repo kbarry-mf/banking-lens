@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { SummaryView } from "@/components/SummaryView";
+import { DetailsView } from "@/components/DetailsView";
 import { CashFlowView } from "@/components/CashFlowView";
 import { BalancesView } from "@/components/BalancesView";
 import { DebtView } from "@/components/DebtView";
@@ -14,6 +15,8 @@ const Index = () => {
     switch (activeTab) {
       case "summary":
         return <SummaryView exploration="analyst" onTabChange={setActiveTab} />;
+      case "details":
+        return <DetailsView />;
       case "cash-flow":
         return <CashFlowView exploration="analyst" />;
       case "balances":

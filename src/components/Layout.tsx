@@ -7,6 +7,7 @@ import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
 import { MemoView } from "./MemoView";
 import { ChatterView } from "./ChatterView";
+import { DetailsView } from "./DetailsView";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -110,6 +111,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
                 >
                   Summary
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="details"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Details
                 </TabsTrigger>
                 <TabsTrigger 
                   value="cash-flow"
