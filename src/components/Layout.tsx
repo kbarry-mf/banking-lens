@@ -1,11 +1,11 @@
 import { useState } from "react";
-import chatterPublisherImage from "@/assets/chatter-publisher.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
 import { MemoView } from "./MemoView";
+import { ChatterView } from "./ChatterView";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -167,13 +167,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
             ) : sidebarTab === "memo" ? (
               <MemoView />
             ) : (
-              <div className="p-4">
-                <img 
-                  src={chatterPublisherImage} 
-                  alt="Salesforce Chatter Publisher" 
-                  className="w-full rounded-lg border shadow-sm"
-                />
-              </div>
+              <ChatterView />
             )}
           </div>
         </div>
