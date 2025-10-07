@@ -87,9 +87,9 @@ const monthlyBalances = [
                         }} 
                       />} 
                     />
-                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 3 }} />
+                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={1.5} strokeOpacity={0.4} dot={{ fill: "var(--color-maxBalance)", r: 3 }} />
+                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={1.5} strokeOpacity={0.4} dot={{ fill: "var(--color-minBalance)", r: 3 }} />
                   </LineChart>
                 ) : (
                   <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
@@ -106,9 +106,9 @@ const monthlyBalances = [
                         }} 
                       />} 
                     />
-                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 3 }} />
+                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={1.5} strokeOpacity={0.4} dot={{ fill: "var(--color-maxBalance)", r: 3 }} />
+                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={1.5} strokeOpacity={0.4} dot={{ fill: "var(--color-minBalance)", r: 3 }} />
                   </LineChart>
                 )}
               </ChartContainer>
