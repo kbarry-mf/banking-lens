@@ -84,7 +84,16 @@ const monthlyBalances = [
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <ChartTooltip 
+                  content={<ChartTooltipContent 
+                    formatter={(value, name) => {
+                      const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
+                                   name === "maxBalance" ? "Maximum Balance" :
+                                   name === "minBalance" ? "Minimum Balance" : name;
+                      return [formatCurrency(Number(value)), label];
+                    }} 
+                  />} 
+                />
                 <Legend 
                   formatter={(value) => {
                     if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
@@ -102,7 +111,16 @@ const monthlyBalances = [
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+                <ChartTooltip 
+                  content={<ChartTooltipContent 
+                    formatter={(value, name) => {
+                      const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
+                                   name === "maxBalance" ? "Maximum Balance" :
+                                   name === "minBalance" ? "Minimum Balance" : name;
+                      return [formatCurrency(Number(value)), label];
+                    }} 
+                  />} 
+                />
                 <Legend 
                   formatter={(value) => {
                     if (value === "weightedAvgAdjBalance") return "Weighted Average Adjusted Balance";
