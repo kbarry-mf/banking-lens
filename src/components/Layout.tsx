@@ -113,12 +113,6 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   Summary
                 </TabsTrigger>
                 <TabsTrigger 
-                  value="details"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
-                >
-                  Details
-                </TabsTrigger>
-                <TabsTrigger 
                   value="cash-flow"
                   className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
                 >
@@ -135,6 +129,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
                 >
                   Debt
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="details"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Details
                 </TabsTrigger>
                 <TabsTrigger 
                   value="related"

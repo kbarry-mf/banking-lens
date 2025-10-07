@@ -27,31 +27,31 @@ const EditableField = ({ label, value, onSave }: EditableFieldProps) => {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 py-3 border-b last:border-b-0 group hover:bg-accent/50 transition-colors">
-      <div className="text-sm text-muted-foreground font-medium">{label}</div>
+    <div className="grid grid-cols-2 gap-3 py-2 border-b last:border-b-0 group hover:bg-accent/50 transition-colors">
+      <div className="text-xs text-muted-foreground font-medium">{label}</div>
       <div className="flex items-center justify-between gap-2">
         {isEditing ? (
-          <div className="flex items-center gap-2 flex-1">
+          <div className="flex items-center gap-1.5 flex-1">
             <Input
               value={editValue}
               onChange={(e) => setEditValue(e.target.value)}
-              className="h-8 flex-1"
+              className="h-7 flex-1 text-xs"
               autoFocus
             />
-            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={handleSave}>
+            <Button size="icon" variant="ghost" className="h-7 w-7" onClick={handleSave}>
               <Check className="h-4 w-4 text-green-600" />
             </Button>
-            <Button size="icon" variant="ghost" className="h-8 w-8" onClick={handleCancel}>
+            <Button size="icon" variant="ghost" className="h-7 w-7" onClick={handleCancel}>
               <X className="h-4 w-4 text-red-600" />
             </Button>
           </div>
         ) : (
           <>
-            <span className="text-sm text-foreground">{value}</span>
+            <span className="text-xs text-foreground">{value}</span>
             <Button
               size="icon"
               variant="ghost"
-              className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity"
               onClick={() => setIsEditing(true)}
             >
               <Pencil className="h-3 w-3" />
@@ -79,14 +79,14 @@ export const DetailsView = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <Accordion type="multiple" defaultValue={["company", "transaction"]} className="space-y-4">
+    <div className="space-y-3">
+      <Accordion type="multiple" defaultValue={["company", "transaction"]} className="space-y-3">
         {/* Company Information Section */}
         <AccordionItem value="company" className="border rounded-lg bg-card">
-          <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
-            <h2 className="text-lg font-semibold">Company Information</h2>
+          <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-accent/50">
+            <h2 className="text-sm font-semibold">Company Information</h2>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-4">
+          <AccordionContent className="px-4 pb-3">
             <div className="space-y-0">
               <EditableField
                 label="Business Description"
@@ -104,10 +104,10 @@ export const DetailsView = () => {
 
         {/* Key Parties Section */}
         <AccordionItem value="parties" className="border rounded-lg bg-card">
-          <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
-            <h2 className="text-lg font-semibold">Key Parties</h2>
+          <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-accent/50">
+            <h2 className="text-sm font-semibold">Key Parties</h2>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-4">
+          <AccordionContent className="px-4 pb-3">
             <div className="space-y-0">
               <EditableField
                 label="Control Person"
@@ -120,10 +120,10 @@ export const DetailsView = () => {
 
         {/* Transaction Details Section */}
         <AccordionItem value="transaction" className="border rounded-lg bg-card">
-          <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
-            <h2 className="text-lg font-semibold">Transaction Details</h2>
+          <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-accent/50">
+            <h2 className="text-sm font-semibold">Transaction Details</h2>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-4">
+          <AccordionContent className="px-4 pb-3">
             <div className="space-y-0">
               <EditableField
                 label="Use of Proceeds"
