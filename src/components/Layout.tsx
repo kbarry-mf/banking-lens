@@ -38,23 +38,23 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
                 <Button variant="outline" size="sm" className="hidden lg:flex">
-                  <CheckCircle className="h-4 w-4 mr-1" />
+                  <CheckCircle className="h-4 w-4" />
                   Claim
                 </Button>
                 <Button variant="outline" size="sm" className="hidden lg:flex">
-                  <XCircle className="h-4 w-4 mr-1" />
+                  <XCircle className="h-4 w-4" />
                   Decline
                 </Button>
                 <Button variant="outline" size="sm" className="hidden md:flex">
-                  <FileWarning className="h-4 w-4 mr-1" />
+                  <FileWarning className="h-4 w-4" />
                   Condition
                 </Button>
                 <Button variant="outline" size="sm" className="hidden sm:flex">
-                  <Upload className="h-4 w-4 mr-1" />
+                  <Upload className="h-4 w-4" />
                   Submit
                 </Button>
                 <Button variant="default" size="sm">
-                  <Send className="h-4 w-4 mr-1" />
+                  <Send className="h-4 w-4" />
                   Present
                 </Button>
 
