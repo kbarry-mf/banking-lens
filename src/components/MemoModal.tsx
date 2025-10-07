@@ -31,17 +31,19 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
               color: #333;
             }
             h1 {
-              font-size: 24px;
-              margin-bottom: 8px;
+              font-size: 28px;
+              margin-bottom: 24px;
               color: #000;
+              font-weight: bold;
             }
             h2 {
-              font-size: 18px;
-              margin-top: 24px;
-              margin-bottom: 12px;
+              font-size: 20px;
+              margin-top: 28px;
+              margin-bottom: 16px;
               color: #000;
+              font-weight: bold;
               border-bottom: 2px solid #333;
-              padding-bottom: 4px;
+              padding-bottom: 6px;
             }
             h3 {
               font-size: 14px;
@@ -146,6 +148,23 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
     recommendation: memoData.recommendation || "APPROVE - Recommend funding at requested amount of $2,500,000. Credit profile demonstrates solid fundamentals with manageable risk indicators. Cash flow adequate for proposed debt service. Pricing tier MCS Tier 1 appropriate given score and banking performance. Standard monitoring and reporting covenants recommended."
   };
 
+  // Sample company data
+  const companyData = {
+    name: "Acme Corporation",
+    address: "123 Main Street, Los Angeles, CA 90001",
+    yearsInBusiness: "8",
+    industry: "Plastics Material and Resin Manufacturing",
+    website: "www.acmecorp.com"
+  };
+
+  const applicationData = {
+    id: "UND-00597881",
+    date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+    requestedAmount: "$2,500,000",
+    type: "Working Capital & Debt Consolidation",
+    broker: "Smith Financial Group"
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
@@ -158,141 +177,167 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
           <div id="memo-content">
-            {/* Header */}
+            {/* Company Name as Title */}
             <div className="header">
-              <h1>Credit Memorandum</h1>
-              <div className="company-info">Acme Corporation (dba California Plastics)</div>
-              <div className="company-info">Application ID: UND-00597881</div>
-              <div className="company-info">Date: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-              <div className="company-info">Underwriter: Sarah Johnson</div>
+              <h1>{companyData.name}</h1>
             </div>
 
-            {/* Executive Summary */}
+            {/* Company Overview */}
             <div className="section">
-              <h2>Executive Summary</h2>
-              
+              <h2>Company Overview</h2>
               <div className="memo-field">
-                <h3>Company</h3>
-                <div className="metric-value">Acme Corporation</div>
-                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                  Plastics Material and Resin Manufacturing
-                </div>
+                <h3>Address</h3>
+                <div className="memo-text">{companyData.address}</div>
               </div>
-
               <div className="memo-field">
-                <h3>Requested Amount</h3>
-                <div className="metric-value">$2,500,000</div>
-                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                  Years in Business: 8
-                </div>
+                <h3>Years in Business</h3>
+                <div className="memo-text">{companyData.yearsInBusiness}</div>
               </div>
-
               <div className="memo-field">
-                <h3>Annualized Revenue</h3>
-                <div className="metric-value">{formatCurrency(8450000)}</div>
+                <h3>Industry</h3>
+                <div className="memo-text">{companyData.industry}</div>
               </div>
+              <div className="memo-field">
+                <h3>Website</h3>
+                <div className="memo-text">{companyData.website}</div>
+              </div>
+            </div>
 
+            {/* Application Overview */}
+            <div className="section">
+              <h2>Application Overview</h2>
+              <div className="memo-field">
+                <h3>Application ID</h3>
+                <div className="memo-text">{applicationData.id}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Application Date</h3>
+                <div className="memo-text">{applicationData.date}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Requested Loan Amount</h3>
+                <div className="memo-text">{applicationData.requestedAmount}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Application Type</h3>
+                <div className="memo-text">{applicationData.type}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Broker</h3>
+                <div className="memo-text">{applicationData.broker}</div>
+              </div>
+            </div>
+
+            {/* Credit Overview */}
+            <div className="section">
+              <h2>Credit Overview</h2>
               <div className="memo-field">
                 <h3>FICO Score</h3>
-                <div className="metric-value">677</div>
+                <div className="memo-text">677</div>
               </div>
-
-              <div className="memo-field">
-                <h3>Annualized Cash Flow</h3>
-                <div className="metric-value">{formatCurrency(1250000)}</div>
-                <div style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>
-                  14.8% of revenue
-                </div>
-              </div>
-
               <div className="memo-field">
                 <h3>Mulligan Custom Score</h3>
-                <div className="metric-value">199</div>
+                <div className="memo-text">199</div>
               </div>
             </div>
 
-            {/* Offer Terms */}
+            {/* Banking Overview */}
             <div className="section">
-              <h2>Proposed Offer Terms</h2>
-              <div className="offer-details">
-                <div className="offer-row">
-                  <span className="offer-label">Funding Amount</span>
-                  <span className="offer-value">$5,300.00</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Term</span>
-                  <span className="offer-value">63 days</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Payment Frequency</span>
-                  <span className="offer-value">Weekly</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Payment Amount</span>
-                  <span className="offer-value">$521.60</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Monthly Holdback %</span>
-                  <span className="offer-value">3.23%</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Buy Rate</span>
-                  <span className="offer-value">1.12000</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Total Factor</span>
-                  <span className="offer-value">1.24</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Origination Fee</span>
-                  <span className="offer-value">$295.00 (5.57%)</span>
-                </div>
-                <div className="offer-row">
-                  <span className="offer-label">Pricing Tier</span>
-                  <span className="offer-value">MCS Tier 1 (50%) - 3 Months</span>
-                </div>
+              <h2>Banking Overview</h2>
+              <div className="memo-field">
+                <h3>Annualized Revenue</h3>
+                <div className="memo-text">{formatCurrency(8450000)}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Annualized Cash Flow</h3>
+                <div className="memo-text">{formatCurrency(1250000)}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Adjusted Average Daily Balance</h3>
+                <div className="memo-text">{formatCurrency(398500)}</div>
+              </div>
+              <div className="memo-field">
+                <h3>Balance to Revenue Ratio</h3>
+                <div className="memo-text">18.2%</div>
+              </div>
+              <div className="memo-field">
+                <h3>Cash Flow to Revenue Ratio</h3>
+                <div className="memo-text">14.8%</div>
               </div>
             </div>
 
-            {/* Detailed Analysis */}
+            {/* Offer Details */}
             <div className="section">
-              <h2>Detailed Analysis</h2>
+              <h2>Offer Details</h2>
+              <div className="memo-field">
+                <h3>Funding Amount</h3>
+                <div className="memo-text">$5,300.00</div>
+              </div>
+              <div className="memo-field">
+                <h3>Term</h3>
+                <div className="memo-text">63 days</div>
+              </div>
+              <div className="memo-field">
+                <h3>Pricing Tier</h3>
+                <div className="memo-text">MCS Tier 1 (50%) - 3 Months</div>
+              </div>
+              <div className="memo-field">
+                <h3>Buy Rate</h3>
+                <div className="memo-text">1.12000</div>
+              </div>
+              <div className="memo-field">
+                <h3>Max Markup</h3>
+                <div className="memo-text">12%</div>
+              </div>
+              <div className="memo-field">
+                <h3>Factor</h3>
+                <div className="memo-text">1.24</div>
+              </div>
+              <div className="memo-field">
+                <h3>Payment Frequency</h3>
+                <div className="memo-text">Weekly</div>
+              </div>
+              <div className="memo-field">
+                <h3>Monthly Holdback %</h3>
+                <div className="memo-text">3.23%</div>
+              </div>
+              <div className="memo-field">
+                <h3>Origination Fee</h3>
+                <div className="memo-text">$295.00 (5.57%)</div>
+              </div>
+            </div>
 
+            {/* Memo */}
+            <div className="section">
+              <h2>Memo</h2>
               <div className="memo-field">
                 <h3>Business Description & Request Overview</h3>
                 <div className="memo-text">{sampleMemoData.businessDescription}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Credit</h3>
                 <div className="memo-text">{sampleMemoData.credit}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Banking</h3>
                 <div className="memo-text">{sampleMemoData.banking}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Financials</h3>
                 <div className="memo-text">{sampleMemoData.financials}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Public Records</h3>
                 <div className="memo-text">{sampleMemoData.publicRecords}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Underwriter Call Notes</h3>
                 <div className="memo-text">{sampleMemoData.underwriterNotes}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Internal Team Discussion</h3>
                 <div className="memo-text">{sampleMemoData.teamDiscussion}</div>
               </div>
-
               <div className="memo-field">
                 <h3>Credit Recommendation & Rationale</h3>
                 <div className="memo-text">{sampleMemoData.recommendation}</div>
