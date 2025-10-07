@@ -131,7 +131,7 @@ const monthlyBalances = [
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground w-16">Month</th>
+                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground w-12">Month</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Weighted Avg Adj Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Max Balance</th>
@@ -142,7 +142,7 @@ const monthlyBalances = [
                 <tbody>
                   {monthlyBalances.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-1.5 text-xs font-medium text-foreground w-16">{data.month}</td>
+                      <td className="py-1.5 text-xs font-medium text-foreground w-12">{data.month}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
