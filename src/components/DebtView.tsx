@@ -66,57 +66,13 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
 
   const COLORS = ['hsl(var(--destructive))', 'hsl(var(--warning))', 'hsl(var(--success))'];
 
+  const totalDeposits = loanSources.reduce((sum, l) => sum + l.totalDeposits, 0);
+  const totalDepositCount = loanSources.reduce((sum, l) => sum + l.countDeposits, 0);
+  const totalPayments = loanSources.reduce((sum, l) => sum + l.totalPayments, 0);
+  const totalPaymentCount = loanSources.reduce((sum, l) => sum + l.countPayments, 0);
+
   return (
     <div className="space-y-4">
-      {/* Summary Metrics - Single Row Layout */}
-      <Card>
-        <CardContent className="pt-4 pb-3 px-4">
-          <div className="grid gap-4 grid-cols-2 xl:grid-cols-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10">
-                <ArrowUpCircle className="h-5 w-5 text-destructive" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Loan Payments</p>
-                <p className="text-xl font-bold text-foreground">$125,000</p>
-                <p className="text-xs text-muted-foreground">14.8% Holdback</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10">
-                <ArrowDownCircle className="h-5 w-5 text-success" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Loan Proceeds</p>
-                <p className="text-xl font-bold text-foreground">$725,000</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warning/10">
-                <TrendingDown className="h-5 w-5 text-warning" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Competitor Payments</p>
-                <p className="text-xl font-bold text-foreground">$93,000</p>
-                <p className="text-xs text-muted-foreground">11.0% Holdback</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                <DollarSign className="h-5 w-5 text-muted-foreground" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Non-Comp Payments</p>
-                <p className="text-xl font-bold text-foreground">$32,000</p>
-                <p className="text-xs text-muted-foreground">3.8% Holdback</p>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Loan Sources - Different presentations per exploration */}
       {exploration === "analyst" ? (
@@ -140,7 +96,7 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                 </thead>
                 <tbody>
                   {loanSources.map((loan, idx) => (
-                    <tr key={idx} className="border-b last:border-0">
+                    <tr key={idx} className="border-b">
                       <td className="py-2">
                         <p className="text-xs font-medium text-foreground">{loan.name}</p>
                       </td>
@@ -164,6 +120,21 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
                       </td>
                     </tr>
                   ))}
+                  <tr className="border-t-2 font-semibold bg-muted/30">
+                    <td className="py-2">
+                      <p className="text-xs font-semibold text-foreground">Total</p>
+                    </td>
+                    <td className="py-2"></td>
+                    <td className="py-2 text-right text-xs text-foreground">
+                      ${totalDeposits.toLocaleString()}
+                    </td>
+                    <td className="py-2 text-right text-xs text-foreground">{totalDepositCount}</td>
+                    <td className="py-2 text-right text-xs font-medium text-foreground">
+                      ${totalPayments.toLocaleString()}
+                    </td>
+                    <td className="py-2 text-right text-xs text-foreground">{totalPaymentCount}</td>
+                    <td className="py-2"></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -251,38 +222,38 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Debt Burden Analysis below charts */}
+          <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
+            <Card className="p-3">
+              <div className="flex items-start gap-3">
+                <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-warning" />
+                <div className="flex-1">
+                  <p className="text-xs font-medium text-muted-foreground">Competitive Loan Payments</p>
+                  <div className="mt-1 flex items-baseline gap-2">
+                    <p className="text-2xl font-semibold text-foreground">
+                      ${totalCompetitorPayments.toLocaleString()}
+                    </p>
+                    <p className="text-xs text-muted-foreground">11.0% Holdback</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-3">
+              <div className="flex-1">
+                <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <p className="text-2xl font-semibold text-foreground">
+                    ${totalNonCompetitorPayments.toLocaleString()}
+                  </p>
+                  <p className="text-xs text-muted-foreground">3.8% Holdback</p>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       )}
-
-      {/* Debt Burden Analysis - Different presentations per exploration */}
-      <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
-        <Card className="p-3">
-          <div className="flex items-start gap-3">
-            <div className="w-1 self-stretch rounded-full flex-shrink-0 bg-warning" />
-            <div className="flex-1">
-              <p className="text-xs font-medium text-muted-foreground">Competitive Loan Payments</p>
-              <div className="mt-1 flex items-baseline gap-2">
-                <p className="text-2xl font-semibold text-foreground">
-                  ${totalCompetitorPayments.toLocaleString()}
-                </p>
-                <p className="text-xs text-muted-foreground">11.0% Holdback</p>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-3">
-          <div className="flex-1">
-            <p className="text-xs font-medium text-muted-foreground">Non-Competitive Loan Payments</p>
-            <div className="mt-1 flex items-baseline gap-2">
-              <p className="text-2xl font-semibold text-foreground">
-                ${totalNonCompetitorPayments.toLocaleString()}
-              </p>
-              <p className="text-xs text-muted-foreground">3.8% Holdback</p>
-            </div>
-          </div>
-        </Card>
-      </div>
     </div>
   );
 };
