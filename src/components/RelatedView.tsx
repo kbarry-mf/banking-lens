@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Users, FileText, History, Building2 } from "lucide-react";
+import { Users, FileText, History, Building2, Network } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface RelatedViewProps {
   exploration: "executive" | "analyst" | "decision";
@@ -91,22 +92,43 @@ const applicationHistory = [
   }
 ];
 
+const isoSubmissions = [
+  {
+    broker: "ABC Capital Partners",
+    primaryISO: true,
+    originalISO: false,
+    createdDate: "12/01/2024"
+  },
+  {
+    broker: "XYZ Funding Solutions",
+    primaryISO: false,
+    originalISO: true,
+    createdDate: "11/15/2024"
+  },
+  {
+    broker: "Merchant Finance Group",
+    primaryISO: false,
+    originalISO: false,
+    createdDate: "10/20/2024"
+  }
+];
+
 export const RelatedView = ({ exploration }: RelatedViewProps) => {
   return (
     <div className="space-y-6">
-      {/* Bank Accounts */}
+      {/* Guarantors */}
       <Card>
         <div className="p-4 border-b">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
-                <Building2 className="h-5 w-5 text-purple-600" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+                <Users className="h-5 w-5 text-red-600" />
               </div>
-              <h3 className="text-lg font-semibold">Bank Accounts ({bankAccounts.length})</h3>
+              <h3 className="text-lg font-semibold">Guarantors ({guarantors.length})</h3>
             </div>
           </div>
           <p className="text-xs text-muted-foreground ml-13">
-            {bankAccounts.length} items • Sorted by Account Number • Updated a few seconds ago
+            {guarantors.length} item • Sorted by Primary Contact • Updated a few seconds ago
           </p>
         </div>
         <CardContent className="p-0">
@@ -114,19 +136,21 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Account Number</TableHead>
-                  <TableHead>Bank</TableHead>
-                  <TableHead>Account Holder</TableHead>
-                  <TableHead>Address</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Social Security Number</TableHead>
+                  <TableHead>Date of Birth</TableHead>
+                  <TableHead>Credit Score</TableHead>
+                  <TableHead>Ownership Percentage</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {bankAccounts.map((account, index) => (
+                {guarantors.map((guarantor, index) => (
                   <TableRow key={index}>
-                    <TableCell className="font-medium">{account.accountNumber}</TableCell>
-                    <TableCell>{account.bank}</TableCell>
-                    <TableCell>{account.accountHolder}</TableCell>
-                    <TableCell>{account.address}</TableCell>
+                    <TableCell className="font-medium text-primary">{guarantor.name}</TableCell>
+                    <TableCell>{guarantor.ssn}</TableCell>
+                    <TableCell>{guarantor.dob}</TableCell>
+                    <TableCell>{guarantor.creditScore}</TableCell>
+                    <TableCell>{guarantor.ownership}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -184,58 +208,6 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
         </CardContent>
       </Card>
 
-      {/* Offers */}
-      <Card>
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-                <FileText className="h-5 w-5 text-blue-600" />
-              </div>
-              <h3 className="text-lg font-semibold">Offers ({offers.length})</h3>
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground ml-13">
-            {offers.length} items • Sorted by Offer Name • Updated a few seconds ago
-          </p>
-        </div>
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Tier</TableHead>
-                  <TableHead>Term</TableHead>
-                  <TableHead>Rate</TableHead>
-                  <TableHead>Markup</TableHead>
-                  <TableHead>Factor</TableHead>
-                  <TableHead>Type</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {offers.map((offer, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{offer.status}</TableCell>
-                    <TableCell>{offer.amount}</TableCell>
-                    <TableCell>{offer.tier}</TableCell>
-                    <TableCell>{offer.term}</TableCell>
-                    <TableCell>{offer.rate}</TableCell>
-                    <TableCell>{offer.markup}</TableCell>
-                    <TableCell>{offer.factor}</TableCell>
-                    <TableCell>{offer.type}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          <div className="p-4 text-center border-t">
-            <button className="text-sm text-primary hover:underline">View All</button>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Application History */}
       <Card>
         <div className="p-4 border-b">
@@ -269,6 +241,54 @@ export const RelatedView = ({ exploration }: RelatedViewProps) => {
                     <TableCell>{history.amount}</TableCell>
                     <TableCell>{history.status}</TableCell>
                     <TableCell>{history.decision}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div className="p-4 text-center border-t">
+            <button className="text-sm text-primary hover:underline">View All</button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* ISO Submissions */}
+      <Card>
+        <div className="p-4 border-b">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100">
+                <Network className="h-5 w-5 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-semibold">ISO Submissions ({isoSubmissions.length})</h3>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground ml-13">
+            {isoSubmissions.length} items • Sorted by Created Date • Updated a few seconds ago
+          </p>
+        </div>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Broker</TableHead>
+                  <TableHead className="text-center">Primary ISO</TableHead>
+                  <TableHead className="text-center">Original ISO</TableHead>
+                  <TableHead>Created Date</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {isoSubmissions.map((submission, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{submission.broker}</TableCell>
+                    <TableCell className="text-center">
+                      <Checkbox checked={submission.primaryISO} disabled />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Checkbox checked={submission.originalISO} disabled />
+                    </TableCell>
+                    <TableCell>{submission.createdDate}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
