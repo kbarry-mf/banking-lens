@@ -11,6 +11,7 @@ interface MetricCardProps {
   priorValue?: string;
   changePercent?: number;
   changePoints?: number; // For displaying change in points instead of percentage
+  changeUnit?: string; // Custom unit label (defaults to "pts")
   lowerIsBetter?: boolean;
   onClick?: () => void;
   clickable?: boolean;
@@ -25,6 +26,7 @@ export const MetricCard = ({
   priorValue,
   changePercent,
   changePoints,
+  changeUnit = "pts",
   lowerIsBetter = false,
   onClick,
   clickable = false
@@ -69,7 +71,7 @@ export const MetricCard = ({
                 "text-sm font-medium",
                 isPositive ? "text-success" : "text-destructive"
               )}>
-                {changePoints > 0 ? "+" : ""}{changePoints} pts
+                {changePoints > 0 ? "+" : ""}{changePoints} {changeUnit}
               </span>
             )}
           </div>
