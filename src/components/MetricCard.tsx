@@ -56,8 +56,14 @@ export const MetricCard = ({
           <div className="flex items-center gap-1.5">
             <p className="text-xs font-medium text-muted-foreground">{label}</p>
           </div>
-          <div className="mt-1 flex items-baseline gap-2">
+          <div className="mt-1 flex items-baseline gap-2 flex-wrap">
             <p className="text-2xl font-semibold text-foreground">{value}</p>
+            {priorValue && (
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                <span>→</span>
+                <span>{priorValue}</span>
+              </span>
+            )}
             {changePercent !== undefined && (
               <span className={cn(
                 "text-sm font-medium",
@@ -75,12 +81,6 @@ export const MetricCard = ({
               </span>
             )}
           </div>
-          {priorValue && (
-            <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-              <span>→</span>
-              <span>{priorValue}</span>
-            </p>
-          )}
           {description && (
             <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
           )}
