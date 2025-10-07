@@ -34,25 +34,25 @@ export const TransactionsView = ({ exploration = "analyst" }: TransactionsViewPr
   return (
     <div className="space-y-4">
       <Card>
-        <CardHeader className="py-3 px-4">
+        <CardHeader className="py-2 px-4">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base">
-              <div className="rounded-full bg-green-600 p-2">
-                <List className="h-5 w-5 text-white" />
+              <div className="rounded-full bg-green-600 p-1.5">
+                <List className="h-4 w-4 text-white" />
               </div>
               Transactions
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="px-4 pb-4">
+        <CardContent className="px-4 pb-3">
           {/* Filter Controls */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
             {/* Left Section */}
-            <div className="space-y-3 p-4 border rounded-lg">
-              <div className="space-y-2">
-                <label className="text-sm text-muted-foreground">Select Contract</label>
+            <div className="space-y-2 p-3 border rounded-lg">
+              <div className="space-y-1.5">
+                <label className="text-xs text-muted-foreground">Select Contract</label>
                 <Select value={selectedContract} onValueChange={setSelectedContract}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-8 text-sm">
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
                   <SelectContent>
@@ -62,10 +62,10 @@ export const TransactionsView = ({ exploration = "analyst" }: TransactionsViewPr
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm text-muted-foreground">Select Repayments</label>
+              <div className="space-y-1.5">
+                <label className="text-xs text-muted-foreground">Select Repayments</label>
                 <Select value={selectedRepayments} onValueChange={setSelectedRepayments}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-8 text-sm">
                     <SelectValue placeholder="All" />
                   </SelectTrigger>
                   <SelectContent>
@@ -75,40 +75,42 @@ export const TransactionsView = ({ exploration = "analyst" }: TransactionsViewPr
                   </SelectContent>
                 </Select>
               </div>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" size="sm" className="w-full h-8 text-xs">
                 Export Transactions
               </Button>
             </div>
 
             {/* Middle Section */}
-            <div className="space-y-3 p-4 border rounded-lg">
-              <div className="space-y-2">
-                <label className="text-sm text-muted-foreground">Start Date</label>
+            <div className="space-y-2 p-3 border rounded-lg">
+              <div className="space-y-1.5">
+                <label className="text-xs text-muted-foreground">Start Date</label>
                 <Input 
                   type="date" 
                   value={startDate} 
                   onChange={(e) => setStartDate(e.target.value)}
+                  className="h-8 text-sm"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm text-muted-foreground">End Date</label>
+              <div className="space-y-1.5">
+                <label className="text-xs text-muted-foreground">End Date</label>
                 <Input 
                   type="date" 
                   value={endDate} 
                   onChange={(e) => setEndDate(e.target.value)}
+                  className="h-8 text-sm"
                 />
               </div>
-              <Button variant="outline" className="w-full" disabled>
+              <Button variant="outline" size="sm" className="w-full h-8 text-xs" disabled>
                 Export Transactions By Date
               </Button>
             </div>
 
             {/* Right Section */}
-            <div className="space-y-3 p-4 border rounded-lg flex flex-col justify-between">
+            <div className="space-y-2 p-3 border rounded-lg flex flex-col justify-between">
               <div>
-                <label className="text-sm text-muted-foreground">Repayment: <span className="font-semibold text-foreground">All</span></label>
+                <label className="text-xs text-muted-foreground">Repayment: <span className="font-semibold text-foreground">All</span></label>
               </div>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" size="sm" className="w-full h-8 text-xs mt-auto">
                 Generate Payoff Letter
               </Button>
             </div>
