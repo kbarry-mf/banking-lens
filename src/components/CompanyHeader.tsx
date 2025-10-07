@@ -11,9 +11,9 @@ export const CompanyHeader = ({
   if (exploration === "executive") {
     return <Card className="shadow-none">
         <CardHeader className="pb-2 pt-3 px-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-baseline gap-2">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-baseline gap-2 flex-wrap">
                 <CardTitle className="text-lg">
                   <a href="#" className="hover:underline">Acme Corporation</a>
                 </CardTitle>
@@ -21,9 +21,9 @@ export const CompanyHeader = ({
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
-            <div className="flex gap-2">
-              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
-              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+            <div className="flex gap-2 flex-shrink-0 flex-wrap justify-end">
+              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5 whitespace-nowrap">Under Review</Badge>
+              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5 whitespace-nowrap">Mid Market</Badge>
             </div>
           </div>
         </CardHeader>
@@ -76,9 +76,9 @@ export const CompanyHeader = ({
   if (exploration === "analyst") {
     return <Card className="shadow-none">
         <CardHeader className="pb-2 pt-3 px-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-baseline gap-2">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-baseline gap-2 flex-wrap">
                 <CardTitle className="text-lg">
                   <a href="#" className="hover:underline">Acme Corporation</a>
                 </CardTitle>
@@ -86,9 +86,9 @@ export const CompanyHeader = ({
               </div>
               <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
             </div>
-            <div className="flex gap-2">
-              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
-              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+            <div className="flex gap-2 flex-shrink-0 flex-wrap justify-end">
+              <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5 whitespace-nowrap">Under Review</Badge>
+              <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5 whitespace-nowrap">Mid Market</Badge>
             </div>
           </div>
         </CardHeader>
@@ -163,9 +163,9 @@ export const CompanyHeader = ({
               <a href="#" className="text-primary hover:underline">Ocrolus Book</a>
             </div>
           </div>
-          <div className="flex gap-2">
-            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5">Under Review</Badge>
-            <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5">Mid Market</Badge>
+          <div className="flex gap-2 flex-shrink-0 flex-wrap">
+            <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5 whitespace-nowrap">Under Review</Badge>
+            <Badge className="bg-chart-1 text-white text-xs px-2 py-0.5 whitespace-nowrap">Mid Market</Badge>
           </div>
         </div>
         <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">

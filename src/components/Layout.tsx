@@ -38,19 +38,19 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               </div>
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
-                <Button variant="outline" size="sm" className="hidden lg:flex">
+                <Button variant="outline" size="sm" className="hidden 2xl:flex">
                   <CheckCircle className="h-4 w-4" />
                   Claim
                 </Button>
-                <Button variant="outline" size="sm" className="hidden lg:flex">
+                <Button variant="outline" size="sm" className="hidden 2xl:flex">
                   <XCircle className="h-4 w-4" />
                   Decline
                 </Button>
-                <Button variant="outline" size="sm" className="hidden md:flex">
+                <Button variant="outline" size="sm" className="hidden xl:flex">
                   <FileWarning className="h-4 w-4" />
                   Condition
                 </Button>
-                <Button variant="outline" size="sm" className="hidden sm:flex">
+                <Button variant="outline" size="sm" className="hidden lg:flex">
                   <Upload className="h-4 w-4" />
                   Submit
                 </Button>
@@ -62,28 +62,28 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 {/* Dropdown for overflow buttons - only show when buttons are hidden */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="lg:hidden">
+                    <Button variant="outline" size="sm" className="2xl:hidden">
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 bg-card z-50">
-                    {/* Submit - hidden on sm and up */}
-                    <DropdownMenuItem className="sm:hidden">
+                    {/* Submit - hidden on lg and up */}
+                    <DropdownMenuItem className="lg:hidden">
                       <Upload className="h-4 w-4 mr-2" />
                       Submit
                     </DropdownMenuItem>
-                    {/* Condition - hidden on md and up */}
-                    <DropdownMenuItem className="md:hidden">
+                    {/* Condition - hidden on xl and up */}
+                    <DropdownMenuItem className="xl:hidden">
                       <FileWarning className="h-4 w-4 mr-2" />
                       Condition
                     </DropdownMenuItem>
-                    {/* Decline - hidden on lg and up */}
-                    <DropdownMenuItem className="lg:hidden">
+                    {/* Decline - hidden on 2xl and up */}
+                    <DropdownMenuItem className="2xl:hidden">
                       <XCircle className="h-4 w-4 mr-2" />
                       Decline
                     </DropdownMenuItem>
-                    {/* Claim - hidden on lg and up */}
-                    <DropdownMenuItem className="lg:hidden">
+                    {/* Claim - hidden on 2xl and up */}
+                    <DropdownMenuItem className="2xl:hidden">
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Claim
                     </DropdownMenuItem>
