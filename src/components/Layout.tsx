@@ -1,4 +1,5 @@
 import { useState } from "react";
+import chatterPublisherImage from "@/assets/chatter-publisher.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Building2, ChevronLeft, CheckCircle, XCircle, FileWarning, Send, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -167,7 +168,11 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               <MemoView />
             ) : (
               <div className="p-4">
-                <p className="text-sm text-muted-foreground">Chatter tab content</p>
+                <img 
+                  src={chatterPublisherImage} 
+                  alt="Salesforce Chatter Publisher" 
+                  className="w-full rounded-lg border shadow-sm"
+                />
               </div>
             )}
           </div>
