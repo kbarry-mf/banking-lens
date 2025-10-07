@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MetricCard } from "./MetricCard";
-import { DollarSign, TrendingDown, AlertCircle } from "lucide-react";
+import { DollarSign, TrendingDown, AlertCircle, ArrowDownCircle, ArrowUpCircle } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Pie, PieChart, Cell } from "recharts";
 import { formatCurrency } from "@/lib/utils";
@@ -68,36 +68,52 @@ export const DebtView = ({ exploration }: DebtViewProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Summary Metrics - Different layouts per exploration */}
-      {exploration === "executive" ? (
-        <Card>
-          <CardContent className="pt-4 pb-3 px-4">
-            <div className="grid gap-4 grid-cols-1 xl:grid-cols-2">
-              <div>
-                <p className="text-xs font-medium text-muted-foreground">Debt Risk Assessment</p>
-                <div className="mt-2 flex items-baseline gap-2">
-                  <p className="text-3xl font-bold text-warning">Moderate</p>
-                  <Badge variant="outline" className="border-warning text-warning text-xs px-2 py-0.5">11% Holdback</Badge>
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Competitive debt at threshold. Non-competitive debt acceptable.
-                </p>
+      {/* Summary Metrics - Single Row Layout */}
+      <Card>
+        <CardContent className="pt-4 pb-3 px-4">
+          <div className="grid gap-4 grid-cols-2 xl:grid-cols-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10">
+                <ArrowUpCircle className="h-5 w-5 text-destructive" />
               </div>
-              <div className="flex items-center justify-center">
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-foreground">$125K</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Total Monthly Payments</p>
-                </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Loan Payments</p>
+                <p className="text-xl font-bold text-foreground">$125K</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      ) : (
-        <div className="grid gap-3 grid-cols-1 xl:grid-cols-2">
-          <MetricCard label="Total Loan Payments" value="$125,000" />
-          <MetricCard label="Total Loan Proceeds" value="$725,000" />
-        </div>
-      )}
+            
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10">
+                <ArrowDownCircle className="h-5 w-5 text-success" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Loan Proceeds</p>
+                <p className="text-xl font-bold text-foreground">$725K</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warning/10">
+                <TrendingDown className="h-5 w-5 text-warning" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Competitor Payments</p>
+                <p className="text-xl font-bold text-foreground">$93K</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+                <DollarSign className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Non-Comp Payments</p>
+                <p className="text-xl font-bold text-foreground">$32K</p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Loan Sources - Different presentations per exploration */}
       {exploration === "analyst" ? (
