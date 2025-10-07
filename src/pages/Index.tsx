@@ -13,7 +13,7 @@ const Index = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "summary":
-        return <SummaryView exploration="analyst" />;
+        return <SummaryView exploration="analyst" onTabChange={setActiveTab} />;
       case "cash-flow":
         return <CashFlowView exploration="analyst" />;
       case "balances":
@@ -23,7 +23,7 @@ const Index = () => {
       case "related":
         return <RelatedView exploration="analyst" />;
       default:
-        return <SummaryView exploration="analyst" />;
+        return <SummaryView exploration="analyst" onTabChange={setActiveTab} />;
     }
   };
 

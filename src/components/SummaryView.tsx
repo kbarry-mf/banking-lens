@@ -25,9 +25,10 @@ const cashFlowData = [
 
 interface SummaryViewProps {
   exploration: "executive" | "analyst" | "decision";
+  onTabChange?: (tab: string) => void;
 }
 
-export const SummaryView = ({ exploration }: SummaryViewProps) => {
+export const SummaryView = ({ exploration, onTabChange }: SummaryViewProps) => {
   return (
     <div className="space-y-4">
       {/* All Metrics in Single Section */}
@@ -37,6 +38,8 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           value="$8,450,000"
           priorValue="$7,920,000"
           changePercent={7}
+          clickable
+          onClick={() => onTabChange?.("cash-flow")}
         />
         <MetricCard
           label="FICO Score"
@@ -56,18 +59,16 @@ export const SummaryView = ({ exploration }: SummaryViewProps) => {
           value="$1,250,000"
           priorValue="$1,180,000"
           changePercent={6}
-        />
-        <MetricCard
-          label="Average Daily Balance"
-          value="$425,000"
-          priorValue="$398,000"
-          changePercent={7}
+          clickable
+          onClick={() => onTabChange?.("cash-flow")}
         />
         <MetricCard
           label="Adjusted Average Daily Balance"
           value="$398,500"
           priorValue="$372,000"
           changePercent={7}
+          clickable
+          onClick={() => onTabChange?.("balances")}
         />
         <MetricCard
           label="Balance to Revenue Ratio"

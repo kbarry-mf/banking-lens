@@ -12,6 +12,8 @@ interface MetricCardProps {
   changePercent?: number;
   changePoints?: number; // For displaying change in points instead of percentage
   lowerIsBetter?: boolean;
+  onClick?: () => void;
+  clickable?: boolean;
 }
 
 export const MetricCard = ({ 
@@ -23,7 +25,9 @@ export const MetricCard = ({
   priorValue,
   changePercent,
   changePoints,
-  lowerIsBetter = false
+  lowerIsBetter = false,
+  onClick,
+  clickable = false
 }: MetricCardProps) => {
   // Determine status indicator color based on variant
   const dotColor = variant === "warning" ? "bg-warning" : variant === "destructive" ? "bg-destructive" : null;
@@ -35,7 +39,13 @@ export const MetricCard = ({
     : undefined;
 
   return (
-    <Card className="p-3">
+    <Card 
+      className={cn(
+        "p-3",
+        clickable && "cursor-pointer hover:bg-accent/50 transition-colors"
+      )}
+      onClick={onClick}
+    >
       <div className="flex items-start gap-2">
         <div className="flex-1">
           <div className="flex items-center gap-1.5">
