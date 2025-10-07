@@ -94,8 +94,8 @@ const monthlyBalances = [
                   }}
                 />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
               </LineChart>
             ) : (
               <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
@@ -112,8 +112,8 @@ const monthlyBalances = [
                   }}
                 />
                 <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
               </LineChart>
             )}
           </ChartContainer>
@@ -131,23 +131,23 @@ const monthlyBalances = [
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground">Month</th>
+                    <th className="pb-1.5 text-left text-xs font-medium text-muted-foreground w-16">Month</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Weighted Avg Adj Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Avg Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Max Balance</th>
                     <th className="pb-1.5 text-right text-xs font-medium text-muted-foreground">Min Balance</th>
-                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground">Negative Days</th>
+                    <th className="pb-1.5 text-center text-xs font-medium text-muted-foreground w-24">Negative Days</th>
                   </tr>
                 </thead>
                 <tbody>
                   {monthlyBalances.map((data, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-1.5 text-xs font-medium text-foreground">{data.month}</td>
+                      <td className="py-1.5 text-xs font-medium text-foreground w-16">{data.month}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.weightedAvgAdjBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.avgBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.maxBalance.toLocaleString()}</td>
                       <td className="py-1.5 text-right text-xs text-foreground">${data.minBalance.toLocaleString()}</td>
-                      <td className="py-1.5 text-center">
+                      <td className="py-1.5 text-center w-24">
                         <Badge variant={data.negDays > 0 ? "destructive" : "outline"} className="text-xs px-1.5 py-0">
                           {data.negDays}
                         </Badge>
