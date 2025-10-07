@@ -14,7 +14,7 @@ interface BalancesViewProps {
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortColumn, setSortColumn] = useState<string | null>('month');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
   const monthlyBalances = [
