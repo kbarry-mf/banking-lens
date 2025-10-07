@@ -118,7 +118,7 @@ const monthlyBalances = [
           {/* Metric Cards - Vertical Stack */}
           <div className="flex flex-col gap-3">
             <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
-            <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
+            <MetricCard label="Total Negative Days" value="1" priorValue="3" changePoints={-2} variant="warning" />
           </div>
         </div>
       )}
