@@ -48,77 +48,80 @@ const monthlyBalances = [
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
-          <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
-          <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
+        <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
+          {/* Balance by Month Chart */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-4">
+              <CardTitle className="text-sm">Balance by Month</CardTitle>
+            </CardHeader>
+            <CardContent className="px-2 pb-4">
+              <ChartContainer
+                config={{
+                  weightedAvgAdjBalance: {
+                    label: "Weighted Average Adjusted Balance",
+                    color: "hsl(var(--primary))",
+                  },
+                  maxBalance: {
+                    label: "Maximum Balance",
+                    color: "hsl(var(--primary))",
+                  },
+                  minBalance: {
+                    label: "Minimum Balance",
+                    color: "hsl(var(--primary))",
+                  },
+                }}
+                className="h-80 w-full"
+              >
+                {exploration === "decision" ? (
+                  <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip 
+                      content={<ChartTooltipContent 
+                        formatter={(value, name) => {
+                          const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
+                                       name === "maxBalance" ? "Maximum Balance" :
+                                       name === "minBalance" ? "Minimum Balance" : name;
+                          return [`${label}: ${formatCurrency(Number(value))}`];
+                        }} 
+                      />} 
+                    />
+                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
+                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                  </LineChart>
+                ) : (
+                  <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                    <ChartTooltip 
+                      content={<ChartTooltipContent 
+                        formatter={(value, name) => {
+                          const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
+                                       name === "maxBalance" ? "Maximum Balance" :
+                                       name === "minBalance" ? "Minimum Balance" : name;
+                          return [`${label}: ${formatCurrency(Number(value))}`];
+                        }} 
+                      />} 
+                    />
+                    <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
+                    <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
+                    <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
+                  </LineChart>
+                )}
+              </ChartContainer>
+            </CardContent>
+          </Card>
+
+          {/* Metric Cards - Vertical Stack */}
+          <div className="flex flex-col gap-3">
+            <MetricCard label="Adjusted Average Daily Balance" value="$398,500" priorValue="$372,000" changePercent={7} />
+            <MetricCard label="Average Daily Balance" value="$425,000" priorValue="$398,000" changePercent={7} />
+          </div>
         </div>
       )}
-
-      {/* Balance Trend Visualization - Full width chart with multiple lines */}
-      <Card>
-        <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm">Balance by Month</CardTitle>
-        </CardHeader>
-        <CardContent className="px-2 pb-4">
-          <ChartContainer
-            config={{
-              weightedAvgAdjBalance: {
-                label: "Weighted Average Adjusted Balance",
-                color: "hsl(var(--primary))",
-              },
-              maxBalance: {
-                label: "Maximum Balance",
-                color: "hsl(var(--primary))",
-              },
-              minBalance: {
-                label: "Minimum Balance",
-                color: "hsl(var(--primary))",
-              },
-            }}
-            className="h-80 w-full"
-          >
-            {exploration === "decision" ? (
-              <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                <ChartTooltip 
-                  content={<ChartTooltipContent 
-                    formatter={(value, name) => {
-                      const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
-                                   name === "maxBalance" ? "Maximum Balance" :
-                                   name === "minBalance" ? "Minimum Balance" : name;
-                      return [`${label}: ${formatCurrency(Number(value))}`];
-                    }} 
-                  />} 
-                />
-                <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
-              </LineChart>
-            ) : (
-              <LineChart data={chartData} margin={{ left: 32, right: 8, top: 5, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(value) => formatCurrency(value)} />
-                <ChartTooltip 
-                  content={<ChartTooltipContent 
-                    formatter={(value, name) => {
-                      const label = name === "weightedAvgAdjBalance" ? "Weighted Average Adjusted Balance" :
-                                   name === "maxBalance" ? "Maximum Balance" :
-                                   name === "minBalance" ? "Minimum Balance" : name;
-                      return [`${label}: ${formatCurrency(Number(value))}`];
-                    }} 
-                  />} 
-                />
-                <Line type="monotone" dataKey="weightedAvgAdjBalance" stroke="var(--color-weightedAvgAdjBalance)" strokeWidth={3} dot={{ fill: "var(--color-weightedAvgAdjBalance)", r: 5 }} />
-                <Line type="monotone" dataKey="maxBalance" stroke="var(--color-maxBalance)" strokeWidth={2} dot={{ fill: "var(--color-maxBalance)", r: 4 }} />
-                <Line type="monotone" dataKey="minBalance" stroke="var(--color-minBalance)" strokeWidth={2} dot={{ fill: "var(--color-minBalance)", r: 4 }} />
-              </LineChart>
-            )}
-          </ChartContainer>
-        </CardContent>
-      </Card>
 
       {/* Detailed Analysis - Different formats per exploration */}
       {exploration === "analyst" ? (
