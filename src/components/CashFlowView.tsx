@@ -143,30 +143,18 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
 
           {/* Risk Metrics Summary */}
           <div className="grid gap-3 md:grid-cols-2">
-            <Card className="border-l-4 border-destructive">
-              <CardContent className="pt-4 pb-3 px-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-medium text-muted-foreground">Total NSF Fees</p>
-                    <p className="mt-1 text-2xl font-bold text-destructive">$450</p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">3 incidents</p>
-                  </div>
-                  <AlertTriangle className="h-8 w-8 text-destructive/20" />
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="border-l-4 border-warning">
-              <CardContent className="pt-4 pb-3 px-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-medium text-muted-foreground">Returned Items</p>
-                    <p className="mt-1 text-2xl font-bold text-warning">$1,250</p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">2 items</p>
-                  </div>
-                  <AlertTriangle className="h-8 w-8 text-warning/20" />
-                </div>
-              </CardContent>
-            </Card>
+            <MetricCard 
+              label="Total NSF Fees" 
+              value="$450" 
+              variant="destructive"
+              description="3 incidents"
+            />
+            <MetricCard 
+              label="Returned Items" 
+              value="$1,250" 
+              variant="warning"
+              description="2 items"
+            />
           </div>
 
           <Card>
