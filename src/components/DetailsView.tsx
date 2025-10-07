@@ -80,7 +80,7 @@ export const DetailsView = () => {
 
   return (
     <div className="space-y-3">
-      <Accordion type="multiple" defaultValue={["company", "transaction"]} className="space-y-3">
+      <Accordion type="multiple" defaultValue={["company", "parties", "transaction"]} className="space-y-3">
         {/* Company Information Section */}
         <AccordionItem value="company" className="border rounded-lg bg-card">
           <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-accent/50">
