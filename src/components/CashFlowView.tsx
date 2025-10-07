@@ -17,12 +17,12 @@ export const CashFlowView = ({ exploration }: CashFlowViewProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   // Match the values from SummaryView charts
   const monthlyData = [
-    { month: "Apr", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000, overdrafts: 0 },
-    { month: "May", transfersIn: 152000, loanDeposits: 95000, revenue: 745000, loanPayments: 25000, transfersOut: 52000, cashFlow: 112000, overdrafts: 1 },
-    { month: "Jun", transfersIn: 121000, loanDeposits: 78000, revenue: 698000, loanPayments: 21000, transfersOut: 38000, cashFlow: 94000, overdrafts: 0 },
-    { month: "Jul", transfersIn: 143000, loanDeposits: 88000, revenue: 725000, loanPayments: 23000, transfersOut: 48000, cashFlow: 105000, overdrafts: 1 },
-    { month: "Aug", transfersIn: 118000, loanDeposits: 72000, revenue: 691000, loanPayments: 19000, transfersOut: 35000, cashFlow: 89000, overdrafts: 1 },
-    { month: "Sep", transfersIn: 158000, loanDeposits: 102000, revenue: 738000, loanPayments: 27000, transfersOut: 55000, cashFlow: 118000, overdrafts: 0 },
+    { month: "Apr 2025", transfersIn: 115000, loanDeposits: 85000, revenue: 682000, loanPayments: 22000, transfersOut: 45000, cashFlow: 88000, overdrafts: 0 },
+    { month: "May 2025", transfersIn: 152000, loanDeposits: 95000, revenue: 745000, loanPayments: 25000, transfersOut: 52000, cashFlow: 112000, overdrafts: 1 },
+    { month: "Jun 2025", transfersIn: 121000, loanDeposits: 78000, revenue: 698000, loanPayments: 21000, transfersOut: 38000, cashFlow: 94000, overdrafts: 0 },
+    { month: "Jul 2025", transfersIn: 143000, loanDeposits: 88000, revenue: 725000, loanPayments: 23000, transfersOut: 48000, cashFlow: 105000, overdrafts: 1 },
+    { month: "Aug 2025", transfersIn: 118000, loanDeposits: 72000, revenue: 691000, loanPayments: 19000, transfersOut: 35000, cashFlow: 89000, overdrafts: 1 },
+    { month: "Sep 2025", transfersIn: 158000, loanDeposits: 102000, revenue: 738000, loanPayments: 27000, transfersOut: 55000, cashFlow: 118000, overdrafts: 0 },
   ];
 
   // Calculate totals

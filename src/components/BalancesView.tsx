@@ -12,12 +12,12 @@ interface BalancesViewProps {
 
 export const BalancesView = ({ exploration }: BalancesViewProps) => {
 const monthlyBalances = [
-    { month: "Apr", avgBalance: 418000, weightedAvgAdjBalance: 398000, maxBalance: 725000, minBalance: 178000, negDays: 1 },
-    { month: "May", avgBalance: 452000, weightedAvgAdjBalance: 431000, maxBalance: 782000, minBalance: 212000, negDays: 0 },
-    { month: "Jun", avgBalance: 408000, weightedAvgAdjBalance: 389000, maxBalance: 698000, minBalance: 171000, negDays: 0 },
-    { month: "Jul", avgBalance: 438000, weightedAvgAdjBalance: 418000, maxBalance: 751000, minBalance: 198000, negDays: 0 },
-    { month: "Aug", avgBalance: 415000, weightedAvgAdjBalance: 396000, maxBalance: 712000, minBalance: 182000, negDays: 0 },
-    { month: "Sep", avgBalance: 461000, weightedAvgAdjBalance: 441000, maxBalance: 798000, minBalance: 221000, negDays: 0 },
+    { month: "Apr 2025", avgBalance: 418000, weightedAvgAdjBalance: 398000, maxBalance: 725000, minBalance: 178000, negDays: 1 },
+    { month: "May 2025", avgBalance: 452000, weightedAvgAdjBalance: 431000, maxBalance: 782000, minBalance: 212000, negDays: 0 },
+    { month: "Jun 2025", avgBalance: 408000, weightedAvgAdjBalance: 389000, maxBalance: 698000, minBalance: 171000, negDays: 0 },
+    { month: "Jul 2025", avgBalance: 438000, weightedAvgAdjBalance: 418000, maxBalance: 751000, minBalance: 198000, negDays: 0 },
+    { month: "Aug 2025", avgBalance: 415000, weightedAvgAdjBalance: 396000, maxBalance: 712000, minBalance: 182000, negDays: 0 },
+    { month: "Sep 2025", avgBalance: 461000, weightedAvgAdjBalance: 441000, maxBalance: 798000, minBalance: 221000, negDays: 0 },
   ];
 
   const chartData = monthlyBalances;

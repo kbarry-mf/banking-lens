@@ -6,21 +6,21 @@ import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "rec
 import { formatCurrency } from "@/lib/utils";
 
 const revenueData = [
-  { month: "Apr", revenue: 682000 },
-  { month: "May", revenue: 745000 },
-  { month: "Jun", revenue: 698000 },
-  { month: "Jul", revenue: 725000 },
-  { month: "Aug", revenue: 691000 },
-  { month: "Sep", revenue: 738000 },
+  { month: "Apr 2025", revenue: 682000 },
+  { month: "May 2025", revenue: 745000 },
+  { month: "Jun 2025", revenue: 698000 },
+  { month: "Jul 2025", revenue: 725000 },
+  { month: "Aug 2025", revenue: 691000 },
+  { month: "Sep 2025", revenue: 738000 },
 ];
 
 const cashFlowData = [
-  { month: "Apr", cashFlow: 88000 },
-  { month: "May", cashFlow: 112000 },
-  { month: "Jun", cashFlow: 94000 },
-  { month: "Jul", cashFlow: 105000 },
-  { month: "Aug", cashFlow: 89000 },
-  { month: "Sep", cashFlow: 118000 },
+  { month: "Apr 2025", cashFlow: 88000 },
+  { month: "May 2025", cashFlow: 112000 },
+  { month: "Jun 2025", cashFlow: 94000 },
+  { month: "Jul 2025", cashFlow: 105000 },
+  { month: "Aug 2025", cashFlow: 89000 },
+  { month: "Sep 2025", cashFlow: 118000 },
 ];
 
 interface SummaryViewProps {
