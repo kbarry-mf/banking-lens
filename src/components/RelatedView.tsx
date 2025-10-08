@@ -94,7 +94,7 @@ const applicationHistory = [
 
 const isoSubmissions = [
   {
-    broker: "ABC Capital Partners",
+    broker: "BusinessLoans.com",
     primaryISO: true,
     originalISO: false,
     createdDate: "12/01/2024"

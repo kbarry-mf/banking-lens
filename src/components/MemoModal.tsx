@@ -174,7 +174,7 @@ export const MemoModal = ({ open, onOpenChange }: MemoModalProps) => {
     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     requestedAmount: "$2,500,000",
     type: "Working Capital & Debt Consolidation",
-    broker: "Smith Financial Group"
+    broker: "BusinessLoans.com"
   };
 
   return (
