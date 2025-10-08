@@ -21,7 +21,7 @@ export const CompanyHeader = ({
                 </CardTitle>
                 <span className="text-xs text-muted-foreground">dba California Plastics</span>
               </div>
-              <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">BusinessLoans.com</p>
             </div>
             <div className="flex gap-2 flex-shrink-0 flex-wrap justify-end">
               <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5 whitespace-nowrap">Under Review</Badge>
@@ -86,7 +86,7 @@ export const CompanyHeader = ({
                 </CardTitle>
                 <span className="text-xs text-muted-foreground">dba California Plastics</span>
               </div>
-              <p className="mt-0.5 text-xs text-muted-foreground">First Capital Partners</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">BusinessLoans.com</p>
             </div>
             <div className="flex gap-2 flex-shrink-0 flex-wrap justify-end">
               <Badge className="bg-success text-success-foreground text-xs px-2 py-0.5 whitespace-nowrap">Under Review</Badge>
@@ -152,7 +152,7 @@ export const CompanyHeader = ({
               </h2>
               <span className="text-xs text-muted-foreground">dba California Plastics</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-0.5">First Capital Partners</p>
+            <p className="text-xs text-muted-foreground mt-0.5">BusinessLoans.com</p>
             <p className="text-xs text-muted-foreground mt-0.5">Plastics Material and Resin Manufacturing</p>
             <div className="flex items-center gap-3 mt-1 text-xs">
               <span className="text-muted-foreground">LLC • 8 years</span>
