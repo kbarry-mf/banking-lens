@@ -8,6 +8,7 @@ import { CompanyHeader } from "./CompanyHeader";
 import { OfferCalculator } from "./OfferCalculator";
 import { MemoView } from "./MemoView";
 import { ChatterView } from "./ChatterView";
+import { NotesView } from "./NotesView";
 import { DetailsView } from "./DetailsView";
 import { MemoModal } from "./MemoModal";
 
@@ -19,7 +20,7 @@ interface LayoutProps {
 
 export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter" | "memo">("calculator");
+  const [sidebarTab, setSidebarTab] = useState<"calculator" | "chatter" | "memo" | "notes">("calculator");
   const [sidebarWidth, setSidebarWidth] = useState(384); // 96 * 4 = 384px (w-96)
   const [isResizing, setIsResizing] = useState(false);
   const [memoModalOpen, setMemoModalOpen] = useState(false);
@@ -252,7 +253,7 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
         )}
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
-            <Tabs value={sidebarTab} onValueChange={(value) => setSidebarTab(value as "calculator" | "chatter" | "memo")} className="flex-1">
+            <Tabs value={sidebarTab} onValueChange={(value) => setSidebarTab(value as "calculator" | "chatter" | "memo" | "notes")} className="flex-1">
               <TabsList className="h-9 w-full justify-start bg-transparent p-0">
                 <TabsTrigger 
                   value="calculator"
@@ -272,6 +273,12 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 >
                   Chatter
                 </TabsTrigger>
+                <TabsTrigger 
+                  value="notes"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none text-sm"
+                >
+                  Notes
+                </TabsTrigger>
               </TabsList>
             </Tabs>
             <Button 
@@ -287,6 +294,8 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               <OfferCalculator />
             ) : sidebarTab === "memo" ? (
               <MemoView />
+            ) : sidebarTab === "notes" ? (
+              <NotesView />
             ) : (
               <ChatterView />
             )}
