@@ -91,10 +91,6 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
               </div>
               <div className="flex items-center gap-2">
                 {/* All buttons visible on large screens, progressively hide on smaller */}
-                <Button variant="outline" size="sm" onClick={() => setMemoModalOpen(true)} className="flex">
-                  <FileText className="h-4 w-4" />
-                  Memo
-                </Button>
                 <Button 
                   variant="outline" 
                   size="sm" 
@@ -104,10 +100,6 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                   <CheckCircle className="h-4 w-4" />
                   Claim
                 </Button>
-                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
-                  <XCircle className="h-4 w-4" />
-                  Decline
-                </Button>
                 <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden lg:flex' : 'flex'}`}>
                   <FileWarning className="h-4 w-4" />
                   Condition
@@ -115,6 +107,14 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                 <Button variant="outline" size="sm" className="flex">
                   <Upload className="h-4 w-4" />
                   Submit
+                </Button>
+                <Button variant="outline" size="sm" className={`${sidebarOpen ? 'hidden xl:flex' : 'hidden md:flex'}`}>
+                  <XCircle className="h-4 w-4" />
+                  Decline
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => setMemoModalOpen(true)} className="flex">
+                  <FileText className="h-4 w-4" />
+                  Memo
                 </Button>
                 <Button variant="default" size="sm">
                   <Send className="h-4 w-4" />
@@ -129,6 +129,11 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 bg-card z-50">
+                    {/* Claim - hidden on xl and up */}
+                    <DropdownMenuItem onClick={handleClaimToggle} className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Claim
+                    </DropdownMenuItem>
                     {/* Condition - hidden on lg and up when sidebar open, always visible when closed */}
                     <DropdownMenuItem className={`${sidebarOpen ? 'lg:hidden' : 'hidden'}`}>
                       <FileWarning className="h-4 w-4 mr-2" />
@@ -138,11 +143,6 @@ export const Layout = ({ children, activeTab, onTabChange }: LayoutProps) => {
                     <DropdownMenuItem className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
                       <XCircle className="h-4 w-4 mr-2" />
                       Decline
-                    </DropdownMenuItem>
-                    {/* Claim - hidden on xl and up */}
-                    <DropdownMenuItem onClick={handleClaimToggle} className={`${sidebarOpen ? 'xl:hidden' : 'md:hidden'}`}>
-                      <CheckCircle className="h-4 w-4 mr-2" />
-                      Claim
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
