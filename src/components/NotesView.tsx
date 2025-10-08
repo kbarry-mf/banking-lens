@@ -66,14 +66,11 @@ export const NotesView = () => {
           </Button>
         </div>
         
-        <div className="space-y-2">
-          <label className="text-sm text-muted-foreground">Selected Role:</label>
-          <RichTextEditor 
-            value={noteContent}
-            onChange={setNoteContent}
-            placeholder="Add a note..."
-          />
-        </div>
+        <RichTextEditor 
+          value={noteContent}
+          onChange={setNoteContent}
+          placeholder="Add a note..."
+        />
       </div>
 
       <ScrollArea className="flex-1">
